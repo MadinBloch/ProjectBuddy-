@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { execFileSync } from "child_process";
+import AdmZip from "adm-zip";
 import { buildIntelligence, toLegacyScan } from "./intelligence.js";
 
 const SKIP_DIRS = new Set([
@@ -61,7 +61,8 @@ const EXTRA_NAMES = new Set([
 
 export function unzipTo(zipPath, dest) {
   fs.mkdirSync(dest, { recursive: true });
-  execFileSync("unzip", ["-q", "-o", zipPath, "-d", dest], { timeout: 60000 });
+  const zip = new AdmZip(zipPath);
+  zip.extractAllTo(dest, true);
   return flattenRoot(dest);
 }
 

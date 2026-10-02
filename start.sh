@@ -14,7 +14,11 @@ if [ ! -d "$ROOT/backend/node_modules" ]; then
   npm install --prefix "$ROOT/backend" --no-audit --no-fund
 fi
 
-node "$ROOT/backend/src/index.js" &
+mkdir -p "$ROOT/backend/data"
+export DATABASE_URL="file:./data/projectbuddy.db"
+
+cd "$ROOT/backend"
+node src/index.js &
 BACK_PID=$!
 
 cd "$ROOT/frontend"

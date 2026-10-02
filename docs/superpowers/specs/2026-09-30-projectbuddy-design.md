@@ -13,15 +13,15 @@ Name: ProjectBuddy
 Language: English only
 Primary input: project zip
 Secondary input: public GitHub URL
-Price: Rs 249 per project (UPI). Preview environment unlocks download without a live payment gateway.
+Download flow: generate evidence-based project pack and allow direct download after the repository is scanned and the pack is ready.
 
 ## v1 user flow
 
-1. Landing — zip first, GitHub optional, product video/demo, sample pages, price after the product is shown.
+1. Landing — upload a ZIP or paste a public GitHub URL; optionally sign in with GitHub for repo selection.
 2. Scan — detect stack, tables, routes, modules. Stop if the project has almost no code.
 3. Questions — student name, enrollment, college, course, title, problem, future work, guide name. Confirm detected modules.
-4. Generate — 2-4 minutes. Preview watermarked pages.
-5. Pay / unlock — then download zip.
+4. Generate — 2-4 minutes. Preview generated sections in the browser.
+5. Download — save the project pack or individual files once the pack is ready.
 
 ## Download pack
 
@@ -49,7 +49,7 @@ v1 implementation:
 - Jobs: in-process async (same machine)
 - Optional AI: USER_LLM_API_KEY + USER_LLM_BASE_URL (never platform keys)
 - Fallback: deterministic generator grounded in the scan
-- Payments: Razorpay-shaped UI, demo unlock in preview
+- No payment or unlock wall is included in v1; downloads are available after a valid project pack is generated
 
 ## Non-goals for v1
 

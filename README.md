@@ -6,6 +6,10 @@ English only. Grounded in the uploaded source. Missing tables, APIs, or modules 
 
 Price in the product: Rs 249 per project.
 
+## Documentation
+
+The project documentation is centralized in [docs/README.md](docs/README.md).
+
 ## Local setup
 
 Needs Node.js 18+.

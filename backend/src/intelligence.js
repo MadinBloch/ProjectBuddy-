@@ -178,6 +178,9 @@ function detectFrameworks({ names, texts, pkgFiles, composer, composerFile, reqF
     usedDeps.push(...Object.keys(deps).slice(0, 40));
     const loc = posix(p.rel);
     if (deps.react || deps["react-dom"]) add(frameworks, "React", [loc, texts.find((t) => /\.(jsx|tsx)$/.test(t.rel))?.rel].filter(Boolean), 0.95, frontend);
+    if (deps["react-native"] || deps.expo || /react-native/i.test(blob) || /expo/i.test(blob)) {
+      add(frameworks, "React Native", [loc, texts.find((t) => /react-native|expo/i.test(t.content))?.rel].filter(Boolean), 0.95, frontend);
+    }
     if (deps.next) add(frameworks, "Next.js", [loc], 0.95, frontend);
     if (deps.vue) add(frameworks, "Vue", [loc], 0.95, frontend);
     if (deps["@angular/core"]) add(frameworks, "Angular", [loc], 0.95, frontend);
@@ -185,6 +188,12 @@ function detectFrameworks({ names, texts, pkgFiles, composer, composerFile, reqF
       add(frameworks, "Express", [loc, texts.find((t) => /express\(/.test(t.content))?.rel].filter(Boolean), 0.93, backend);
     } else if (deps.express) {
       add(libraries, "express (declared)", [loc], 0.5);
+    }
+    if (names.some((n) => /pubspec\.ya?ml$/i.test(n)) || /sdk:\s*flutter/i.test(blob) || /flutter:/i.test(blob)) {
+      add(frameworks, "Flutter", [loc, names.find((n) => /pubspec\.ya?ml$/i.test(n))].filter(Boolean), 0.95, frontend);
+    }
+    if (names.some((n) => /AndroidManifest\.xml$/i.test(n) || /android\//i.test(n) || /build\.gradle/i.test(n)) || /com\.android\.application|androidx\./i.test(blob)) {
+      add(frameworks, "Android", [loc, names.find((n) => /AndroidManifest\.xml$/i.test(n) || /build\.gradle/i.test(n))].filter(Boolean), 0.8, frontend);
     }
     if (deps.vite) add(tools, "Vite", [loc], 0.8);
     if (deps.jsonwebtoken || deps.jose) add(libraries, "jsonwebtoken", [loc], 0.8);

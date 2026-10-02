@@ -2,7 +2,8 @@ import fs from "fs";
 import os from "os";
 import path from "path";
 import { fileURLToPath } from "url";
-import { scanProject } from "../src/scan.js";
+import AdmZip from "adm-zip";
+import { scanProject, unzipTo } from "../src/scan.js";
 import { generatePack } from "../src/generate.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -53,6 +54,35 @@ for (const c of cases) {
     `${ok ? "OK" : "FAIL"} ${c.dir} stack=${scan.stackLabel} tables=${(scan.tables || []).map((t) => t.name).join(",")} routes=${(scan.routes || []).map((r) => r.method + r.path).join(" ")} leaked=${leaked.join(",") || "none"}`
   );
 }
+
+const zipTestRoot = fs.mkdtempSync(path.join(os.tmpdir(), "pb-unzip-"));
+const zipPath = path.join(zipTestRoot, "repo.zip");
+const extractDest = path.join(zipTestRoot, "extracted");
+const zip = new AdmZip();
+zip.addFile("project/app.py", Buffer.from("from flask import Flask\napp = Flask(__name__)\n"));
+zip.addFile("project/requirements.txt", Buffer.from("Flask==3.0.0\n"));
+zip.writeZip(zipPath);
+const root = unzipTo(zipPath, extractDest);
+if (!fs.existsSync(path.join(root, "app.py"))) {
+  throw new Error("ZIP extraction failed for a repo archive.");
+}
+console.log("ZIP extraction works without system unzip.");
+
+const mobileRoot = path.join(os.tmpdir(), `pb-mobile-${Date.now()}`);
+fs.mkdirSync(mobileRoot, { recursive: true });
+fs.writeFileSync(path.join(mobileRoot, "package.json"), JSON.stringify({
+  name: "mobile-app",
+  dependencies: { react: "18.2.0", "react-native": "0.74.0", expo: "~51.0.0" },
+  scripts: { start: "expo start" }
+}, null, 2));
+fs.writeFileSync(path.join(mobileRoot, "App.js"), "import React from 'react';\nexport default function App() { return null; }\n");
+const mobileScan = scanProject(mobileRoot);
+if (!mobileScan.ok) throw new Error(`Mobile scan unexpectedly failed: ${mobileScan.reason}`);
+const mobileFrameworks = mobileScan.stack?.frameworks || mobileScan.intelligence?.frameworks || [];
+if (!mobileFrameworks.some((f) => /React Native|Android/i.test(f))) {
+  throw new Error(`Expected React Native or Android detection, got ${JSON.stringify(mobileFrameworks)}`);
+}
+console.log(`Mobile detection OK frameworks=${mobileFrameworks.join(",")}`);
 
 console.log(reports.join("\n"));
 if (failed) {

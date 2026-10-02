@@ -6,9 +6,17 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "node src/index.js",
-    "test": "node test/pipeline.test.js"
+    "test": "node test/pipeline.test.js",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio"
   },
   "dependencies": {
-    "express": "^5.2.1"
+    "@prisma/client": "^5.22.0",
+    "adm-zip": "^0.6.1",
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "express-session": "^1.18.1",
+    "prisma": "^5.22.0"
   }
 }

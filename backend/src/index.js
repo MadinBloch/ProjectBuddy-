@@ -1,49 +1,150 @@
 import express from "express";
+import session from "express-session";
 import fs from "fs";
 import path from "path";
-import { execFileSync } from "child_process";
-import { fileURLToPath } from "url";
-import { unzipTo, fetchGithubZip, scanProject } from "./scan.js";
-import { generatePack, STEPS } from "./generate.js";
-import { buildContext, buildContent } from "./content.js";
-import { buildDiagrams } from "./diagrams.js";
+import AdmZip from "adm-zip";
+import { getRuntimeConfig } from "./config.js";
+import prisma from "./db/prisma.js";
+import { createHealthRouter } from "./routes/health.js";
+import { registerAuthRoutes } from "./routes/auth/authRoutes.js";
+import { registerProjectRoutes } from "./routes/projects/projectRoutes.js";
+import { upsertUserFromProvider } from "./services/authService.js";
+import { ensureDataDirectories, loadStore, saveStore } from "./services/projectStore.js";
+import { unzipTo, fetchGithubZip, scanProject } from "./modules/scan/index.js";
+import { generatePack, STEPS } from "./modules/generation/index.js";
+import { buildContext, buildContent } from "./modules/content/index.js";
+import { buildDiagrams } from "./modules/diagrams/index.js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.resolve(__dirname, "../..");
-const DATA = path.join(ROOT, "data");
-const PROJECTS = path.join(DATA, "projects");
-const TMP = path.join(DATA, "tmp");
-const STORE = path.join(DATA, "store.json");
+const {
+  rootDir: ROOT,
+  dataDir: DATA,
+  projectsDir: PROJECTS,
+  tmpDir: TMP,
+  storeFile: STORE,
+  frontendUrl: FRONTEND_URL,
+  githubClientId: GITHUB_CLIENT_ID,
+  githubClientSecret: GITHUB_CLIENT_SECRET,
+  githubCallbackUrl: GITHUB_CALLBACK_URL,
+  sessionSecret: SESSION_SECRET,
+} = getRuntimeConfig();
 
-fs.mkdirSync(PROJECTS, { recursive: true });
-fs.mkdirSync(TMP, { recursive: true });
-if (!fs.existsSync(STORE)) fs.writeFileSync(STORE, "{}");
+ensureDataDirectories();
 
 const app = express();
 app.use(express.json({ limit: "2mb" }));
+app.use(
+  session({
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: false,
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+    },
+  })
+);
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  const origin = req.headers.origin || FRONTEND_URL || "*";
+  res.setHeader("Access-Control-Allow-Origin", origin);
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
   if (req.method === "OPTIONS") return res.end();
   next();
 });
 
-function loadStore() {
-  try {
-    return JSON.parse(fs.readFileSync(STORE, "utf8"));
-  } catch {
-    return {};
-  }
-}
-
-function saveStore(store) {
-  fs.writeFileSync(STORE, JSON.stringify(store, null, 2));
-}
-
 function id() {
   return "pb_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+}
+
+function buildGithubAuthorizeUrl() {
+  const params = new URLSearchParams({
+    client_id: GITHUB_CLIENT_ID,
+    redirect_uri: GITHUB_CALLBACK_URL,
+    scope: "read:user user:email repo",
+    allow_signup: "true",
+  });
+  return `https://github.com/login/oauth/authorize?${params.toString()}`;
+}
+
+async function exchangeGithubCode(code) {
+  const res = await fetch("https://github.com/login/oauth/access_token", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "User-Agent": "ProjectBuddy",
+    },
+    body: JSON.stringify({
+      client_id: GITHUB_CLIENT_ID,
+      client_secret: GITHUB_CLIENT_SECRET,
+      code,
+      redirect_uri: GITHUB_CALLBACK_URL,
+    }),
+  });
+
+  const data = await res.json();
+  if (!res.ok || data.error) {
+    throw new Error(data.error_description || data.error || "GitHub OAuth exchange failed.");
+  }
+
+  return data.access_token;
+}
+
+async function fetchGithubProfile(token) {
+  const res = await fetch("https://api.github.com/user", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/json",
+      "User-Agent": "ProjectBuddy",
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error("Could not load GitHub profile.");
+  }
+
+  return res.json();
+}
+
+async function fetchGithubUserRepos(token) {
+  const res = await fetch("https://api.github.com/user/repos?affiliation=owner,collaborator&sort=updated&per_page=100", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/json",
+      "User-Agent": "ProjectBuddy",
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error("Could not load your GitHub repositories.");
+  }
+
+  const repos = await res.json();
+  return (Array.isArray(repos) ? repos : []).map((repo) => ({
+    id: repo.id,
+    name: repo.name,
+    full_name: repo.full_name,
+    private: !!repo.private,
+    html_url: repo.html_url,
+    default_branch: repo.default_branch || "main",
+    description: repo.description || "",
+    updated_at: repo.updated_at || null,
+  }));
+}
+
+function serialiseSessionUser(sessionUser) {
+  if (!sessionUser) return null;
+  return {
+    id: sessionUser.id,
+    email: sessionUser.email,
+    name: sessionUser.name,
+    avatarUrl: sessionUser.avatarUrl,
+    provider: sessionUser.provider,
+  };
 }
 
 function getProject(pid) {
@@ -53,12 +154,7 @@ function getProject(pid) {
   return p;
 }
 
-function updateProject(pid, patch) {
-  const store = loadStore();
-  store[pid] = { ...store[pid], ...patch, updatedAt: new Date().toISOString() };
-  saveStore(store);
-  return store[pid];
-}
+const port = Number(process.env.API_PORT || 3001);
 
 function publicProject(p) {
   if (!p) return null;
@@ -69,189 +165,82 @@ function publicProject(p) {
     scan: p.scan || null,
     answers: p.answers || null,
     preview: p.preview || null,
-    paid: !!p.paid,
     github: p.github || "",
     files: p.files || [],
     packFiles: p.packFiles || [],
     diagrams: p.diagrams || [],
     progress: p.progress || null,
     steps: STEPS,
+    createdAt: p.createdAt || null,
+    updatedAt: p.updatedAt || null,
   };
 }
 
-app.get("/api/health", (_req, res) => {
-  res.json({ ok: true, name: "ProjectBuddy" });
-});
-
-app.post("/api/projects", async (req, res) => {
-  try {
-    const { github } = req.body || {};
-    if (!github || typeof github !== "string") {
-      return res.status(400).json({ error: "Paste a public GitHub URL or upload a zip." });
-    }
-    const pid = id();
-    const dir = path.join(PROJECTS, pid);
-    fs.mkdirSync(dir, { recursive: true });
-    updateProject(pid, { id: pid, status: "scanning", github: github.trim(), dir, paid: false });
-    res.json({ id: pid, status: "scanning" });
-    runScanFromGithub(pid, github.trim()).catch((err) => {
-      updateProject(pid, { status: "failed", error: err.message || String(err) });
-    });
-  } catch (err) {
-    res.status(500).json({ error: err.message || "Could not start scan." });
-  }
-});
-
-app.post("/api/projects/upload", express.raw({ type: "*/*", limit: "40mb" }), async (req, res) => {
-  try {
-    if (!req.body || !req.body.length) {
-      return res.status(400).json({ error: "Zip file is empty." });
-    }
-    const pid = id();
-    const dir = path.join(PROJECTS, pid);
-    fs.mkdirSync(dir, { recursive: true });
-    const zipPath = path.join(dir, "source.zip");
-    fs.writeFileSync(zipPath, req.body);
-    updateProject(pid, { id: pid, status: "scanning", github: "", dir, paid: false });
-    res.json({ id: pid, status: "scanning" });
-    runScanFromZip(pid, zipPath).catch((err) => {
-      updateProject(pid, { status: "failed", error: err.message || String(err) });
-    });
-  } catch (err) {
-    res.status(500).json({ error: err.message || "Upload failed." });
-  }
-});
-
-app.get("/api/projects/:id", (req, res) => {
-  const p = getProject(req.params.id);
-  if (!p) return res.status(404).json({ error: "Project not found." });
-  res.json(publicProject(p));
-});
-
-app.post("/api/projects/:id/generate", (req, res) => {
-  const p = getProject(req.params.id);
-  if (!p) return res.status(404).json({ error: "Project not found." });
-  if (p.status !== "scanned" && p.status !== "ready" && p.status !== "failed_generate") {
-    return res.status(400).json({ error: "Scan the project first." });
-  }
-  const answers = req.body?.answers || {};
-  updateProject(p.id, {
-    status: "generating",
-    answers,
-    error: null,
-    progress: { step: "intelligence", percent: 2, label: "Reading repository evidence" },
-  });
-  res.json({ id: p.id, status: "generating", progress: { step: "intelligence", percent: 2, label: "Reading repository evidence" } });
-  runGenerate(p.id).catch((err) => {
-    updateProject(p.id, { status: "failed_generate", error: err.message || String(err) });
-  });
-});
-
-app.post("/api/projects/:id/section", (req, res) => {
-  const p = getProject(req.params.id);
-  if (!p) return res.status(404).json({ error: "Project not found." });
-  if (p.status !== "ready") return res.status(400).json({ error: "Pack is not ready." });
-  const section = String(req.body?.section || "");
-  const text = typeof req.body?.text === "string" ? req.body.text : "";
-  if (!section) return res.status(400).json({ error: "Missing section." });
-  try {
-    const preview = { ...(p.preview || {}) };
-    if (section === "problem" || section === "future") {
-      const answers = { ...(p.answers || {}) };
-      if (section === "problem" && text) answers.problem = text;
-      if (section === "future" && text) answers.futureWork = text;
-      updateProject(p.id, { answers });
-    }
-    if (section === "report" && text) {
-      preview.reportHtml = patchHtml(preview.reportHtml, text);
-    }
-    if (section === "demo" && text) {
-      preview.demoHtml = patchHtml(preview.demoHtml, text);
-    }
-    updateProject(p.id, { preview });
-    res.json({ id: p.id, preview: getProject(p.id).preview, paid: !!p.paid });
-  } catch (err) {
-    res.status(500).json({ error: err.message || "Could not update section." });
-  }
-});
-
-app.post("/api/projects/:id/regenerate", (req, res) => {
-  const p = getProject(req.params.id);
-  if (!p) return res.status(404).json({ error: "Project not found." });
-  if (p.status !== "ready" && p.status !== "failed_generate") {
-    return res.status(400).json({ error: "Generate the pack first." });
-  }
-  const section = String(req.body?.section || "all");
-  try {
-    const ctx = buildContext(p.answers || {}, p.scan, p.github);
-    const content = buildContent(ctx);
-    const preview = { ...(p.preview || {}) };
-    if (section === "all" || section === "report") preview.reportHtml = mdToSimpleHtml("Project Report", content.reportMd, ctx);
-    if (section === "all" || section === "viva") preview.viva = content.vivaItems;
-    if (section === "all" || section === "demo") preview.demoHtml = mdToSimpleHtml("Demo script", content.demo, ctx);
-    if (section === "all" || section === "slides") preview.slides = content.slides;
-    if (section === "all" || section === "diagrams") {
-      preview.diagrams = buildDiagrams(ctx).map((d) => ({
-        id: d.id,
-        title: d.title,
-        omitted: !!d.omitted,
-        svg: d.svg.replace(/^<\?xml[^>]*>\s*/i, ""),
-      }));
-    }
-    preview.suggestions = content.suggestions;
-    updateProject(p.id, { preview, answers: p.answers });
-    res.json(publicProject(getProject(p.id)));
-  } catch (err) {
-    res.status(500).json({ error: err.message || "Regenerate failed." });
-  }
-});
-
-app.post("/api/projects/:id/unlock", (req, res) => {
-  const p = getProject(req.params.id);
-  if (!p) return res.status(404).json({ error: "Project not found." });
-  if (p.status !== "ready") return res.status(400).json({ error: "Pack is not ready." });
-  updateProject(p.id, { paid: true, payment: { method: "preview-unlock", amount: 249, currency: "INR" } });
-  res.json({ id: p.id, paid: true });
-});
-
-app.get("/api/projects/:id/download", (req, res) => {
-  const p = getProject(req.params.id);
-  if (!p) return res.status(404).json({ error: "Project not found." });
-  if (!p.paid) return res.status(402).json({ error: "Unlock the pack first." });
-  const zipPath = path.join(p.dir, "projectbuddy-pack.zip");
-  if (!fs.existsSync(zipPath)) return res.status(404).json({ error: "Pack zip missing." });
-  res.setHeader("Content-Type", "application/zip");
-  res.setHeader("Content-Disposition", 'attachment; filename="ProjectBuddy-pack.zip"');
-  fs.createReadStream(zipPath).pipe(res);
-});
-
-app.get("/api/projects/:id/file", (req, res) => {
-  const p = getProject(req.params.id);
-  if (!p) return res.status(404).json({ error: "Project not found." });
-  if (p.status !== "ready") return res.status(400).json({ error: "Pack is not ready." });
-  const rel = String(req.query.path || "").replace(/^\/+/, "");
-  if (!rel || rel.includes("..") || path.isAbsolute(rel)) {
-    return res.status(400).json({ error: "Invalid file path." });
-  }
-  const packRoot = path.join(p.dir, "pack");
-  const aliases = {
-    "01-project-report.html": "01-report/project-report.html",
-    "06-presentation.html": "06-presentation/presentation.html",
+function projectSummary(p) {
+  if (!p) return null;
+  return {
+    id: p.id,
+    status: p.status,
+    error: p.error || null,
+    github: p.github || "",
+    name: p.scan?.projectName || p.scan?.suggestedTitle || p.github || "Untitled project",
+    stackLabel: p.scan?.stackLabel || "",
+    frameworks: p.scan?.stack?.frameworks || p.scan?.intelligence?.frameworks || [],
+    databases: p.scan?.stack?.database || p.scan?.databases || [],
+    fileCount: p.scan?.fileCount || 0,
+    routeCount: p.scan?.routes?.length || 0,
+    tableCount: p.scan?.tables?.length || 0,
+    createdAt: p.createdAt || null,
+    updatedAt: p.updatedAt || null,
   };
-  const resolved = aliases[rel] || rel;
-  const abs = path.join(packRoot, resolved);
-  if (!abs.startsWith(packRoot) || !fs.existsSync(abs) || !fs.statSync(abs).isFile()) {
-    return res.status(404).json({ error: "File missing." });
-  }
-  const download = req.query.download === "1";
-  const name = path.basename(rel);
-  if (download) {
-    res.setHeader("Content-Disposition", `attachment; filename="${name}"`);
-  }
-  const ext = path.extname(name).toLowerCase();
-  const types = { ".html": "text/html", ".md": "text/markdown", ".svg": "image/svg+xml", ".txt": "text/plain", ".mmd": "text/plain" };
-  res.setHeader("Content-Type", types[ext] || "application/octet-stream");
-  fs.createReadStream(abs).pipe(res);
+}
+
+function updateProject(pid, patch) {
+  const store = loadStore();
+  const current = store[pid] || {};
+  const createdAt = current.createdAt || patch.createdAt || new Date().toISOString();
+  store[pid] = {
+    ...current,
+    ...patch,
+    createdAt,
+    updatedAt: new Date().toISOString(),
+  };
+  saveStore(store);
+  return store[pid];
+}
+
+registerProjectRoutes(app, {
+  getProject,
+  publicProject,
+  projectSummary,
+  updateProject,
+  loadStore,
+  id,
+  projectsDir: PROJECTS,
+  runScanFromGithub,
+  runScanFromZip,
+  runGenerate,
+  patchHtml,
+  buildContext,
+  buildContent,
+  buildDiagrams,
+  mdToSimpleHtml,
+});
+
+const healthRouter = createHealthRouter();
+app.get("/api/health", healthRouter.health);
+app.get("/api/db-status", healthRouter.dbStatus);
+
+registerAuthRoutes(app, {
+  buildGithubAuthorizeUrl,
+  exchangeGithubCode,
+  fetchGithubProfile,
+  fetchGithubUserRepos,
+  serialiseSessionUser,
+  upsertUserFromProvider,
+  frontendUrl: FRONTEND_URL,
+  githubClientId: GITHUB_CLIENT_ID,
+  githubClientSecret: GITHUB_CLIENT_SECRET,
 });
 
 app.use(express.static(path.join(ROOT, "frontend", "dist")));
@@ -339,10 +328,11 @@ function mdToSimpleHtml(title, md, ctx) {
 }
 
 function execZip(packDir, zipPath) {
-  execFileSync("zip", ["-r", "-q", zipPath, "."], { cwd: packDir, timeout: 30000 });
+  const zip = new AdmZip();
+  zip.addLocalFolder(packDir, "");
+  zip.writeZip(zipPath);
 }
 
-const port = Number(process.env.API_PORT || 3001);
 app.listen(port, "0.0.0.0", () => {
   console.log(`ProjectBuddy API on ${port}`);
 });
