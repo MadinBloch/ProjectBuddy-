@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
 const globalForPrisma = globalThis;
-const defaultDbUrl = "file:./data/projectbuddy.db";
+const defaultDbUrl = "postgresql://projectbuddy:projectbuddy@localhost:5432/projectbuddy?schema=public";
 if (!process.env.DATABASE_URL) {
   process.env.DATABASE_URL = defaultDbUrl;
 }

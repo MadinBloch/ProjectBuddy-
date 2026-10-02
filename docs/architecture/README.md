@@ -6,7 +6,7 @@ This folder captures the architectural direction for ProjectBuddy.
 
 - Node.js + Express backend
 - React frontend for the product UI
-- SQLite + Prisma as the local persistence layer
+- PostgreSQL + Prisma as the default persistence layer for Docker and local dev
 - runtime-generated files kept separate from source files
 - evidence-based generation and validation for student project packs
 

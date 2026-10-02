@@ -5,7 +5,7 @@ export function createHealthRouter() {
     async health(_req, res) {
       try {
         await prisma.$queryRaw`SELECT 1`;
-        res.json({ ok: true, name: "ProjectBuddy", database: "sqlite" });
+        res.json({ ok: true, name: "ProjectBuddy", database: "postgresql" });
       } catch (error) {
         res.status(500).json({ ok: false, name: "ProjectBuddy", error: error.message || "Database unavailable" });
       }
@@ -14,7 +14,7 @@ export function createHealthRouter() {
     async dbStatus(_req, res) {
       try {
         await prisma.$queryRaw`SELECT 1`;
-        res.json({ ok: true, provider: "sqlite", database: "ready" });
+        res.json({ ok: true, provider: "postgresql", database: "ready" });
       } catch (error) {
         res.status(500).json({ ok: false, error: error.message || "Database unavailable" });
       }

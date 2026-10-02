@@ -12,28 +12,49 @@ The project documentation is centralized in [docs/README.md](docs/README.md).
 
 ## Local setup
 
-Needs Node.js 18+.
+Needs Node.js 20+.
+
+### Option 1: Docker Compose (recommended)
 
 ```bash
-# Install frontend and backend, then start both
-bash start.sh
+docker compose up --build
 ```
 
-Frontend: http://localhost:5173  
-API: http://localhost:3001
+This starts PostgreSQL, the backend, and the frontend together.
 
-Or run them separately:
+- Frontend: http://localhost:5173
+- API: http://localhost:3001
+- PostgreSQL: http://localhost:5432
+
+### Option 2: Local services without Docker
 
 ```bash
 # Backend
 cd backend
 npm install
+cp .env.example .env
+npx prisma generate
+npx prisma db push
 node src/index.js
 
 # Frontend (another terminal)
 cd frontend
 npm install
 npm run dev
+```
+
+### Environment file
+
+See [.env.example](.env.example) for the project environment template.
+
+```env
+SESSION_SECRET=projectbuddy-dev-secret
+FRONTEND_URL=http://localhost:5173
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+GITHUB_CALLBACK_URL=http://localhost:3001/api/auth/github/callback
+API_PORT=3001
+DATABASE_URL=postgresql://projectbuddy:projectbuddy@localhost:5432/projectbuddy?schema=public
 ```
 
 Zip your project folder before upload. Do not include `node_modules` or `vendor`.

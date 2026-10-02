@@ -4,6 +4,7 @@ This folder is the canonical documentation for the project. It is designed to he
 
 ## Index
 
+- [Setup Guide](./SETUP.md) — full local and Docker setup instructions.
 - [Project Overview](./PROJECT-OVERVIEW.md) — what the app does, why it exists, and who it is for.
 - [Project Structure](./PROJECT-STRUCTURE.md) — folder layout and responsibilities.
 - [LLM Context](./LLM-CONTEXT.md) — AI handoff summary, constraints, and implementation notes.
