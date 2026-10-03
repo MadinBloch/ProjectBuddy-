@@ -982,8 +982,8 @@ html[data-theme="dark"] .foot { background: #05070a; border-top: 1px solid var(-
 
 .dashboard-layout {
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  gap: 22px;
+  grid-template-columns: 248px minmax(0, 1fr);
+  gap: 24px;
   align-items: start;
   max-width: 1180px;
   margin: 0 auto;
@@ -1005,6 +1005,7 @@ html[data-theme="dark"] .foot { background: #05070a; border-top: 1px solid var(-
   position: sticky;
   top: 90px;
   padding: 18px 16px;
+  min-height: 520px;
 }
 
 .profile-card {

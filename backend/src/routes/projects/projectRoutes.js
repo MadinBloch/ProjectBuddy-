@@ -21,9 +21,11 @@ export function registerProjectRoutes(app, deps) {
     mdToSimpleHtml,
   } = deps;
 
-  app.get("/api/projects", (_req, res) => {
+  app.get("/api/projects", (req, res) => {
     const store = loadStore();
+    const userId = req.session?.user?.id || null;
     const projects = Object.values(store)
+      .filter((p) => (userId ? p.userId === userId : !p.userId))
       .map((p) => projectSummary(p))
       .filter(Boolean)
       .sort((a, b) => new Date(b.updatedAt || b.createdAt || 0) - new Date(a.updatedAt || a.createdAt || 0));
@@ -58,9 +60,11 @@ export function registerProjectRoutes(app, deps) {
       const pid = id();
       const dir = path.join(projectsDir, pid);
       fs.mkdirSync(dir, { recursive: true });
-      updateProject(pid, { id: pid, status: "scanning", github: github.trim(), dir });
+      const userId = req.session?.user?.id || null;
+      const token = req.session?.user?.accessToken || "";
+      updateProject(pid, { id: pid, status: "scanning", github: github.trim(), dir, userId });
       res.json({ id: pid, status: "scanning" });
-      runScanFromGithub(pid, github.trim()).catch((err) => {
+      runScanFromGithub(pid, github.trim(), token).catch((err) => {
         updateProject(pid, { status: "failed", error: err.message || String(err) });
       });
     } catch (err) {
@@ -78,7 +82,8 @@ export function registerProjectRoutes(app, deps) {
       fs.mkdirSync(dir, { recursive: true });
       const zipPath = path.join(dir, "source.zip");
       fs.writeFileSync(zipPath, req.body);
-      updateProject(pid, { id: pid, status: "scanning", github: "", dir });
+      const userId = req.session?.user?.id || null;
+      updateProject(pid, { id: pid, status: "scanning", github: "", dir, userId });
       res.json({ id: pid, status: "scanning" });
       runScanFromZip(pid, zipPath).catch((err) => {
         updateProject(pid, { status: "failed", error: err.message || String(err) });

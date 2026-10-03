@@ -21,7 +21,7 @@ const SLIDES = [
   { title: "Problem Statement", tag: "Slide 02", bullets: ["What the system is meant to solve", "Who faces this problem", "Why it matters now"] },
   { title: "Objectives", tag: "Slide 03", bullets: ["1. Working application", "2. Persistent records", "3. Demonstrable flows"] },
   { title: "System Architecture", tag: "Slide 04", bullets: ["Client → API → Data store", "Detected from your source"], chart: true },
-  { title: "Modules", tag: "Slide 05", bullets: ["Detected from source files", "One module per functional area"], counter: "1,240" },
+  { title: "Modules", tag: "Slide 05", bullets: ["Detected from source files", "One module per functional area"] },
   { title: "Database Design", tag: "Slide 06", bullets: ["Tables found in migrations or models", "Keys and relations as written"] },
   { title: "Implementation", tag: "Slide 07", bullets: ["Key files from the repository", "Stacks and libraries in use"] },
   { title: "Results", tag: "Slide 08", bullets: ["What actually runs in the demo"], chart: true },
@@ -31,7 +31,7 @@ const SLIDES = [
 
 const FAQS_LEFT = [
   ["What can I upload?", "A ZIP of your project folder, without node_modules or vendor. Public GitHub URLs also work."],
-  ["Can I use a GitHub repository?", "Yes. Paste a public repository URL. Private repos are not supported in this version."],
+  ["Can I use a GitHub repository?", "Yes. Paste a public repository URL, or sign in with GitHub to pick a repo from your account, including private repos you can access."],
   ["Does it analyze my actual code?", "Yes. Stack, tables, routes and modules come from files in the upload. Missing pieces are omitted, not invented."],
   ["What files will I receive?", "Project report, system diagrams, presentation, viva Q&A, demo script, analysis notes, and a complete ZIP."],
 ];
@@ -71,13 +71,13 @@ export default function LandingTemplate({ github, setGithub, drag, setDrag, star
             <div className="badge anim-up">
               <b>From code to submission</b> English only
             </div>
-            <h1 className="anim-up d-1">
-              Build your project story
-              <br />
-              <span className="accent">from real source code</span>
-              <br />
-              into a submission pack.
-            </h1>
+              <h1 className="anim-up d-1">
+               Your project in.
+               <br />
+               <span className="accent">Everything you need to submit</span>
+               <br />
+               out.
+             </h1>
             <p className="lead anim-up d-2">
               Upload a ZIP or scan a repository. ProjectBuddy reads the actual files in your project,
               detects the stack, architecture, routes, modules, and database structure, then creates the
@@ -231,7 +231,7 @@ export default function LandingTemplate({ github, setGithub, drag, setDrag, star
                 <div className="line w40" />
               </div>
             }
-            points={["Real content from your code", "Auto chapters & TOC", "Download as HTML/MD"]} />
+            points={["Written from detected files", "Chapters from stack and modules", "Download as HTML or Markdown"]} />
           </Reveal>
 
           <Reveal delay={1}><PackCard icon={<DiagramIcon />} tone="" title="System Diagrams" tab="diagrams" onGo={goTab}
@@ -253,7 +253,7 @@ export default function LandingTemplate({ github, setGithub, drag, setDrag, star
                 <div>Modules<i /><i className="short" /></div>
               </div>
             }
-            points={["12 professional slides", "Diagrams & screenshots", "Clean and modern design"]} />
+            points={["Structured slide deck from source", "Architecture and modules included", "Download as HTML"]} />
           </Reveal>
 
           <Reveal delay={0}><PackCard icon={<VivaIcon />} tone="" title="Viva Q&A" tab="viva" onGo={goTab}
@@ -264,7 +264,7 @@ export default function LandingTemplate({ github, setGithub, drag, setDrag, star
                 <div className="qa-row"><b>Q3</b> Explain the main modules.</div>
               </div>
             }
-            points={["30+ questions with answers", "Based on your project", "Easy to understand"]} />
+            points={["Questions tied to files and routes", "Answers from detected stack", "Skip what the repo does not prove"]} />
           </Reveal>
 
           <Reveal delay={1}><PackCard icon={<PlayIcon />} tone="ok" title="Demo Script" tab="demo" onGo={goTab}

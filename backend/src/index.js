@@ -10,6 +10,7 @@ import { registerAuthRoutes } from "./routes/auth/authRoutes.js";
 import { registerProjectRoutes } from "./routes/projects/projectRoutes.js";
 import { upsertUserFromProvider } from "./services/authService.js";
 import { ensureDataDirectories, loadStore, saveStore } from "./services/projectStore.js";
+import { syncProjectRecord } from "./services/projectRecords.js";
 import { unzipTo, fetchGithubZip, scanProject } from "./modules/scan/index.js";
 import { generatePack, STEPS } from "./modules/generation/index.js";
 import { buildContext, buildContent } from "./modules/content/index.js";
@@ -206,6 +207,7 @@ function updateProject(pid, patch) {
     updatedAt: new Date().toISOString(),
   };
   saveStore(store);
+  syncProjectRecord(store[pid]).catch(() => {});
   return store[pid];
 }
 
@@ -251,11 +253,11 @@ app.use((req, res, next) => {
   res.status(404).send("Frontend is not built yet.");
 });
 
-async function runScanFromGithub(pid, github) {
+async function runScanFromGithub(pid, github, token) {
   const p = getProject(pid);
   const zipPath = path.join(p.dir, "source.zip");
   const extract = path.join(p.dir, "src");
-  await fetchGithubZip(github, zipPath);
+  await fetchGithubZip(github, zipPath, token);
   const root = unzipTo(zipPath, extract);
   const scan = scanProject(root);
   if (!scan.ok) {

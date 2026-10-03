@@ -5,7 +5,7 @@ export default function DashboardSidebar({ authUser, profileInitials, dashboardS
         <div className="profile-avatar">{profileInitials}</div>
         <div className="profile-meta">
           <div className="profile-name">{authUser.name || authUser.login || "Your profile"}</div>
-          <div className="muted profile-email">{authUser.email || "github-user"}</div>
+          <div className="muted profile-email">{authUser.email || "Signed in with GitHub"}</div>
         </div>
       </div>
 

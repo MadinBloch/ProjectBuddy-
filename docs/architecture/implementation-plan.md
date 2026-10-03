@@ -10,15 +10,14 @@
 ## Phase 2 — persistence
 
 - add a database layer for user and project records
-- start with SQLite for local development
-- use Prisma to keep the path open for PostgreSQL later
+- SQLite is the local default via `DATABASE_URL=file:./data/projectbuddy.db`
+- Prisma can still target PostgreSQL later by changing the schema provider and URL
 
 ## Phase 3 — auth
 
-- add GitHub login first
-- add repo selection from the authenticated GitHub account
-- add Google login second
-- tie authenticated users to their saved projects and outputs
+- GitHub login and repo selection are implemented
+- signed-in users own their scan/pack records
+- Google login is still not implemented
 - use the backend session and SQLite-backed user model for authenticated sessions
 
 ## Phase 4 — production hardening

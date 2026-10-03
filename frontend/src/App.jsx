@@ -171,6 +171,7 @@ export default function App() {
     try {
       const res = await fetch("/api/projects/upload", {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/zip" },
         body: file,
       });
@@ -458,7 +459,7 @@ export default function App() {
                 <div>
                   <div className="kicker">Welcome back</div>
                   <h2>Project dashboard</h2>
-                  <p className="muted">Choose a repository to analyze and review the latest project insights in one place.</p>
+                  <p className="muted">Scan a GitHub repo or ZIP. Recent packs below belong to this signed-in account.</p>
                 </div>
                 <button className="btn primary" type="button" onClick={() => setStep("dashboard")}>New project</button>
               </header>
@@ -587,8 +588,9 @@ export default function App() {
               <p className="muted">{preview.student} · {preview.course} · {preview.college} · {preview.stackLabel}</p>
             </div>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              <button className="btn ghost" onClick={() => regenerate("all")} disabled={busy}>Regenerate pack</button>
-              <button className="btn primary" onClick={downloadZip} disabled={busy}>Download all (zip)</button>
+               <button className="btn ghost" onClick={() => regenerate("all")} disabled={busy}>Regenerate pack</button>
+               <button className="btn ghost" onClick={() => window.open(`/api/projects/${project.id}/file?path=${encodeURIComponent("01-report/project-report.html")}`, "_blank")} disabled={busy}>Print report (Save as PDF)</button>
+               <button className="btn primary" onClick={downloadZip} disabled={busy}>Download all (zip)</button>
             </div>
           </div>
           <HealthBlock health={preview.health || project.scan?.health} />
@@ -677,6 +679,7 @@ export default function App() {
                     <button className="btn ghost sm" onClick={() => downloadFile(f.path)}>Download</button>
                   </div>
                 ))}
+                <p className="muted">HTML report can be printed from the browser as PDF. The pack does not generate DOCX or PPTX yet.</p>
                 <button className="btn primary" onClick={downloadZip}>Download all as zip</button>
               </div>
             )}

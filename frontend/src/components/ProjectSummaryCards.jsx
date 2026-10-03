@@ -4,7 +4,7 @@ export default function ProjectSummaryCards({ stats, getFrameworkIcon }) {
       <article className="stat-card dashboard-panel">
         <div className="stat-label">Total scans</div>
         <div className="stat-value">{stats.total}</div>
-        <div className="muted">Projects tracked in this workspace</div>
+        <div className="muted">Your scans in this account</div>
       </article>
       <article className="stat-card dashboard-panel">
         <div className="stat-label">Ready packs</div>

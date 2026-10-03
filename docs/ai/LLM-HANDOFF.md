@@ -11,6 +11,8 @@ ProjectBuddy is a repository analysis tool that turns a student's project into a
 - no fake modules or invented APIs
 - do not claim database or auth features unless implemented and verified
 - keep output English-only
+- GitHub login, user-owned scans, and ZIP/GitHub generation are implemented
+- Pack files are HTML/MD/SVG/ZIP; PDF is print-from-HTML; DOCX/PPTX are not generated
 - do not fabricate functionality from missing evidence
 - always update docs when changing behavior
 

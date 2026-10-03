@@ -1,12 +1,12 @@
 # ProjectBuddy setup guide
 
-This project runs with a Node.js backend, a Vite React frontend, and a PostgreSQL database.
+This project runs with a Node.js backend, a Vite React frontend, and a local SQLite database by default. PostgreSQL is optional for Docker/production.
 
 ## 1. Prerequisites
 
 - Node.js 20+
 - npm
-- PostgreSQL 16+ or Docker Desktop
+- SQLite (default) or PostgreSQL 16+ / Docker Desktop
 - Git
 
 ## 2. Clone and install
@@ -41,7 +41,7 @@ GITHUB_CLIENT_ID=
 GITHUB_CLIENT_SECRET=
 GITHUB_CALLBACK_URL=http://localhost:3001/api/auth/github/callback
 API_PORT=3001
-DATABASE_URL=postgresql://projectbuddy:projectbuddy@localhost:5432/projectbuddy?schema=public
+DATABASE_URL=file:./data/projectbuddy.db
 ```
 
 If you are using Docker Compose, the backend inside the container should use:

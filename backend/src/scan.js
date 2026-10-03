@@ -66,9 +66,26 @@ export function unzipTo(zipPath, dest) {
   return flattenRoot(dest);
 }
 
-export async function fetchGithubZip(url, destZip) {
+export async function fetchGithubZip(url, destZip, token) {
   const parsed = parseGithub(url);
-  if (!parsed) throw new Error("Enter a public GitHub repository URL.");
+  if (!parsed) throw new Error("Enter a GitHub repository URL.");
+
+  if (token) {
+    const apiUrl = `https://api.github.com/repos/${parsed.owner}/${parsed.repo}/zipball`;
+    const res = await fetch(apiUrl, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/vnd.github+json",
+        "User-Agent": "ProjectBuddy",
+      },
+      redirect: "follow",
+    });
+    if (res.ok) {
+      fs.writeFileSync(destZip, Buffer.from(await res.arrayBuffer()));
+      return parsed;
+    }
+  }
+
   const branches = ["main", "master"];
   let lastErr = null;
   for (const branch of branches) {
@@ -79,8 +96,7 @@ export async function fetchGithubZip(url, destZip) {
         lastErr = new Error(`GitHub returned ${res.status}`);
         continue;
       }
-      const buf = Buffer.from(await res.arrayBuffer());
-      fs.writeFileSync(destZip, buf);
+      fs.writeFileSync(destZip, Buffer.from(await res.arrayBuffer()));
       return parsed;
     } catch (err) {
       lastErr = err;
