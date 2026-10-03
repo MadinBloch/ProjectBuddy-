@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import express from "express";
+import prisma from "../../db/prisma.js";
 
 export function registerProjectRoutes(app, deps) {
   const {
@@ -21,14 +22,52 @@ export function registerProjectRoutes(app, deps) {
     mdToSimpleHtml,
   } = deps;
 
-  app.get("/api/projects", (req, res) => {
+  app.get("/api/projects", async (req, res) => {
     const store = loadStore();
     const userId = req.session?.user?.id || null;
-    const projects = Object.values(store)
+    let projects = Object.values(store)
       .filter((p) => (userId ? p.userId === userId : !p.userId))
       .map((p) => projectSummary(p))
       .filter(Boolean)
       .sort((a, b) => new Date(b.updatedAt || b.createdAt || 0) - new Date(a.updatedAt || a.createdAt || 0));
+
+    if (userId && projects.length === 0) {
+      try {
+        const dbProjects = await prisma.project.findMany({
+          where: { userId },
+          orderBy: { updatedAt: "desc" },
+        });
+
+        projects = dbProjects
+          .map((item) => {
+            let metadata = {};
+            try {
+              metadata = item.metadata ? JSON.parse(item.metadata) : {};
+            } catch {
+              metadata = {};
+            }
+
+            return {
+              id: item.id,
+              status: item.status,
+              error: metadata.error || null,
+              github: item.githubUrl || "",
+              name: item.title || metadata.projectName || item.githubUrl || "Untitled project",
+              stackLabel: metadata.stackLabel || "",
+              frameworks: metadata.frameworks || [],
+              databases: metadata.databases || [],
+              fileCount: metadata.fileCount || 0,
+              routeCount: metadata.routeCount || 0,
+              tableCount: metadata.tableCount || 0,
+              createdAt: item.createdAt || null,
+              updatedAt: item.updatedAt || null,
+            };
+          })
+          .filter(Boolean);
+      } catch {
+        projects = [];
+      }
+    }
 
     const frameworkCounts = {};
     for (const p of projects) {
@@ -198,7 +237,9 @@ export function registerProjectRoutes(app, deps) {
     const packRoot = path.join(p.dir, "pack");
     const aliases = {
       "01-project-report.html": "01-report/project-report.html",
+      "01-project-report.docx": "01-report/project-report.docx",
       "06-presentation.html": "06-presentation/presentation.html",
+      "06-presentation.pptx": "06-presentation/presentation.pptx",
     };
     const resolved = aliases[rel] || rel;
     const abs = path.join(packRoot, resolved);
@@ -211,7 +252,15 @@ export function registerProjectRoutes(app, deps) {
       res.setHeader("Content-Disposition", `attachment; filename="${name}"`);
     }
     const ext = path.extname(name).toLowerCase();
-    const types = { ".html": "text/html", ".md": "text/markdown", ".svg": "image/svg+xml", ".txt": "text/plain", ".mmd": "text/plain" };
+    const types = {
+      ".html": "text/html",
+      ".md": "text/markdown",
+      ".svg": "image/svg+xml",
+      ".txt": "text/plain",
+      ".mmd": "text/plain",
+      ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ".pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    };
     res.setHeader("Content-Type", types[ext] || "application/octet-stream");
     fs.createReadStream(abs).pipe(res);
   });

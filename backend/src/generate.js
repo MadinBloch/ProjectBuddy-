@@ -1,5 +1,7 @@
 import fs from "fs";
 import path from "path";
+import { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType } from "docx";
+import pptxgen from "pptxgenjs";
 import { buildDiagrams } from "./diagrams.js";
 import { buildContext, buildContent } from "./content.js";
 import { understandProject } from "./ai.js";
@@ -49,6 +51,10 @@ export async function generatePack({ projectDir, answers, scan, github, onProgre
   const vivaHtml = mdToHtml("Viva", content.vivaMd, ctx);
   const demoHtml = mdToHtml("Demo script", content.demo, ctx);
   const reflectionHtml = mdToHtml("Reflection", content.reflection, ctx);
+  const reportDocxPath = path.join(packDir, "01-report/project-report.docx");
+  const presentationPptxPath = path.join(packDir, "06-presentation/presentation.pptx");
+  await writeReportDocx(reportDocxPath, ctx.title || "Project Report", content.reportMd, ctx);
+  await writePresentationPptx(presentationPptxPath, content.slides, ctx);
 
   progress(onProgress, "pack", 92);
   writeTree(packDir, {
@@ -65,14 +71,19 @@ export async function generatePack({ projectDir, answers, scan, github, onProgre
     "SOURCE.txt": sourceStamp(scan, github, ctx.generationMode),
   });
 
+  fs.copyFileSync(reportDocxPath, path.join(packDir, "01-project-report.docx"));
+  fs.copyFileSync(presentationPptxPath, path.join(packDir, "06-presentation.pptx"));
+
   const files = [
     { id: "report-html", label: "Project report (HTML)", path: "01-report/project-report.html", kind: "report", section: "report" },
     { id: "report-md", label: "Project report (Markdown)", path: "01-report/project-report.md", kind: "report", section: "report" },
+    { id: "report-docx", label: "Project report (DOCX)", path: "01-report/project-report.docx", kind: "report", section: "report" },
     { id: "srs", label: "Software requirements", path: "02-srs/srs.md", kind: "doc", section: "srs" },
     { id: "viva", label: "Viva Q&A", path: "04-viva/viva-qa.md", kind: "doc", section: "viva" },
     { id: "demo", label: "Demo script", path: "05-demo/demo-script.md", kind: "doc", section: "demo" },
     { id: "ppt", label: "Presentation (HTML)", path: "06-presentation/presentation.html", kind: "slides", section: "slides" },
     { id: "ppt-md", label: "Presentation (Markdown)", path: "06-presentation/presentation.md", kind: "slides", section: "slides" },
+    { id: "pptx", label: "Presentation (PPTX)", path: "06-presentation/presentation.pptx", kind: "slides", section: "slides" },
     { id: "reflection", label: "Learning reflection", path: "07-reflection/learning-reflection.md", kind: "doc", section: "reflection" },
     { id: "suggestions", label: "Suggestions", path: "08-suggestions/suggestions.md", kind: "doc", section: "suggestions" },
     ...diagrams.map((d) => ({ id: `diagram-${d.id}`, label: d.title + " (SVG)", path: `03-diagrams/${d.file}.svg`, kind: "diagram", section: "diagrams" })),
@@ -81,11 +92,13 @@ export async function generatePack({ projectDir, answers, scan, github, onProgre
   const legacyCopies = {
     "01-project-report.html": reportHtml,
     "01-project-report.md": content.reportMd,
+    "01-project-report.docx": fs.readFileSync(reportDocxPath),
     "02-srs.md": content.srs,
     "04-viva-qa.md": content.vivaMd,
     "05-demo-script.md": content.demo,
     "06-presentation.html": pptToHtml(content.slides, ctx),
     "06-presentation.md": content.slides.map((s, i) => `## Slide ${i + 1}: ${s.title}\n\n${s.body}\n`).join("\n"),
+    "06-presentation.pptx": fs.readFileSync(presentationPptxPath),
     "07-learning-reflection.md": content.reflection,
     "08-suggestions.md": content.suggestionsMd,
   };
@@ -152,6 +165,47 @@ function sourceStamp(scan, github, mode) {
   ].join("\n");
 }
 
+async function writeReportDocx(docPath, title, md, ctx) {
+  const doc = new Document({
+    sections: [{
+      children: [
+        new Paragraph({ text: title, heading: HeadingLevel.TITLE, alignment: AlignmentType.CENTER }),
+        new Paragraph({ children: [new TextRun({ text: `${ctx.student || "Student"} · ${ctx.course || "Course"} · ${ctx.college || "College"}`, bold: true })] }),
+        ...docxBlocksFromMarkdown(md),
+      ],
+    }],
+  });
+  fs.mkdirSync(path.dirname(docPath), { recursive: true });
+  const buffer = await Packer.toBuffer(doc);
+  fs.writeFileSync(docPath, buffer);
+}
+
+async function writePresentationPptx(docPath, slides, ctx) {
+  fs.mkdirSync(path.dirname(docPath), { recursive: true });
+  const pptx = new pptxgen();
+  pptx.layout = "LAYOUT_WIDE";
+  pptx.author = "ProjectBuddy";
+  pptx.company = "ProjectBuddy";
+  pptx.subject = ctx.title || "Project presentation";
+  pptx.title = ctx.title || "Project presentation";
+
+  for (let i = 0; i < slides.length; i += 1) {
+    const slide = pptx.addSlide();
+    const item = slides[i] || {};
+    slide.background = { color: "F8FAFC" };
+    slide.addText(item.title || `Slide ${i + 1}`, {
+      x: 0.5, y: 0.35, w: 12.5, h: 0.6,
+      fontFace: "Arial", fontSize: 24, bold: true, color: "0F172A",
+    });
+    slide.addText(cleanSlideBody(item.body || ""), {
+      x: 0.7, y: 1.2, w: 12.2, h: 5.2,
+      fontFace: "Arial", fontSize: 18, color: "1F2937", margin: 0.05, breakLine: true,
+    });
+  }
+
+  await pptx.writeFile({ fileName: docPath });
+}
+
 function mdToHtml(title, md, ctx) {
   const body = String(md)
     .replace(/&/g, "&amp;")
@@ -172,6 +226,66 @@ h2 { margin-top: 28px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }
 code { font-family: ui-monospace, monospace; font-size: 0.9em; }
 .meta { color: #444; }
 </style></head><body>${body}<p class="meta">Prepared with ProjectBuddy for ${esc(ctx.student)} — grounded in submitted source</p></body></html>`;
+}
+
+function docxBlocksFromMarkdown(md) {
+  const blocks = [];
+  const lines = String(md || "").split(/\r?\n/);
+  let current = [];
+
+  const flushParagraph = () => {
+    if (!current.length) return;
+    const text = current.join(" ").trim();
+    if (text) {
+      blocks.push(new Paragraph({ children: inlineToDocxRuns(text) }));
+    }
+    current = [];
+  };
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (!line) {
+      flushParagraph();
+      continue;
+    }
+    const headingMatch = line.match(/^(#{1,3})\s+(.*)$/);
+    if (headingMatch) {
+      flushParagraph();
+      const level = headingMatch[1].length === 1 ? HeadingLevel.HEADING_1 : headingMatch[1].length === 2 ? HeadingLevel.HEADING_2 : HeadingLevel.HEADING_3;
+      blocks.push(new Paragraph({ text: headingMatch[2], heading: level }));
+      continue;
+    }
+    if (/^[-*]\s+/.test(line)) {
+      flushParagraph();
+      blocks.push(new Paragraph({ children: inlineToDocxRuns(line.replace(/^[-*]\s+/, "")), bullet: { level: 0 } }));
+      continue;
+    }
+    current.push(line);
+  }
+  flushParagraph();
+  return blocks;
+}
+
+function inlineToDocxRuns(text) {
+  const parts = String(text).split(/(\*\*[^*]+\*\*|`[^`]+`)/g).filter(Boolean);
+  return parts.map((part) => {
+    if (/^\*\*.+\*\*$/.test(part)) {
+      return new TextRun({ text: part.slice(2, -2), bold: true });
+    }
+    if (/^`.+`$/.test(part)) {
+      return new TextRun({ text: part.slice(1, -1), font: "Consolas" });
+    }
+    return new TextRun({ text: part });
+  });
+}
+
+function cleanSlideBody(body) {
+  return String(body || "")
+    .replace(/^[-*]\s+/gm, "• ")
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/\r/g, "")
+    .trim();
 }
 
 function pptToHtml(slides, ctx) {

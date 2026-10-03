@@ -3608,5 +3608,3008 @@
       },
       "environmentVariables": []
     }
+  },
+  "pb_musbofzkunzvo4": {
+    "id": "pb_musbofzkunzvo4",
+    "status": "ready",
+    "github": "https://github.com/MadinBloch/Reveal",
+    "dir": "/data/projects/pb_musbofzkunzvo4",
+    "createdAt": "2026-10-03T11:42:29.361Z",
+    "updatedAt": "2026-10-03T11:42:49.474Z",
+    "scan": {
+      "ok": true,
+      "fileCount": 158,
+      "scannedFiles": 155,
+      "stack": {
+        "language": "TypeScript",
+        "frameworks": [
+          "React",
+          "React Native",
+          "Laravel"
+        ],
+        "database": [
+          "MySQL",
+          "PostgreSQL",
+          "SQLite"
+        ],
+        "tools": []
+      },
+      "languages": [
+        "TypeScript",
+        "PHP",
+        "JavaScript"
+      ],
+      "tables": [
+        {
+          "name": "users",
+          "columns": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "email",
+              "type": "string"
+            },
+            {
+              "name": "email_verified_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "password",
+              "type": "string"
+            }
+          ],
+          "evidence": [
+            "database/migrations/0001_01_01_000000_create_users_table.php"
+          ]
+        },
+        {
+          "name": "cache_locks",
+          "columns": [
+            {
+              "name": "key",
+              "type": "string"
+            },
+            {
+              "name": "owner",
+              "type": "string"
+            },
+            {
+              "name": "expiration",
+              "type": "integer"
+            }
+          ],
+          "evidence": [
+            "database/migrations/0001_01_01_000001_create_cache_table.php"
+          ]
+        },
+        {
+          "name": "job_batches",
+          "columns": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "total_jobs",
+              "type": "integer"
+            },
+            {
+              "name": "pending_jobs",
+              "type": "integer"
+            },
+            {
+              "name": "failed_jobs",
+              "type": "integer"
+            },
+            {
+              "name": "failed_job_ids",
+              "type": "longText"
+            },
+            {
+              "name": "options",
+              "type": "mediumText"
+            },
+            {
+              "name": "cancelled_at",
+              "type": "integer"
+            },
+            {
+              "name": "created_at",
+              "type": "integer"
+            },
+            {
+              "name": "finished_at",
+              "type": "integer"
+            }
+          ],
+          "evidence": [
+            "database/migrations/0001_01_01_000002_create_jobs_table.php"
+          ]
+        },
+        {
+          "name": "events",
+          "columns": [
+            {
+              "name": "title",
+              "type": "string"
+            },
+            {
+              "name": "slug",
+              "type": "string"
+            },
+            {
+              "name": "event_at",
+              "type": "dateTime"
+            },
+            {
+              "name": "status",
+              "type": "enum"
+            }
+          ],
+          "evidence": [
+            "database/migrations/2026_01_04_060310_create_events_table.php"
+          ]
+        },
+        {
+          "name": "event_media",
+          "columns": [
+            {
+              "name": "event_id",
+              "type": "foreignId"
+            },
+            {
+              "name": "path",
+              "type": "string"
+            }
+          ],
+          "evidence": [
+            "database/migrations/2026_01_04_083929_create_event_media_table.php"
+          ]
+        }
+      ],
+      "models": [
+        {
+          "name": "Event",
+          "file": "app/Models/Event.php"
+        },
+        {
+          "name": "EventMedia",
+          "file": "app/Models/EventMedia.php"
+        },
+        {
+          "name": "User",
+          "file": "app/Models/User.php"
+        }
+      ],
+      "routes": [
+        {
+          "method": "GET",
+          "path": "/settings/profile",
+          "file": "routes/settings.php"
+        },
+        {
+          "method": "PATCH",
+          "path": "/settings/profile",
+          "file": "routes/settings.php"
+        },
+        {
+          "method": "DELETE",
+          "path": "/settings/profile",
+          "file": "routes/settings.php"
+        },
+        {
+          "method": "GET",
+          "path": "/settings/password",
+          "file": "routes/settings.php"
+        },
+        {
+          "method": "PUT",
+          "path": "/settings/password",
+          "file": "routes/settings.php"
+        },
+        {
+          "method": "GET",
+          "path": "/settings/appearance",
+          "file": "routes/settings.php"
+        },
+        {
+          "method": "GET",
+          "path": "/settings/two-factor",
+          "file": "routes/settings.php"
+        },
+        {
+          "method": "GET",
+          "path": "/",
+          "file": "routes/web.php"
+        },
+        {
+          "method": "GET",
+          "path": "/dashboard",
+          "file": "routes/web.php"
+        },
+        {
+          "method": "GET",
+          "path": "/create",
+          "file": "routes/web.php"
+        },
+        {
+          "method": "POST",
+          "path": "/events",
+          "file": "routes/web.php"
+        },
+        {
+          "method": "GET",
+          "path": "/events/{slug}/preview",
+          "file": "routes/web.php"
+        },
+        {
+          "method": "GET",
+          "path": "/s/{slug}",
+          "file": "routes/web.php"
+        },
+        {
+          "method": "GET",
+          "path": "/events/{slug}/created",
+          "file": "routes/web.php"
+        }
+      ],
+      "modules": [
+        "Event module",
+        "EventMedia module",
+        "User module",
+        "Cache Lock module",
+        "Job Batche module",
+        "Event Media module",
+        "Setting module",
+        "Dashboard module",
+        "Create module",
+        " module"
+      ],
+      "actors": [
+        "User"
+      ],
+      "hasDocker": false,
+      "hasTests": true,
+      "hasReadme": false,
+      "topFiles": [
+        ".env.example",
+        "app/Actions/Fortify/CreateNewUser.php",
+        "app/Actions/Fortify/PasswordValidationRules.php",
+        "app/Actions/Fortify/ResetUserPassword.php",
+        "app/Http/Controllers/Controller.php",
+        "app/Http/Controllers/EventController/EventController.php",
+        "app/Http/Controllers/Settings/PasswordController.php",
+        "app/Http/Controllers/Settings/ProfileController.php",
+        "app/Http/Controllers/Settings/TwoFactorAuthenticationController.php",
+        "app/Http/Middleware/HandleAppearance.php",
+        "app/Http/Middleware/HandleInertiaRequests.php",
+        "app/Http/Requests/Settings/ProfileUpdateRequest.php",
+        "app/Http/Requests/Settings/TwoFactorAuthenticationRequest.php",
+        "app/Models/Event.php",
+        "app/Models/EventMedia.php",
+        "app/Models/User.php",
+        "app/Providers/AppServiceProvider.php",
+        "app/Providers/FortifyServiceProvider.php",
+        "artisan",
+        "components.json",
+        "composer.json",
+        "composer.lock",
+        "config/app.php",
+        "config/auth.php",
+        "config/cache.php",
+        "config/database.php",
+        "config/filesystems.php",
+        "config/fortify.php",
+        "config/inertia.php",
+        "config/logging.php",
+        "config/mail.php",
+        "config/queue.php",
+        "config/services.php",
+        "config/session.php",
+        "database/factories/UserFactory.php",
+        "database/migrations/0001_01_01_000000_create_users_table.php",
+        "database/migrations/0001_01_01_000001_create_cache_table.php",
+        "database/migrations/0001_01_01_000002_create_jobs_table.php",
+        "database/migrations/2025_08_26_100418_add_two_factor_columns_to_users_table.php",
+        "database/migrations/2026_01_04_060310_create_events_table.php"
+      ],
+      "intelligence": {
+        "ok": true,
+        "projectName": "React Starter Kit",
+        "detectedLanguages": [
+          "TypeScript",
+          "PHP",
+          "JavaScript"
+        ],
+        "frameworks": [
+          "React",
+          "React Native",
+          "Laravel"
+        ],
+        "libraries": [],
+        "frontend": [
+          "React",
+          "React Native"
+        ],
+        "backend": [
+          "Laravel"
+        ],
+        "databases": [
+          "MySQL",
+          "PostgreSQL",
+          "SQLite"
+        ],
+        "databaseTables": [
+          {
+            "name": "users",
+            "columns": [
+              {
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "name": "email",
+                "type": "string"
+              },
+              {
+                "name": "email_verified_at",
+                "type": "timestamp"
+              },
+              {
+                "name": "password",
+                "type": "string"
+              }
+            ],
+            "evidence": [
+              "database/migrations/0001_01_01_000000_create_users_table.php"
+            ]
+          },
+          {
+            "name": "cache_locks",
+            "columns": [
+              {
+                "name": "key",
+                "type": "string"
+              },
+              {
+                "name": "owner",
+                "type": "string"
+              },
+              {
+                "name": "expiration",
+                "type": "integer"
+              }
+            ],
+            "evidence": [
+              "database/migrations/0001_01_01_000001_create_cache_table.php"
+            ]
+          },
+          {
+            "name": "job_batches",
+            "columns": [
+              {
+                "name": "id",
+                "type": "string"
+              },
+              {
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "name": "total_jobs",
+                "type": "integer"
+              },
+              {
+                "name": "pending_jobs",
+                "type": "integer"
+              },
+              {
+                "name": "failed_jobs",
+                "type": "integer"
+              },
+              {
+                "name": "failed_job_ids",
+                "type": "longText"
+              },
+              {
+                "name": "options",
+                "type": "mediumText"
+              },
+              {
+                "name": "cancelled_at",
+                "type": "integer"
+              },
+              {
+                "name": "created_at",
+                "type": "integer"
+              },
+              {
+                "name": "finished_at",
+                "type": "integer"
+              }
+            ],
+            "evidence": [
+              "database/migrations/0001_01_01_000002_create_jobs_table.php"
+            ]
+          },
+          {
+            "name": "events",
+            "columns": [
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "name": "slug",
+                "type": "string"
+              },
+              {
+                "name": "event_at",
+                "type": "dateTime"
+              },
+              {
+                "name": "status",
+                "type": "enum"
+              }
+            ],
+            "evidence": [
+              "database/migrations/2026_01_04_060310_create_events_table.php"
+            ]
+          },
+          {
+            "name": "event_media",
+            "columns": [
+              {
+                "name": "event_id",
+                "type": "foreignId"
+              },
+              {
+                "name": "path",
+                "type": "string"
+              }
+            ],
+            "evidence": [
+              "database/migrations/2026_01_04_083929_create_event_media_table.php"
+            ]
+          }
+        ],
+        "databaseColumns": [
+          {
+            "table": "users",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "table": "users",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "table": "users",
+            "name": "email_verified_at",
+            "type": "timestamp"
+          },
+          {
+            "table": "users",
+            "name": "password",
+            "type": "string"
+          },
+          {
+            "table": "cache_locks",
+            "name": "key",
+            "type": "string"
+          },
+          {
+            "table": "cache_locks",
+            "name": "owner",
+            "type": "string"
+          },
+          {
+            "table": "cache_locks",
+            "name": "expiration",
+            "type": "integer"
+          },
+          {
+            "table": "job_batches",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "table": "job_batches",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "table": "job_batches",
+            "name": "total_jobs",
+            "type": "integer"
+          },
+          {
+            "table": "job_batches",
+            "name": "pending_jobs",
+            "type": "integer"
+          },
+          {
+            "table": "job_batches",
+            "name": "failed_jobs",
+            "type": "integer"
+          },
+          {
+            "table": "job_batches",
+            "name": "failed_job_ids",
+            "type": "longText"
+          },
+          {
+            "table": "job_batches",
+            "name": "options",
+            "type": "mediumText"
+          },
+          {
+            "table": "job_batches",
+            "name": "cancelled_at",
+            "type": "integer"
+          },
+          {
+            "table": "job_batches",
+            "name": "created_at",
+            "type": "integer"
+          },
+          {
+            "table": "job_batches",
+            "name": "finished_at",
+            "type": "integer"
+          },
+          {
+            "table": "events",
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "table": "events",
+            "name": "slug",
+            "type": "string"
+          },
+          {
+            "table": "events",
+            "name": "event_at",
+            "type": "dateTime"
+          },
+          {
+            "table": "events",
+            "name": "status",
+            "type": "enum"
+          },
+          {
+            "table": "event_media",
+            "name": "event_id",
+            "type": "foreignId"
+          },
+          {
+            "table": "event_media",
+            "name": "path",
+            "type": "string"
+          }
+        ],
+        "relationships": [
+          {
+            "from": "event_media",
+            "to": "events",
+            "type": "belongsTo",
+            "via": "event_id"
+          }
+        ],
+        "models": [
+          {
+            "name": "Event",
+            "file": "app/Models/Event.php"
+          },
+          {
+            "name": "EventMedia",
+            "file": "app/Models/EventMedia.php"
+          },
+          {
+            "name": "User",
+            "file": "app/Models/User.php"
+          }
+        ],
+        "controllers": [
+          {
+            "name": "Controller",
+            "file": "app/Http/Controllers/Controller.php"
+          },
+          {
+            "name": "EventController",
+            "file": "app/Http/Controllers/EventController/EventController.php"
+          },
+          {
+            "name": "PasswordController",
+            "file": "app/Http/Controllers/Settings/PasswordController.php"
+          },
+          {
+            "name": "ProfileController",
+            "file": "app/Http/Controllers/Settings/ProfileController.php"
+          },
+          {
+            "name": "TwoFactorAuthenticationController",
+            "file": "app/Http/Controllers/Settings/TwoFactorAuthenticationController.php"
+          }
+        ],
+        "routes": [
+          {
+            "method": "GET",
+            "path": "/settings/profile",
+            "file": "routes/settings.php"
+          },
+          {
+            "method": "PATCH",
+            "path": "/settings/profile",
+            "file": "routes/settings.php"
+          },
+          {
+            "method": "DELETE",
+            "path": "/settings/profile",
+            "file": "routes/settings.php"
+          },
+          {
+            "method": "GET",
+            "path": "/settings/password",
+            "file": "routes/settings.php"
+          },
+          {
+            "method": "PUT",
+            "path": "/settings/password",
+            "file": "routes/settings.php"
+          },
+          {
+            "method": "GET",
+            "path": "/settings/appearance",
+            "file": "routes/settings.php"
+          },
+          {
+            "method": "GET",
+            "path": "/settings/two-factor",
+            "file": "routes/settings.php"
+          },
+          {
+            "method": "GET",
+            "path": "/",
+            "file": "routes/web.php"
+          },
+          {
+            "method": "GET",
+            "path": "/dashboard",
+            "file": "routes/web.php"
+          },
+          {
+            "method": "GET",
+            "path": "/create",
+            "file": "routes/web.php"
+          },
+          {
+            "method": "POST",
+            "path": "/events",
+            "file": "routes/web.php"
+          },
+          {
+            "method": "GET",
+            "path": "/events/{slug}/preview",
+            "file": "routes/web.php"
+          },
+          {
+            "method": "GET",
+            "path": "/s/{slug}",
+            "file": "routes/web.php"
+          },
+          {
+            "method": "GET",
+            "path": "/events/{slug}/created",
+            "file": "routes/web.php"
+          }
+        ],
+        "apiEndpoints": [],
+        "authentication": {
+          "method": "Session",
+          "evidence": [
+            "app/Http/Controllers/Settings/ProfileController.php"
+          ],
+          "confidence": 0.85,
+          "loginRoute": null
+        },
+        "authorization": [
+          "user"
+        ],
+        "modules": [
+          {
+            "name": "Event module",
+            "evidence": [
+              "app/Models/Event.php"
+            ]
+          },
+          {
+            "name": "EventMedia module",
+            "evidence": [
+              "app/Models/EventMedia.php"
+            ]
+          },
+          {
+            "name": "User module",
+            "evidence": [
+              "app/Models/User.php"
+            ]
+          },
+          {
+            "name": "Cache Lock module",
+            "evidence": [
+              "database/migrations/0001_01_01_000001_create_cache_table.php"
+            ]
+          },
+          {
+            "name": "Job Batche module",
+            "evidence": [
+              "database/migrations/0001_01_01_000002_create_jobs_table.php"
+            ]
+          },
+          {
+            "name": "Event Media module",
+            "evidence": [
+              "database/migrations/2026_01_04_083929_create_event_media_table.php"
+            ]
+          },
+          {
+            "name": "Setting module",
+            "evidence": [
+              "routes/settings.php GET /settings/profile"
+            ]
+          },
+          {
+            "name": "Dashboard module",
+            "evidence": [
+              "routes/web.php GET /dashboard"
+            ]
+          },
+          {
+            "name": "Create module",
+            "evidence": [
+              "routes/web.php GET /create"
+            ]
+          },
+          {
+            "name": " module",
+            "evidence": [
+              "routes/web.php GET /s/{slug}"
+            ]
+          }
+        ],
+        "features": [
+          {
+            "name": "Authentication (Session)",
+            "evidence": [
+              "app/Http/Controllers/Settings/ProfileController.php"
+            ]
+          },
+          {
+            "name": "Create records",
+            "evidence": [
+              "routes/web.php"
+            ]
+          },
+          {
+            "name": "Update records",
+            "evidence": [
+              "routes/settings.php"
+            ]
+          },
+          {
+            "name": "Delete records",
+            "evidence": [
+              "routes/settings.php"
+            ]
+          },
+          {
+            "name": "User interface screens",
+            "evidence": [
+              "resources/js/pages/Events/Create.tsx",
+              "resources/js/pages/Events/Created.tsx",
+              "resources/js/pages/Events/Preview.tsx"
+            ]
+          },
+          {
+            "name": "Persistent data storage",
+            "evidence": [
+              "database/migrations/0001_01_01_000000_create_users_table.php"
+            ]
+          },
+          {
+            "name": "Event module",
+            "evidence": [
+              "app/Models/Event.php"
+            ]
+          },
+          {
+            "name": "EventMedia module",
+            "evidence": [
+              "app/Models/EventMedia.php"
+            ]
+          },
+          {
+            "name": "User module",
+            "evidence": [
+              "app/Models/User.php"
+            ]
+          },
+          {
+            "name": "Cache Lock module",
+            "evidence": [
+              "database/migrations/0001_01_01_000001_create_cache_table.php"
+            ]
+          },
+          {
+            "name": "Job Batche module",
+            "evidence": [
+              "database/migrations/0001_01_01_000002_create_jobs_table.php"
+            ]
+          },
+          {
+            "name": "Event Media module",
+            "evidence": [
+              "database/migrations/2026_01_04_083929_create_event_media_table.php"
+            ]
+          }
+        ],
+        "pages": [
+          "resources/js/pages/Events/Create.tsx",
+          "resources/js/pages/Events/Created.tsx",
+          "resources/js/pages/Events/Preview.tsx",
+          "resources/js/pages/Events/Receiver.tsx",
+          "resources/js/pages/Events/Show.tsx",
+          "resources/js/pages/auth/confirm-password.tsx",
+          "resources/js/pages/auth/forgot-password.tsx",
+          "resources/js/pages/auth/login.tsx",
+          "resources/js/pages/auth/register.tsx",
+          "resources/js/pages/auth/reset-password.tsx",
+          "resources/js/pages/auth/two-factor-challenge.tsx",
+          "resources/js/pages/auth/verify-email.tsx",
+          "resources/js/pages/dashboard.tsx",
+          "resources/js/pages/settings/appearance.tsx",
+          "resources/js/pages/settings/password.tsx",
+          "resources/js/pages/settings/profile.tsx",
+          "resources/js/pages/settings/two-factor.tsx",
+          "resources/js/pages/welcome.tsx",
+          "resources/views/app.blade.php"
+        ],
+        "components": [
+          "resources/js/components/Events/ReceiverFlow.tsx",
+          "resources/js/components/alert-error.tsx",
+          "resources/js/components/app-content.tsx",
+          "resources/js/components/app-header.tsx",
+          "resources/js/components/app-logo-icon.tsx",
+          "resources/js/components/app-logo.tsx",
+          "resources/js/components/app-shell.tsx",
+          "resources/js/components/app-sidebar-header.tsx",
+          "resources/js/components/app-sidebar.tsx",
+          "resources/js/components/appearance-dropdown.tsx",
+          "resources/js/components/appearance-tabs.tsx",
+          "resources/js/components/breadcrumbs.tsx",
+          "resources/js/components/delete-user.tsx",
+          "resources/js/components/heading-small.tsx",
+          "resources/js/components/heading.tsx",
+          "resources/js/components/icon.tsx",
+          "resources/js/components/input-error.tsx",
+          "resources/js/components/nav-footer.tsx",
+          "resources/js/components/nav-main.tsx",
+          "resources/js/components/nav-user.tsx",
+          "resources/js/components/text-link.tsx",
+          "resources/js/components/two-factor-recovery-codes.tsx",
+          "resources/js/components/two-factor-setup-modal.tsx",
+          "resources/js/components/ui/alert.tsx",
+          "resources/js/components/ui/avatar.tsx",
+          "resources/js/components/ui/badge.tsx",
+          "resources/js/components/ui/breadcrumb.tsx",
+          "resources/js/components/ui/button.tsx",
+          "resources/js/components/ui/card.tsx",
+          "resources/js/components/ui/checkbox.tsx",
+          "resources/js/components/ui/collapsible.tsx",
+          "resources/js/components/ui/dialog.tsx",
+          "resources/js/components/ui/dropdown-menu.tsx",
+          "resources/js/components/ui/icon.tsx",
+          "resources/js/components/ui/input-otp.tsx",
+          "resources/js/components/ui/input.tsx",
+          "resources/js/components/ui/label.tsx",
+          "resources/js/components/ui/navigation-menu.tsx",
+          "resources/js/components/ui/placeholder-pattern.tsx",
+          "resources/js/components/ui/select.tsx"
+        ],
+        "services": [],
+        "middleware": [
+          {
+            "name": "HandleAppearance.php",
+            "file": "app/Http/Middleware/HandleAppearance.php"
+          },
+          {
+            "name": "HandleInertiaRequests.php",
+            "file": "app/Http/Middleware/HandleInertiaRequests.php"
+          }
+        ],
+        "crud": {
+          "create": 1,
+          "read": 10,
+          "update": 2,
+          "destroy": 1,
+          "examples": {
+            "create": {
+              "method": "POST",
+              "path": "/events",
+              "file": "routes/web.php"
+            },
+            "read": {
+              "method": "GET",
+              "path": "/settings/profile",
+              "file": "routes/settings.php"
+            },
+            "update": {
+              "method": "PATCH",
+              "path": "/settings/profile",
+              "file": "routes/settings.php"
+            },
+            "destroy": {
+              "method": "DELETE",
+              "path": "/settings/profile",
+              "file": "routes/settings.php"
+            }
+          }
+        },
+        "environmentVariables": [
+          "APP_NAME",
+          "APP_ENV",
+          "APP_KEY",
+          "APP_DEBUG",
+          "APP_URL",
+          "APP_LOCALE",
+          "APP_FALLBACK_LOCALE",
+          "APP_FAKER_LOCALE",
+          "APP_MAINTENANCE_DRIVER",
+          "BCRYPT_ROUNDS",
+          "LOG_CHANNEL",
+          "LOG_STACK",
+          "LOG_DEPRECATIONS_CHANNEL",
+          "LOG_LEVEL",
+          "DB_CONNECTION",
+          "SESSION_DRIVER",
+          "SESSION_LIFETIME",
+          "SESSION_ENCRYPT",
+          "SESSION_PATH",
+          "SESSION_DOMAIN",
+          "BROADCAST_CONNECTION",
+          "FILESYSTEM_DISK",
+          "QUEUE_CONNECTION",
+          "CACHE_STORE",
+          "MEMCACHED_HOST",
+          "REDIS_CLIENT",
+          "REDIS_HOST",
+          "REDIS_PASSWORD",
+          "REDIS_PORT",
+          "MAIL_MAILER",
+          "MAIL_SCHEME",
+          "MAIL_HOST",
+          "MAIL_PORT",
+          "MAIL_USERNAME",
+          "MAIL_PASSWORD",
+          "MAIL_FROM_ADDRESS",
+          "MAIL_FROM_NAME",
+          "AWS_ACCESS_KEY_ID",
+          "AWS_SECRET_ACCESS_KEY",
+          "AWS_DEFAULT_REGION",
+          "AWS_BUCKET",
+          "AWS_USE_PATH_STYLE_ENDPOINT",
+          "VITE_APP_NAME"
+        ],
+        "secretsDetected": true,
+        "configuration": {
+          "hasEnvExample": true,
+          "envFile": ".env.example",
+          "docker": false
+        },
+        "fileStructure": {
+          "topLevel": [
+            ".env.example",
+            "app",
+            "artisan",
+            "components.json",
+            "composer.json",
+            "composer.lock",
+            "config",
+            "database",
+            "eslint.config.js",
+            "package-lock.json",
+            "package.json",
+            "phpunit.xml",
+            "resources",
+            "routes",
+            "tests",
+            "tsconfig.json",
+            "vite.config.ts"
+          ],
+          "sample": [
+            ".env.example",
+            "app/Actions/Fortify/CreateNewUser.php",
+            "app/Actions/Fortify/PasswordValidationRules.php",
+            "app/Actions/Fortify/ResetUserPassword.php",
+            "app/Http/Controllers/Controller.php",
+            "app/Http/Controllers/EventController/EventController.php",
+            "app/Http/Controllers/Settings/PasswordController.php",
+            "app/Http/Controllers/Settings/ProfileController.php",
+            "app/Http/Controllers/Settings/TwoFactorAuthenticationController.php",
+            "app/Http/Middleware/HandleAppearance.php",
+            "app/Http/Middleware/HandleInertiaRequests.php",
+            "app/Http/Requests/Settings/ProfileUpdateRequest.php",
+            "app/Http/Requests/Settings/TwoFactorAuthenticationRequest.php",
+            "app/Models/Event.php",
+            "app/Models/EventMedia.php",
+            "app/Models/User.php",
+            "app/Providers/AppServiceProvider.php",
+            "app/Providers/FortifyServiceProvider.php",
+            "artisan",
+            "components.json",
+            "composer.json",
+            "composer.lock",
+            "config/app.php",
+            "config/auth.php",
+            "config/cache.php",
+            "config/database.php",
+            "config/filesystems.php",
+            "config/fortify.php",
+            "config/inertia.php",
+            "config/logging.php",
+            "config/mail.php",
+            "config/queue.php",
+            "config/services.php",
+            "config/session.php",
+            "database/factories/UserFactory.php",
+            "database/migrations/0001_01_01_000000_create_users_table.php",
+            "database/migrations/0001_01_01_000001_create_cache_table.php",
+            "database/migrations/0001_01_01_000002_create_jobs_table.php",
+            "database/migrations/2025_08_26_100418_add_two_factor_columns_to_users_table.php",
+            "database/migrations/2026_01_04_060310_create_events_table.php"
+          ]
+        },
+        "dependencies": [
+          "@headlessui/react",
+          "@inertiajs/react",
+          "@radix-ui/react-avatar",
+          "@radix-ui/react-checkbox",
+          "@radix-ui/react-collapsible",
+          "@radix-ui/react-dialog",
+          "@radix-ui/react-dropdown-menu",
+          "@radix-ui/react-label",
+          "@radix-ui/react-navigation-menu",
+          "@radix-ui/react-select",
+          "@radix-ui/react-separator",
+          "@radix-ui/react-slot",
+          "@radix-ui/react-toggle",
+          "@radix-ui/react-toggle-group",
+          "@radix-ui/react-tooltip",
+          "@tailwindcss/vite",
+          "@types/react",
+          "@types/react-dom",
+          "@vitejs/plugin-react",
+          "class-variance-authority",
+          "clsx",
+          "concurrently",
+          "globals",
+          "input-otp",
+          "laravel-vite-plugin",
+          "lucide-react",
+          "qrcode.react",
+          "react",
+          "react-dom",
+          "tailwind-merge",
+          "tailwindcss",
+          "tw-animate-css",
+          "typescript",
+          "vite",
+          "@eslint/js",
+          "@laravel/vite-plugin-wayfinder",
+          "@types/node",
+          "babel-plugin-react-compiler",
+          "eslint",
+          "eslint-config-prettier",
+          "php",
+          "inertiajs/inertia-laravel",
+          "laravel/fortify",
+          "laravel/framework",
+          "laravel/tinker",
+          "laravel/wayfinder"
+        ],
+        "scripts": {
+          "build": "vite build",
+          "build:ssr": "vite build && vite build --ssr",
+          "dev": "vite",
+          "format": "prettier --write resources/",
+          "format:check": "prettier --check resources/",
+          "lint": "eslint . --fix",
+          "types": "tsc --noEmit"
+        },
+        "deploymentHints": [],
+        "tests": {
+          "hasTests": true,
+          "files": [
+            "phpunit.xml",
+            "tests/Feature/Auth/AuthenticationTest.php",
+            "tests/Feature/Auth/EmailVerificationTest.php",
+            "tests/Feature/Auth/PasswordConfirmationTest.php",
+            "tests/Feature/Auth/PasswordResetTest.php",
+            "tests/Feature/Auth/RegistrationTest.php",
+            "tests/Feature/Auth/TwoFactorChallengeTest.php",
+            "tests/Feature/Auth/VerificationNotificationTest.php",
+            "tests/Feature/DashboardTest.php",
+            "tests/Feature/ExampleTest.php",
+            "tests/Feature/Settings/PasswordUpdateTest.php",
+            "tests/Feature/Settings/ProfileUpdateTest.php",
+            "tests/Feature/Settings/TwoFactorAuthenticationTest.php",
+            "tests/Pest.php",
+            "tests/TestCase.php"
+          ]
+        },
+        "documentation": {
+          "hasReadme": false,
+          "readmeFile": null,
+          "readmeExcerpt": null
+        },
+        "screenshots": [],
+        "evidence": [
+          {
+            "fact": "projectName",
+            "value": "React Starter Kit",
+            "evidence": [
+              "composer.json"
+            ],
+            "confidence": 0.7
+          },
+          {
+            "fact": "framework",
+            "value": "React",
+            "evidence": [
+              "package.json",
+              "resources/js/app.tsx"
+            ],
+            "confidence": 0.95
+          },
+          {
+            "fact": "framework",
+            "value": "React Native",
+            "evidence": [
+              "package.json",
+              "eslint.config.js"
+            ],
+            "confidence": 0.95
+          },
+          {
+            "fact": "framework",
+            "value": "Laravel",
+            "evidence": [
+              "composer.json",
+              "artisan"
+            ],
+            "confidence": 0.96
+          },
+          {
+            "fact": "database",
+            "value": "MySQL",
+            "evidence": [
+              "config/database.php"
+            ],
+            "confidence": 0.88
+          },
+          {
+            "fact": "database",
+            "value": "PostgreSQL",
+            "evidence": [
+              "config/database.php"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "database",
+            "value": "SQLite",
+            "evidence": [],
+            "confidence": 0.86
+          },
+          {
+            "fact": "table",
+            "value": "users",
+            "evidence": [
+              "database/migrations/0001_01_01_000000_create_users_table.php"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "table",
+            "value": "cache_locks",
+            "evidence": [
+              "database/migrations/0001_01_01_000001_create_cache_table.php"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "table",
+            "value": "job_batches",
+            "evidence": [
+              "database/migrations/0001_01_01_000002_create_jobs_table.php"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "table",
+            "value": "events",
+            "evidence": [
+              "database/migrations/2026_01_04_060310_create_events_table.php"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "table",
+            "value": "event_media",
+            "evidence": [
+              "database/migrations/2026_01_04_083929_create_event_media_table.php"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "route",
+            "value": "GET /settings/profile",
+            "evidence": [
+              "routes/settings.php"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "PATCH /settings/profile",
+            "evidence": [
+              "routes/settings.php"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "DELETE /settings/profile",
+            "evidence": [
+              "routes/settings.php"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /settings/password",
+            "evidence": [
+              "routes/settings.php"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "PUT /settings/password",
+            "evidence": [
+              "routes/settings.php"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /settings/appearance",
+            "evidence": [
+              "routes/settings.php"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /settings/two-factor",
+            "evidence": [
+              "routes/settings.php"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /",
+            "evidence": [
+              "routes/web.php"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /dashboard",
+            "evidence": [
+              "routes/web.php"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /create",
+            "evidence": [
+              "routes/web.php"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "POST /events",
+            "evidence": [
+              "routes/web.php"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /events/{slug}/preview",
+            "evidence": [
+              "routes/web.php"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /s/{slug}",
+            "evidence": [
+              "routes/web.php"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /events/{slug}/created",
+            "evidence": [
+              "routes/web.php"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "authentication",
+            "value": "Session",
+            "evidence": [
+              "app/Http/Controllers/Settings/ProfileController.php"
+            ],
+            "confidence": 0.85
+          }
+        ],
+        "warnings": [
+          "Sensitive configuration detected. Values are not stored."
+        ],
+        "confidence": 0.98,
+        "fileCount": 158,
+        "scannedFiles": 155,
+        "topFiles": [
+          ".env.example",
+          "app/Actions/Fortify/CreateNewUser.php",
+          "app/Actions/Fortify/PasswordValidationRules.php",
+          "app/Actions/Fortify/ResetUserPassword.php",
+          "app/Http/Controllers/Controller.php",
+          "app/Http/Controllers/EventController/EventController.php",
+          "app/Http/Controllers/Settings/PasswordController.php",
+          "app/Http/Controllers/Settings/ProfileController.php",
+          "app/Http/Controllers/Settings/TwoFactorAuthenticationController.php",
+          "app/Http/Middleware/HandleAppearance.php",
+          "app/Http/Middleware/HandleInertiaRequests.php",
+          "app/Http/Requests/Settings/ProfileUpdateRequest.php",
+          "app/Http/Requests/Settings/TwoFactorAuthenticationRequest.php",
+          "app/Models/Event.php",
+          "app/Models/EventMedia.php",
+          "app/Models/User.php",
+          "app/Providers/AppServiceProvider.php",
+          "app/Providers/FortifyServiceProvider.php",
+          "artisan",
+          "components.json",
+          "composer.json",
+          "composer.lock",
+          "config/app.php",
+          "config/auth.php",
+          "config/cache.php",
+          "config/database.php",
+          "config/filesystems.php",
+          "config/fortify.php",
+          "config/inertia.php",
+          "config/logging.php",
+          "config/mail.php",
+          "config/queue.php",
+          "config/services.php",
+          "config/session.php",
+          "database/factories/UserFactory.php",
+          "database/migrations/0001_01_01_000000_create_users_table.php",
+          "database/migrations/0001_01_01_000001_create_cache_table.php",
+          "database/migrations/0001_01_01_000002_create_jobs_table.php",
+          "database/migrations/2025_08_26_100418_add_two_factor_columns_to_users_table.php",
+          "database/migrations/2026_01_04_060310_create_events_table.php"
+        ],
+        "health": {
+          "technology": [
+            {
+              "ok": true,
+              "label": "React",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "React Native",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "Laravel",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "MySQL",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "PostgreSQL",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "SQLite",
+              "detail": "Detected in repository"
+            }
+          ],
+          "architecture": [
+            {
+              "ok": true,
+              "label": "Frontend",
+              "detail": "React, React Native"
+            },
+            {
+              "ok": true,
+              "label": "Backend",
+              "detail": "Laravel"
+            },
+            {
+              "ok": true,
+              "label": "Routes",
+              "detail": "14 routes"
+            },
+            {
+              "ok": false,
+              "label": "API routes",
+              "detail": "Not detected in source"
+            }
+          ],
+          "database": [
+            {
+              "ok": true,
+              "label": "Tables",
+              "detail": "5 tables"
+            },
+            {
+              "ok": true,
+              "label": "Relationships",
+              "detail": "1 relationships"
+            }
+          ],
+          "documentation": [
+            {
+              "ok": false,
+              "label": "README",
+              "detail": "README incomplete or missing"
+            }
+          ],
+          "testing": [
+            {
+              "ok": true,
+              "label": "Tests",
+              "detail": "15 test files"
+            }
+          ],
+          "security": [
+            {
+              "ok": false,
+              "label": "Secrets",
+              "detail": "Sensitive configuration detected"
+            },
+            {
+              "ok": true,
+              "label": "Authentication",
+              "detail": "Session"
+            }
+          ]
+        },
+        "stackLabel": "React · React Native · Laravel · MySQL · PostgreSQL · SQLite",
+        "suggestedTitle": "React Starter Kit",
+        "suggestedProblem": "Manual or disconnected handling of event, eventmedia, user is replaced by this React · React Native · Laravel · MySQL · PostgreSQL · SQLite application, which stores data in MySQL.",
+        "suggestedFuture": "complete the README with run steps; add a simple Docker setup for examiners; document limitations honestly for viva."
+      },
+      "health": {
+        "technology": [
+          {
+            "ok": true,
+            "label": "React",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "React Native",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "Laravel",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "MySQL",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "PostgreSQL",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "SQLite",
+            "detail": "Detected in repository"
+          }
+        ],
+        "architecture": [
+          {
+            "ok": true,
+            "label": "Frontend",
+            "detail": "React, React Native"
+          },
+          {
+            "ok": true,
+            "label": "Backend",
+            "detail": "Laravel"
+          },
+          {
+            "ok": true,
+            "label": "Routes",
+            "detail": "14 routes"
+          },
+          {
+            "ok": false,
+            "label": "API routes",
+            "detail": "Not detected in source"
+          }
+        ],
+        "database": [
+          {
+            "ok": true,
+            "label": "Tables",
+            "detail": "5 tables"
+          },
+          {
+            "ok": true,
+            "label": "Relationships",
+            "detail": "1 relationships"
+          }
+        ],
+        "documentation": [
+          {
+            "ok": false,
+            "label": "README",
+            "detail": "README incomplete or missing"
+          }
+        ],
+        "testing": [
+          {
+            "ok": true,
+            "label": "Tests",
+            "detail": "15 test files"
+          }
+        ],
+        "security": [
+          {
+            "ok": false,
+            "label": "Secrets",
+            "detail": "Sensitive configuration detected"
+          },
+          {
+            "ok": true,
+            "label": "Authentication",
+            "detail": "Session"
+          }
+        ]
+      },
+      "stackLabel": "React · React Native · Laravel · MySQL · PostgreSQL · SQLite",
+      "suggestedTitle": "React Starter Kit",
+      "suggestedProblem": "Manual or disconnected handling of event, eventmedia, user is replaced by this React · React Native · Laravel · MySQL · PostgreSQL · SQLite application, which stores data in MySQL.",
+      "suggestedFuture": "complete the README with run steps; add a simple Docker setup for examiners; document limitations honestly for viva.",
+      "warnings": [
+        "Sensitive configuration detected. Values are not stored."
+      ],
+      "confidence": 0.98,
+      "evidence": [
+        {
+          "fact": "projectName",
+          "value": "React Starter Kit",
+          "evidence": [
+            "composer.json"
+          ],
+          "confidence": 0.7
+        },
+        {
+          "fact": "framework",
+          "value": "React",
+          "evidence": [
+            "package.json",
+            "resources/js/app.tsx"
+          ],
+          "confidence": 0.95
+        },
+        {
+          "fact": "framework",
+          "value": "React Native",
+          "evidence": [
+            "package.json",
+            "eslint.config.js"
+          ],
+          "confidence": 0.95
+        },
+        {
+          "fact": "framework",
+          "value": "Laravel",
+          "evidence": [
+            "composer.json",
+            "artisan"
+          ],
+          "confidence": 0.96
+        },
+        {
+          "fact": "database",
+          "value": "MySQL",
+          "evidence": [
+            "config/database.php"
+          ],
+          "confidence": 0.88
+        },
+        {
+          "fact": "database",
+          "value": "PostgreSQL",
+          "evidence": [
+            "config/database.php"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "database",
+          "value": "SQLite",
+          "evidence": [],
+          "confidence": 0.86
+        },
+        {
+          "fact": "table",
+          "value": "users",
+          "evidence": [
+            "database/migrations/0001_01_01_000000_create_users_table.php"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "cache_locks",
+          "evidence": [
+            "database/migrations/0001_01_01_000001_create_cache_table.php"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "job_batches",
+          "evidence": [
+            "database/migrations/0001_01_01_000002_create_jobs_table.php"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "events",
+          "evidence": [
+            "database/migrations/2026_01_04_060310_create_events_table.php"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "event_media",
+          "evidence": [
+            "database/migrations/2026_01_04_083929_create_event_media_table.php"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "route",
+          "value": "GET /settings/profile",
+          "evidence": [
+            "routes/settings.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "PATCH /settings/profile",
+          "evidence": [
+            "routes/settings.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "DELETE /settings/profile",
+          "evidence": [
+            "routes/settings.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /settings/password",
+          "evidence": [
+            "routes/settings.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "PUT /settings/password",
+          "evidence": [
+            "routes/settings.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /settings/appearance",
+          "evidence": [
+            "routes/settings.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /settings/two-factor",
+          "evidence": [
+            "routes/settings.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /",
+          "evidence": [
+            "routes/web.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /dashboard",
+          "evidence": [
+            "routes/web.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /create",
+          "evidence": [
+            "routes/web.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "POST /events",
+          "evidence": [
+            "routes/web.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /events/{slug}/preview",
+          "evidence": [
+            "routes/web.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /s/{slug}",
+          "evidence": [
+            "routes/web.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /events/{slug}/created",
+          "evidence": [
+            "routes/web.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "authentication",
+          "value": "Session",
+          "evidence": [
+            "app/Http/Controllers/Settings/ProfileController.php"
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "authentication": {
+        "method": "Session",
+        "evidence": [
+          "app/Http/Controllers/Settings/ProfileController.php"
+        ],
+        "confidence": 0.85,
+        "loginRoute": null
+      },
+      "authorization": [
+        "user"
+      ],
+      "features": [
+        {
+          "name": "Authentication (Session)",
+          "evidence": [
+            "app/Http/Controllers/Settings/ProfileController.php"
+          ]
+        },
+        {
+          "name": "Create records",
+          "evidence": [
+            "routes/web.php"
+          ]
+        },
+        {
+          "name": "Update records",
+          "evidence": [
+            "routes/settings.php"
+          ]
+        },
+        {
+          "name": "Delete records",
+          "evidence": [
+            "routes/settings.php"
+          ]
+        },
+        {
+          "name": "User interface screens",
+          "evidence": [
+            "resources/js/pages/Events/Create.tsx",
+            "resources/js/pages/Events/Created.tsx",
+            "resources/js/pages/Events/Preview.tsx"
+          ]
+        },
+        {
+          "name": "Persistent data storage",
+          "evidence": [
+            "database/migrations/0001_01_01_000000_create_users_table.php"
+          ]
+        },
+        {
+          "name": "Event module",
+          "evidence": [
+            "app/Models/Event.php"
+          ]
+        },
+        {
+          "name": "EventMedia module",
+          "evidence": [
+            "app/Models/EventMedia.php"
+          ]
+        },
+        {
+          "name": "User module",
+          "evidence": [
+            "app/Models/User.php"
+          ]
+        },
+        {
+          "name": "Cache Lock module",
+          "evidence": [
+            "database/migrations/0001_01_01_000001_create_cache_table.php"
+          ]
+        },
+        {
+          "name": "Job Batche module",
+          "evidence": [
+            "database/migrations/0001_01_01_000002_create_jobs_table.php"
+          ]
+        },
+        {
+          "name": "Event Media module",
+          "evidence": [
+            "database/migrations/2026_01_04_083929_create_event_media_table.php"
+          ]
+        }
+      ],
+      "pages": [
+        "resources/js/pages/Events/Create.tsx",
+        "resources/js/pages/Events/Created.tsx",
+        "resources/js/pages/Events/Preview.tsx",
+        "resources/js/pages/Events/Receiver.tsx",
+        "resources/js/pages/Events/Show.tsx",
+        "resources/js/pages/auth/confirm-password.tsx",
+        "resources/js/pages/auth/forgot-password.tsx",
+        "resources/js/pages/auth/login.tsx",
+        "resources/js/pages/auth/register.tsx",
+        "resources/js/pages/auth/reset-password.tsx",
+        "resources/js/pages/auth/two-factor-challenge.tsx",
+        "resources/js/pages/auth/verify-email.tsx",
+        "resources/js/pages/dashboard.tsx",
+        "resources/js/pages/settings/appearance.tsx",
+        "resources/js/pages/settings/password.tsx",
+        "resources/js/pages/settings/profile.tsx",
+        "resources/js/pages/settings/two-factor.tsx",
+        "resources/js/pages/welcome.tsx",
+        "resources/views/app.blade.php"
+      ],
+      "apiEndpoints": [],
+      "relationships": [
+        {
+          "from": "event_media",
+          "to": "events",
+          "type": "belongsTo",
+          "via": "event_id"
+        }
+      ],
+      "frontend": [
+        "React",
+        "React Native"
+      ],
+      "backend": [
+        "Laravel"
+      ],
+      "tests": {
+        "hasTests": true,
+        "files": [
+          "phpunit.xml",
+          "tests/Feature/Auth/AuthenticationTest.php",
+          "tests/Feature/Auth/EmailVerificationTest.php",
+          "tests/Feature/Auth/PasswordConfirmationTest.php",
+          "tests/Feature/Auth/PasswordResetTest.php",
+          "tests/Feature/Auth/RegistrationTest.php",
+          "tests/Feature/Auth/TwoFactorChallengeTest.php",
+          "tests/Feature/Auth/VerificationNotificationTest.php",
+          "tests/Feature/DashboardTest.php",
+          "tests/Feature/ExampleTest.php",
+          "tests/Feature/Settings/PasswordUpdateTest.php",
+          "tests/Feature/Settings/ProfileUpdateTest.php",
+          "tests/Feature/Settings/TwoFactorAuthenticationTest.php",
+          "tests/Pest.php",
+          "tests/TestCase.php"
+        ]
+      },
+      "documentation": {
+        "hasReadme": false,
+        "readmeFile": null,
+        "readmeExcerpt": null
+      },
+      "configuration": {
+        "hasEnvExample": true,
+        "envFile": ".env.example",
+        "docker": false
+      },
+      "environmentVariables": [
+        "APP_NAME",
+        "APP_ENV",
+        "APP_KEY",
+        "APP_DEBUG",
+        "APP_URL",
+        "APP_LOCALE",
+        "APP_FALLBACK_LOCALE",
+        "APP_FAKER_LOCALE",
+        "APP_MAINTENANCE_DRIVER",
+        "BCRYPT_ROUNDS",
+        "LOG_CHANNEL",
+        "LOG_STACK",
+        "LOG_DEPRECATIONS_CHANNEL",
+        "LOG_LEVEL",
+        "DB_CONNECTION",
+        "SESSION_DRIVER",
+        "SESSION_LIFETIME",
+        "SESSION_ENCRYPT",
+        "SESSION_PATH",
+        "SESSION_DOMAIN",
+        "BROADCAST_CONNECTION",
+        "FILESYSTEM_DISK",
+        "QUEUE_CONNECTION",
+        "CACHE_STORE",
+        "MEMCACHED_HOST",
+        "REDIS_CLIENT",
+        "REDIS_HOST",
+        "REDIS_PASSWORD",
+        "REDIS_PORT",
+        "MAIL_MAILER",
+        "MAIL_SCHEME",
+        "MAIL_HOST",
+        "MAIL_PORT",
+        "MAIL_USERNAME",
+        "MAIL_PASSWORD",
+        "MAIL_FROM_ADDRESS",
+        "MAIL_FROM_NAME",
+        "AWS_ACCESS_KEY_ID",
+        "AWS_SECRET_ACCESS_KEY",
+        "AWS_DEFAULT_REGION",
+        "AWS_BUCKET",
+        "AWS_USE_PATH_STYLE_ENDPOINT",
+        "VITE_APP_NAME"
+      ]
+    },
+    "answers": {
+      "studentName": "madin8338",
+      "enrollment": "837",
+      "college": "djakj",
+      "course": "BCA",
+      "guide": "jdjshjs",
+      "title": "React Project",
+      "problem": "This repository implements a React · React Native project. The exact business problem is not fully described in source; confirm with the student.",
+      "futureWork": "add automated tests; add a simple Docker setup for examiners; document limitations honestly for viva.",
+      "year": "2026",
+      "modules": [
+        "Event module",
+        "EventMedia module",
+        "User module",
+        "Cache Lock module",
+        "Job Batche module",
+        "Event Media module",
+        "Setting module",
+        "Dashboard module",
+        "Create module",
+        " module"
+      ]
+    },
+    "error": null,
+    "progress": {
+      "step": "pack",
+      "percent": 100,
+      "label": "Pack ready"
+    },
+    "preview": {
+      "title": "React Project",
+      "student": "madin8338",
+      "college": "djakj",
+      "course": "BCA",
+      "stackLabel": "React · React Native · Laravel · MySQL · PostgreSQL · SQLite",
+      "generationMode": "deterministic",
+      "health": {
+        "technology": [
+          {
+            "ok": true,
+            "label": "React",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "React Native",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "Laravel",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "MySQL",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "PostgreSQL",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "SQLite",
+            "detail": "Detected in repository"
+          }
+        ],
+        "architecture": [
+          {
+            "ok": true,
+            "label": "Frontend",
+            "detail": "React, React Native"
+          },
+          {
+            "ok": true,
+            "label": "Backend",
+            "detail": "Laravel"
+          },
+          {
+            "ok": true,
+            "label": "Routes",
+            "detail": "14 routes"
+          },
+          {
+            "ok": false,
+            "label": "API routes",
+            "detail": "Not detected in source"
+          }
+        ],
+        "database": [
+          {
+            "ok": true,
+            "label": "Tables",
+            "detail": "5 tables"
+          },
+          {
+            "ok": true,
+            "label": "Relationships",
+            "detail": "1 relationships"
+          }
+        ],
+        "documentation": [
+          {
+            "ok": false,
+            "label": "README",
+            "detail": "README incomplete or missing"
+          }
+        ],
+        "testing": [
+          {
+            "ok": true,
+            "label": "Tests",
+            "detail": "15 test files"
+          }
+        ],
+        "security": [
+          {
+            "ok": false,
+            "label": "Secrets",
+            "detail": "Sensitive configuration detected"
+          },
+          {
+            "ok": true,
+            "label": "Authentication",
+            "detail": "Session"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "fact": "projectName",
+          "value": "React Starter Kit",
+          "evidence": [
+            "composer.json"
+          ],
+          "confidence": 0.7
+        },
+        {
+          "fact": "framework",
+          "value": "React",
+          "evidence": [
+            "package.json",
+            "resources/js/app.tsx"
+          ],
+          "confidence": 0.95
+        },
+        {
+          "fact": "framework",
+          "value": "React Native",
+          "evidence": [
+            "package.json",
+            "eslint.config.js"
+          ],
+          "confidence": 0.95
+        },
+        {
+          "fact": "framework",
+          "value": "Laravel",
+          "evidence": [
+            "composer.json",
+            "artisan"
+          ],
+          "confidence": 0.96
+        },
+        {
+          "fact": "database",
+          "value": "MySQL",
+          "evidence": [
+            "config/database.php"
+          ],
+          "confidence": 0.88
+        },
+        {
+          "fact": "database",
+          "value": "PostgreSQL",
+          "evidence": [
+            "config/database.php"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "database",
+          "value": "SQLite",
+          "evidence": [],
+          "confidence": 0.86
+        },
+        {
+          "fact": "table",
+          "value": "users",
+          "evidence": [
+            "database/migrations/0001_01_01_000000_create_users_table.php"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "cache_locks",
+          "evidence": [
+            "database/migrations/0001_01_01_000001_create_cache_table.php"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "job_batches",
+          "evidence": [
+            "database/migrations/0001_01_01_000002_create_jobs_table.php"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "events",
+          "evidence": [
+            "database/migrations/2026_01_04_060310_create_events_table.php"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "event_media",
+          "evidence": [
+            "database/migrations/2026_01_04_083929_create_event_media_table.php"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "route",
+          "value": "GET /settings/profile",
+          "evidence": [
+            "routes/settings.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "PATCH /settings/profile",
+          "evidence": [
+            "routes/settings.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "DELETE /settings/profile",
+          "evidence": [
+            "routes/settings.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /settings/password",
+          "evidence": [
+            "routes/settings.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "PUT /settings/password",
+          "evidence": [
+            "routes/settings.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /settings/appearance",
+          "evidence": [
+            "routes/settings.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /settings/two-factor",
+          "evidence": [
+            "routes/settings.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /",
+          "evidence": [
+            "routes/web.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /dashboard",
+          "evidence": [
+            "routes/web.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /create",
+          "evidence": [
+            "routes/web.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "POST /events",
+          "evidence": [
+            "routes/web.php"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /events/{slug}/preview",
+          "evidence": [
+            "routes/web.php"
+          ],
+          "confidence": 0.9
+        }
+      ],
+      "warnings": [
+        "Sensitive configuration detected. Values are not stored."
+      ],
+      "confidence": 0.98,
+      "sections": [
+        {
+          "id": "cover",
+          "title": "Cover",
+          "included": true
+        },
+        {
+          "id": "abstract",
+          "title": "Abstract",
+          "included": true
+        },
+        {
+          "id": "intro",
+          "title": "1. Introduction",
+          "included": true
+        },
+        {
+          "id": "problem",
+          "title": "1.1 Problem statement",
+          "included": true
+        },
+        {
+          "id": "objectives",
+          "title": "1.2 Objectives",
+          "included": true
+        },
+        {
+          "id": "scope",
+          "title": "1.3 Scope",
+          "included": true
+        },
+        {
+          "id": "stack",
+          "title": "1.4 Technology stack",
+          "included": true
+        },
+        {
+          "id": "background",
+          "title": "2. Literature / background",
+          "included": true
+        },
+        {
+          "id": "fr",
+          "title": "3.1 Functional requirements",
+          "included": true
+        },
+        {
+          "id": "nfr",
+          "title": "3.2 Non-functional requirements",
+          "included": true
+        },
+        {
+          "id": "users",
+          "title": "3.3 Users",
+          "included": true
+        },
+        {
+          "id": "design",
+          "title": "4. System design",
+          "included": true
+        },
+        {
+          "id": "modules",
+          "title": "4.1 Modules",
+          "included": true
+        },
+        {
+          "id": "data",
+          "title": "4.2 Data design",
+          "included": true
+        },
+        {
+          "id": "models",
+          "title": "4.3 Domain models",
+          "included": true
+        },
+        {
+          "id": "routes",
+          "title": "4.4 Routes / entry points",
+          "included": true
+        },
+        {
+          "id": "auth",
+          "title": "4.5 Authentication",
+          "included": true
+        },
+        {
+          "id": "impl",
+          "title": "5. Implementation",
+          "included": true
+        },
+        {
+          "id": "testing",
+          "title": "6. Testing",
+          "included": true
+        },
+        {
+          "id": "conclusion",
+          "title": "7. Conclusion",
+          "included": true
+        },
+        {
+          "id": "future",
+          "title": "8. Future work",
+          "included": true
+        },
+        {
+          "id": "refs",
+          "title": "9. References",
+          "included": true
+        },
+        {
+          "id": "declaration",
+          "title": "Appendix A. Declaration",
+          "included": true
+        }
+      ],
+      "reportHtml": "<!doctype html><html><head><meta charset=\"utf-8\"><title>Project Report</title>\n<style>\n@page { margin: 22mm; }\nbody { font-family: Georgia, serif; color: #111; max-width: 800px; margin: 40px auto; line-height: 1.5; }\nh1 { font-size: 26px; }\nh2 { margin-top: 28px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }\ncode { font-family: ui-monospace, monospace; font-size: 0.9em; }\n.meta { color: #444; }\n</style></head><body><h1>React Project</h1><br/><br/><strong>A Project Report submitted in partial fulfillment of the requirements for the award of BCA</strong><br/><br/>Student: madin8338  \nEnrollment: 837  \nCollege: djakj  \nGuide: jdjshjs  \nYear: 2026<br/><br/><h2>Abstract</h2><br/><br/>React Project is implemented with React · React Native · Laravel · MySQL · PostgreSQL · SQLite. The repository contains 158 files. This repository implements a React · React Native project. The exact business problem is not fully described in source; confirm with the student.<br/><br/><h2>1. Introduction</h2><br/><br/>This report describes React Project from the submitted source, not from a generic template. Detected stack: React · React Native · Laravel · MySQL · PostgreSQL · SQLite.<br/><br/><h2>1.1 Problem statement</h2><br/><br/>This repository implements a React · React Native project. The exact business problem is not fully described in source; confirm with the student.<br/><br/><h2>1.2 Objectives</h2><br/><br/>1. Provide a working application for React Project using only features found in source.\n2. Persist records in detected stores: users, cache_locks, job_batches, events, event_media.\n3. Support detected users: User.\n4. Expose the detected routes listed in this report.\n5. Keep documentation aligned with the repository so viva answers can be checked against files.<br/><br/><h2>1.3 Scope</h2><br/><br/>In scope: Event module; EventMedia module; User module; Cache Lock module; Job Batche module; Event Media module; Setting module; Dashboard module; Create module;  module.\nOut of scope: anything not present in the submitted source, including invented APIs, tables, or third-party products.<br/><br/><h2>1.4 Technology stack</h2><br/><br/><li>Languages: TypeScript, PHP, JavaScript</li>\n<li>Frameworks: React, React Native, Laravel</li>\n<li>Databases: MySQL, PostgreSQL, SQLite</li>\n<li>Source: https://github.com/MadinBloch/Reveal</li><br/><br/><h2>2. Literature / background</h2><br/><br/>React Project follows the client-server pattern found in the repository. Claims below are limited to files that were scanned (155 source files).<br/><br/><h2>3.1 Functional requirements</h2><br/><br/>FR1. The system shall support event as implemented in source.\nFR2. The system shall support eventmedia as implemented in source.\nFR3. The system shall support user as implemented in source.\nFR4. The system shall support cache lock as implemented in source.\nFR5. The system shall support job batche as implemented in source.\nFR6. The system shall support event media as implemented in source.\nFR7. The system shall support setting as implemented in source.\nFR8. The system shall support dashboard as implemented in source.\nFR9. The system shall support create as implemented in source.\nFR10. The system shall support  as implemented in source.\nFR11. The system shall handle <code>GET /settings/profile</code> (<code>routes/settings.php</code>).\nFR12. The system shall handle <code>PATCH /settings/profile</code> (<code>routes/settings.php</code>).<br/><br/><h2>3.2 Non-functional requirements</h2><br/><br/><li>Usability: the demo script uses only screens and routes found in source.</li>\n<li>Reliability: invalid input should not crash the main detected flows.</li>\n<li>Security: do not commit secrets; a configuration file was detected and values were redacted.</li><br/><br/><h2>3.3 Users</h2><br/><br/><li>User</li><br/><br/><h2>4. System design</h2><br/><br/>User interface: React, React Native. Application logic: Laravel. Persistence: MySQL.<br/><br/><h2>4.1 Modules</h2><br/><br/>1. <strong>Event module</strong>\n2. <strong>EventMedia module</strong>\n3. <strong>User module</strong>\n4. <strong>Cache Lock module</strong>\n5. <strong>Job Batche module</strong>\n6. <strong>Event Media module</strong>\n7. <strong>Setting module</strong>\n8. <strong>Dashboard module</strong>\n9. <strong>Create module</strong>\n10. <strong> module</strong><br/><br/><h2>4.2 Data design</h2><br/><br/><li><code>users</code> (name, email, email_verified_at, password)</li>\n<li><code>cache_locks</code> (key, owner, expiration)</li>\n<li><code>job_batches</code> (id, name, total_jobs, pending_jobs, failed_jobs, failed_job_ids, options, cancelled_at, created_at, finished_at)</li>\n<li><code>events</code> (title, slug, event_at, status)</li>\n<li><code>event_media</code> (event_id, path)</li><br/><br/><h2>4.3 Domain models</h2><br/><br/><li>Event (<code>app/Models/Event.php</code>)</li>\n<li>EventMedia (<code>app/Models/EventMedia.php</code>)</li>\n<li>User (<code>app/Models/User.php</code>)</li><br/><br/><h2>4.4 Routes / entry points</h2><br/><br/><li><code>GET /settings/profile</code> — <code>routes/settings.php</code></li>\n<li><code>PATCH /settings/profile</code> — <code>routes/settings.php</code></li>\n<li><code>DELETE /settings/profile</code> — <code>routes/settings.php</code></li>\n<li><code>GET /settings/password</code> — <code>routes/settings.php</code></li>\n<li><code>PUT /settings/password</code> — <code>routes/settings.php</code></li>\n<li><code>GET /settings/appearance</code> — <code>routes/settings.php</code></li>\n<li><code>GET /settings/two-factor</code> — <code>routes/settings.php</code></li>\n<li><code>GET /</code> — <code>routes/web.php</code></li>\n<li><code>GET /dashboard</code> — <code>routes/web.php</code></li>\n<li><code>GET /create</code> — <code>routes/web.php</code></li>\n<li><code>POST /events</code> — <code>routes/web.php</code></li>\n<li><code>GET /events/{slug}/preview</code> — <code>routes/web.php</code></li>\n<li><code>GET /s/{slug}</code> — <code>routes/web.php</code></li>\n<li><code>GET /events/{slug}/created</code> — <code>routes/web.php</code></li><br/><br/><h2>4.5 Authentication</h2><br/><br/>Method: Session. Evidence: <code>app/Http/Controllers/Settings/ProfileController.php</code>.<br/><br/><h2>5. Implementation</h2><br/><br/>Key files reviewed:<br/><br/><li><code>.env.example</code></li>\n<li><code>app/Actions/Fortify/CreateNewUser.php</code></li>\n<li><code>app/Actions/Fortify/PasswordValidationRules.php</code></li>\n<li><code>app/Actions/Fortify/ResetUserPassword.php</code></li>\n<li><code>app/Http/Controllers/Controller.php</code></li>\n<li><code>app/Http/Controllers/EventController/EventController.php</code></li>\n<li><code>app/Http/Controllers/Settings/PasswordController.php</code></li>\n<li><code>app/Http/Controllers/Settings/ProfileController.php</code></li>\n<li><code>app/Http/Controllers/Settings/TwoFactorAuthenticationController.php</code></li>\n<li><code>app/Http/Middleware/HandleAppearance.php</code></li>\n<li><code>app/Http/Middleware/HandleInertiaRequests.php</code></li>\n<li><code>app/Http/Requests/Settings/ProfileUpdateRequest.php</code></li>\n<li><code>app/Http/Requests/Settings/TwoFactorAuthenticationRequest.php</code></li>\n<li><code>app/Models/Event.php</code></li>\n<li><code>app/Models/EventMedia.php</code></li><br/><br/><h2>6. Testing</h2><br/><br/>Automated tests were found.\n<li><code>phpunit.xml</code></li>\n<li><code>tests/Feature/Auth/AuthenticationTest.php</code></li>\n<li><code>tests/Feature/Auth/EmailVerificationTest.php</code></li>\n<li><code>tests/Feature/Auth/PasswordConfirmationTest.php</code></li>\n<li><code>tests/Feature/Auth/PasswordResetTest.php</code></li>\n<li><code>tests/Feature/Auth/RegistrationTest.php</code></li>\n<li><code>tests/Feature/Auth/TwoFactorChallengeTest.php</code></li>\n<li><code>tests/Feature/Auth/VerificationNotificationTest.php</code></li><br/><br/>Run the project test command before viva. Also prepare one valid create and one invalid submit from a real screen.<br/><br/><h2>7. Conclusion</h2><br/><br/>React Project is documented from 158 submitted files. Empty topics were omitted instead of inventing modules, tables, or APIs.<br/><br/><h2>8. Future work</h2><br/><br/>add automated tests; add a simple Docker setup for examiners; document limitations honestly for viva.<br/><br/><h2>9. References</h2><br/><br/>1. Pressman, R. S. Software Engineering: A Practitioner's Approach.\n2. Official documentation for React.\n3. Elmasri, R. and Navathe, S. Fundamentals of Database Systems.\n4. IEEE recommended practice for software requirements specifications.\n5. Project source files submitted with this report.<br/><br/><h2>Appendix A. Declaration</h2><br/><br/>I, madin8338, enrollment 837, declare that this documentation describes the submitted source of React Project.<br/><br/>Date: 2026-10-03\nSignature: ____________________<p class=\"meta\">Prepared with ProjectBuddy for madin8338 — grounded in submitted source</p></body></html>",
+      "srsHtml": "<!doctype html><html><head><meta charset=\"utf-8\"><title>SRS</title>\n<style>\n@page { margin: 22mm; }\nbody { font-family: Georgia, serif; color: #111; max-width: 800px; margin: 40px auto; line-height: 1.5; }\nh1 { font-size: 26px; }\nh2 { margin-top: 28px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }\ncode { font-family: ui-monospace, monospace; font-size: 0.9em; }\n.meta { color: #444; }\n</style></head><body><h1>Software Requirements Specification</h1><br/><br/><h2>Product</h2>\nReact Project<br/><br/><h2>Purpose</h2>\nDefine what React Project must do, limited to detected modules and routes.<br/><br/><h2>Functional requirements</h2>\n<h3>FR-01 Event module</h3>\nAuthorized users can complete work in event as implemented.<br/><br/><h3>FR-02 EventMedia module</h3>\nAuthorized users can complete work in eventmedia as implemented.<br/><br/><h3>FR-03 User module</h3>\nAuthorized users can complete work in user as implemented.<br/><br/><h3>FR-04 Cache Lock module</h3>\nAuthorized users can complete work in cache lock as implemented.<br/><br/><h3>FR-05 Job Batche module</h3>\nAuthorized users can complete work in job batche as implemented.<br/><br/><h3>FR-06 Event Media module</h3>\nAuthorized users can complete work in event media as implemented.<br/><br/><h3>FR-07 Setting module</h3>\nAuthorized users can complete work in setting as implemented.<br/><br/><h3>FR-08 Dashboard module</h3>\nAuthorized users can complete work in dashboard as implemented.<br/><br/><h3>FR-09 Create module</h3>\nAuthorized users can complete work in create as implemented.<br/><br/><h3>FR-10  module</h3>\nAuthorized users can complete work in  as implemented.<br/><br/><h2>External interfaces</h2>\n<li>GET /settings/profile (routes/settings.php)</li>\n<li>PATCH /settings/profile (routes/settings.php)</li>\n<li>DELETE /settings/profile (routes/settings.php)</li>\n<li>GET /settings/password (routes/settings.php)</li>\n<li>PUT /settings/password (routes/settings.php)</li>\n<li>GET /settings/appearance (routes/settings.php)</li>\n<li>GET /settings/two-factor (routes/settings.php)</li>\n<li>GET / (routes/web.php)</li>\n<li>GET /dashboard (routes/web.php)</li>\n<li>GET /create (routes/web.php)</li>\n<li>POST /events (routes/web.php)</li>\n<li>GET /events/{slug}/preview (routes/web.php)</li>\n<li>GET /s/{slug} (routes/web.php)</li>\n<li>GET /events/{slug}/created (routes/web.php)</li><br/><br/><h2>Data</h2>\n<li>users</li>\n<li>cache_locks</li>\n<li>job_batches</li>\n<li>events</li>\n<li>event_media</li><br/><br/><h2>Non-functional</h2>\nCampus demo performance, access control only if detected, recoverable data, readable code for evaluation.<p class=\"meta\">Prepared with ProjectBuddy for madin8338 — grounded in submitted source</p></body></html>",
+      "vivaHtml": "<!doctype html><html><head><meta charset=\"utf-8\"><title>Viva</title>\n<style>\n@page { margin: 22mm; }\nbody { font-family: Georgia, serif; color: #111; max-width: 800px; margin: 40px auto; line-height: 1.5; }\nh1 { font-size: 26px; }\nh2 { margin-top: 28px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }\ncode { font-family: ui-monospace, monospace; font-size: 0.9em; }\n.meta { color: #444; }\n</style></head><body><h1>Viva questions and answers</h1><br/><br/>Project: React Project\nStudent: madin8338<br/><br/>Answers marked \"code\" cite detected files. Concept questions are standard BCA topics. Do not claim features that are not in source.<br/><br/><h2>Q1. What is the title and aim of your project?</h2><br/><br/>[Project / answers]<br/><br/>React Project. This repository implements a React · React Native project. The exact business problem is not fully described in source; confirm with the student.<br/><br/><h2>Q2. Which files prove this is your project?</h2><br/><br/>[Project / code]<br/><br/>.env.example, app/Actions/Fortify/CreateNewUser.php, app/Actions/Fortify/PasswordValidationRules.php, app/Actions/Fortify/ResetUserPassword.php, app/Http/Controllers/Controller.php<br/><br/><h2>Q3. Which technology stack did you use?</h2><br/><br/>[Stack / code]<br/><br/>React · React Native · Laravel · MySQL · PostgreSQL · SQLite<br/><br/><h2>Q4. What is frontend vs backend here?</h2><br/><br/>[Stack / code]<br/><br/>Frontend: React, React Native. Backend: Laravel.<br/><br/><h2>Q5. Explain your database.</h2><br/><br/>[Database / code]<br/><br/>Detected store: MySQL, PostgreSQL, SQLite. Tables: users, cache_locks, job_batches, events, event_media.<br/><br/><h2>Q6. What does users store?</h2><br/><br/>[Database / code]<br/><br/>Table <code>users</code> columns: name, email, email_verified_at, password. Evidence: database/migrations/0001_01_01_000000_create_users_table.php.<br/><br/><h2>Q7. What does cache_locks store?</h2><br/><br/>[Database / code]<br/><br/>Table <code>cache_locks</code> columns: key, owner, expiration. Evidence: database/migrations/0001_01_01_000001_create_cache_table.php.<br/><br/><h2>Q8. What does job_batches store?</h2><br/><br/>[Database / code]<br/><br/>Table <code>job_batches</code> columns: id, name, total_jobs, pending_jobs, failed_jobs, failed_job_ids, options, cancelled_at, created_at, finished_at. Evidence: database/migrations/0001_01_01_000002_create_jobs_table.php.<br/><br/><h2>Q9. Primary key vs foreign key?</h2><br/><br/>[Database / concept]<br/><br/>Primary key uniquely identifies a row. Foreign key references another table. Point to a detected *_id column if you have one.<br/><br/><h2>Q10. What happens on GET /settings/profile?</h2><br/><br/>[Routes / code]<br/><br/>Handled in <code>routes/settings.php</code>. Open that file in viva; do not describe endpoints that are not listed.<br/><br/><h2>Q11. What happens on PATCH /settings/profile?</h2><br/><br/>[Routes / code]<br/><br/>Handled in <code>routes/settings.php</code>. Open that file in viva; do not describe endpoints that are not listed.<br/><br/><h2>Q12. What happens on DELETE /settings/profile?</h2><br/><br/>[Routes / code]<br/><br/>Handled in <code>routes/settings.php</code>. Open that file in viva; do not describe endpoints that are not listed.<br/><br/><h2>Q13. What happens on GET /settings/password?</h2><br/><br/>[Routes / code]<br/><br/>Handled in <code>routes/settings.php</code>. Open that file in viva; do not describe endpoints that are not listed.<br/><br/><h2>Q14. How is authentication done?</h2><br/><br/>[Security / code]<br/><br/>Session. Evidence: app/Http/Controllers/Settings/ProfileController.php.<br/><br/><h2>Q15. Did you commit secrets?</h2><br/><br/>[Security / code]<br/><br/>A configuration file was detected. Values were redacted by ProjectBuddy. Remove live passwords before college submission.<br/><br/><h2>Q16. What testing did you perform?</h2><br/><br/>[Testing / code]<br/><br/>Automated tests exist in the repo. Also show one manual create and one failed validation.<br/><br/><h2>Q17. What is SDLC?</h2><br/><br/>[Concepts / concept]<br/><br/>The process of building software. This academic project is best described as iterative: implement, test the demo flow, document what exists.<br/><br/><h2>Q18. What is a DFD?</h2><br/><br/>[Concepts / concept]<br/><br/>A data flow diagram of this system is in folder 03, drawn from detected processes — not from a random internet template.<br/><br/><h2>Q19. What would you improve next?</h2><br/><br/>[Concepts / answers]<br/><br/>add automated tests; add a simple Docker setup for examiners; document limitations honestly for viva.\n<p class=\"meta\">Prepared with ProjectBuddy for madin8338 — grounded in submitted source</p></body></html>",
+      "demoHtml": "<!doctype html><html><head><meta charset=\"utf-8\"><title>Demo script</title>\n<style>\n@page { margin: 22mm; }\nbody { font-family: Georgia, serif; color: #111; max-width: 800px; margin: 40px auto; line-height: 1.5; }\nh1 { font-size: 26px; }\nh2 { margin-top: 28px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }\ncode { font-family: ui-monospace, monospace; font-size: 0.9em; }\n.meta { color: #444; }\n</style></head><body><h1>3-minute demo script</h1><br/><br/>Student: madin8338\nProject: React Project<br/><br/>0:00-0:20  madin8338, BCA, djakj. One line: React Project.\n0:20-0:40  Name only the detected stack: React · React Native · Laravel · MySQL · PostgreSQL · SQLite.\n0:40-1:10  Open screen <code>resources/js/pages/Events/Create.tsx</code>.\n1:10-1:50  Create or list a record that maps to <code>users</code>.\n1:50-2:20  Second module: EventMedia module.\n2:20-2:40  If asked for design, open a diagram that matches detected tables/routes.\n2:40-3:00  Stop. If a feature is missing, say it is not in source.<p class=\"meta\">Prepared with ProjectBuddy for madin8338 — grounded in submitted source</p></body></html>",
+      "reflectionHtml": "<!doctype html><html><head><meta charset=\"utf-8\"><title>Reflection</title>\n<style>\n@page { margin: 22mm; }\nbody { font-family: Georgia, serif; color: #111; max-width: 800px; margin: 40px auto; line-height: 1.5; }\nh1 { font-size: 26px; }\nh2 { margin-top: 28px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }\ncode { font-family: ui-monospace, monospace; font-size: 0.9em; }\n.meta { color: #444; }\n</style></head><body><h1>Learning reflection</h1><br/><br/>I, madin8338, documented React Project for BCA at djakj from 158 submitted files.<br/><br/>What the repository actually contains:\n<li>Stack: React · React Native · Laravel · MySQL · PostgreSQL · SQLite</li>\n<li>Modules: Event module, EventMedia module, User module, Cache Lock module, Job Batche module, Event Media module, Setting module, Dashboard module, Create module,  module</li>\n<li>Tables: users, cache_locks, job_batches, events, event_media</li><br/><br/>What was difficult: matching documentation to files instead of copying a generic report.<br/><br/>What I would do next:\nadd automated tests; add a simple Docker setup for examiners; document limitations honestly for viva.<p class=\"meta\">Prepared with ProjectBuddy for madin8338 — grounded in submitted source</p></body></html>",
+      "viva": [
+        {
+          "q": "What is the title and aim of your project?",
+          "a": "React Project. This repository implements a React · React Native project. The exact business problem is not fully described in source; confirm with the student.",
+          "source": "answers",
+          "category": "Project"
+        },
+        {
+          "q": "Which files prove this is your project?",
+          "a": ".env.example, app/Actions/Fortify/CreateNewUser.php, app/Actions/Fortify/PasswordValidationRules.php, app/Actions/Fortify/ResetUserPassword.php, app/Http/Controllers/Controller.php",
+          "source": "code",
+          "category": "Project"
+        },
+        {
+          "q": "Which technology stack did you use?",
+          "a": "React · React Native · Laravel · MySQL · PostgreSQL · SQLite",
+          "source": "code",
+          "category": "Stack"
+        },
+        {
+          "q": "What is frontend vs backend here?",
+          "a": "Frontend: React, React Native. Backend: Laravel.",
+          "source": "code",
+          "category": "Stack"
+        },
+        {
+          "q": "Explain your database.",
+          "a": "Detected store: MySQL, PostgreSQL, SQLite. Tables: users, cache_locks, job_batches, events, event_media.",
+          "source": "code",
+          "category": "Database"
+        },
+        {
+          "q": "What does users store?",
+          "a": "Table `users` columns: name, email, email_verified_at, password. Evidence: database/migrations/0001_01_01_000000_create_users_table.php.",
+          "source": "code",
+          "category": "Database"
+        },
+        {
+          "q": "What does cache_locks store?",
+          "a": "Table `cache_locks` columns: key, owner, expiration. Evidence: database/migrations/0001_01_01_000001_create_cache_table.php.",
+          "source": "code",
+          "category": "Database"
+        },
+        {
+          "q": "What does job_batches store?",
+          "a": "Table `job_batches` columns: id, name, total_jobs, pending_jobs, failed_jobs, failed_job_ids, options, cancelled_at, created_at, finished_at. Evidence: database/migrations/0001_01_01_000002_create_jobs_table.php.",
+          "source": "code",
+          "category": "Database"
+        },
+        {
+          "q": "Primary key vs foreign key?",
+          "a": "Primary key uniquely identifies a row. Foreign key references another table. Point to a detected *_id column if you have one.",
+          "source": "concept",
+          "category": "Database"
+        },
+        {
+          "q": "What happens on GET /settings/profile?",
+          "a": "Handled in `routes/settings.php`. Open that file in viva; do not describe endpoints that are not listed.",
+          "source": "code",
+          "category": "Routes"
+        },
+        {
+          "q": "What happens on PATCH /settings/profile?",
+          "a": "Handled in `routes/settings.php`. Open that file in viva; do not describe endpoints that are not listed.",
+          "source": "code",
+          "category": "Routes"
+        },
+        {
+          "q": "What happens on DELETE /settings/profile?",
+          "a": "Handled in `routes/settings.php`. Open that file in viva; do not describe endpoints that are not listed.",
+          "source": "code",
+          "category": "Routes"
+        },
+        {
+          "q": "What happens on GET /settings/password?",
+          "a": "Handled in `routes/settings.php`. Open that file in viva; do not describe endpoints that are not listed.",
+          "source": "code",
+          "category": "Routes"
+        },
+        {
+          "q": "How is authentication done?",
+          "a": "Session. Evidence: app/Http/Controllers/Settings/ProfileController.php.",
+          "source": "code",
+          "category": "Security"
+        },
+        {
+          "q": "Did you commit secrets?",
+          "a": "A configuration file was detected. Values were redacted by ProjectBuddy. Remove live passwords before college submission.",
+          "source": "code",
+          "category": "Security"
+        },
+        {
+          "q": "What testing did you perform?",
+          "a": "Automated tests exist in the repo. Also show one manual create and one failed validation.",
+          "source": "code",
+          "category": "Testing"
+        },
+        {
+          "q": "What is SDLC?",
+          "a": "The process of building software. This academic project is best described as iterative: implement, test the demo flow, document what exists.",
+          "source": "concept",
+          "category": "Concepts"
+        },
+        {
+          "q": "What is a DFD?",
+          "a": "A data flow diagram of this system is in folder 03, drawn from detected processes — not from a random internet template.",
+          "source": "concept",
+          "category": "Concepts"
+        },
+        {
+          "q": "What would you improve next?",
+          "a": "add automated tests; add a simple Docker setup for examiners; document limitations honestly for viva.",
+          "source": "answers",
+          "category": "Concepts"
+        }
+      ],
+      "slides": [
+        {
+          "id": "title",
+          "title": "Title",
+          "body": "React Project\nmadin8338 | 837\nBCA, djakj\nGuide: jdjshjs\n2026"
+        },
+        {
+          "id": "problem",
+          "title": "Problem",
+          "body": "This repository implements a React · React Native project. The exact business problem is not fully described in source; confirm with the student."
+        },
+        {
+          "id": "objectives",
+          "title": "Objectives",
+          "body": "1. Provide a working application for React Project using only features found in source.\n2. Persist records in detected stores: users, cache_locks, job_batches, events, event_media.\n3. Support detected users: User.\n4. Expose the detected routes listed in this report.\n5. Keep documentation aligned with the repository so viva answers can be checked against files."
+        },
+        {
+          "id": "scope",
+          "title": "Scope",
+          "body": "In scope: Event module; EventMedia module; User module; Cache Lock module; Job Batche module; Event Media module; Setting module; Dashboard module; Create module;  module.\nOut of scope: anything not present in the submitted source, including invented APIs, tables, or third-party products."
+        },
+        {
+          "id": "stack",
+          "title": "Technology stack",
+          "body": "React · React Native · Laravel · MySQL · PostgreSQL · SQLite\nLanguages: TypeScript, PHP, JavaScript"
+        },
+        {
+          "id": "architecture",
+          "title": "Architecture",
+          "body": "UI: React, React Native\nApp: Laravel\nData: MySQL, PostgreSQL, SQLite"
+        },
+        {
+          "id": "data",
+          "title": "Data",
+          "body": "users: name, email, email_verified_at, password\ncache_locks: key, owner, expiration\njob_batches: id, name, total_jobs, pending_jobs, failed_jobs\nevents: title, slug, event_at, status\nevent_media: event_id, path"
+        },
+        {
+          "id": "modules",
+          "title": "Modules",
+          "body": "1. Event module\n2. EventMedia module\n3. User module\n4. Cache Lock module\n5. Job Batche module\n6. Event Media module\n7. Setting module\n8. Dashboard module\n9. Create module\n10.  module"
+        },
+        {
+          "id": "routes",
+          "title": "Routes",
+          "body": "GET /settings/profile\nPATCH /settings/profile\nDELETE /settings/profile\nGET /settings/password\nPUT /settings/password\nGET /settings/appearance\nGET /settings/two-factor\nGET /"
+        },
+        {
+          "id": "implementation",
+          "title": "Implementation",
+          "body": "Files: 158\n.env.example\napp/Actions/Fortify/CreateNewUser.php\napp/Actions/Fortify/PasswordValidationRules.php\napp/Actions/Fortify/ResetUserPassword.php\napp/Http/Controllers/Controller.php\napp/Http/Controllers/EventController/EventController.php"
+        },
+        {
+          "id": "testing",
+          "title": "Testing",
+          "body": "Automated tests found in repo."
+        },
+        {
+          "id": "conclusion",
+          "title": "Conclusion",
+          "body": "React Project is documented from source. Missing pieces were omitted, not invented."
+        }
+      ],
+      "diagrams": [
+        {
+          "id": "use-case",
+          "title": "Use Case Diagram",
+          "omitted": false,
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"720\" height=\"468\" viewBox=\"0 0 720 468\">\n  <defs>\n    <marker id=\"arr_yz8kac\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\">\n      <path d=\"M0,0 L0,6 L7,3 z\" fill=\"#64748b\"/>\n    </marker>\n  </defs>\n  <rect width=\"100%\" height=\"100%\" fill=\"#f8fafc\"/>\n  <text x=\"20\" y=\"24\" font-size=\"12\" fill=\"#64748b\" font-family=\"Inter,system-ui\">Use case</text>\n  <g font-family=\"Inter,system-ui\" fill=\"#0f172a\"><rect x=\"24\" y=\"80\" width=\"120\" height=\"44\" rx=\"8\" fill=\"#eef2ff\" stroke=\"#4338ca\"/>\n        <text x=\"84\" y=\"108\" text-anchor=\"middle\" font-size=\"13\" fill=\"#1e1b4b\" font-family=\"Inter,system-ui\">User</text>\n    <rect x=\"300\" y=\"36\" width=\"340\" height=\"368\" rx=\"16\" fill=\"#fff\" stroke=\"#0f766e\" stroke-dasharray=\"6 4\"/>\n    <text x=\"470\" y=\"58\" text-anchor=\"middle\" font-size=\"13\" fill=\"#0f766e\" font-family=\"Inter,system-ui\">React Project</text>\n    <ellipse cx=\"470\" cy=\"70\" rx=\"130\" ry=\"20\" fill=\"#ecfdf5\" stroke=\"#047857\"/>\n        <text x=\"470\" y=\"75\" text-anchor=\"middle\" font-size=\"13\" fill=\"#064e3b\" font-family=\"Inter,system-ui\">Event</text>\n        <line x1=\"144\" y1=\"102\" x2=\"340\" y2=\"70\" stroke=\"#94a3b8\" marker-end=\"url(#arr_yz8kac)\"/><ellipse cx=\"470\" cy=\"122\" rx=\"130\" ry=\"20\" fill=\"#ecfdf5\" stroke=\"#047857\"/>\n        <text x=\"470\" y=\"127\" text-anchor=\"middle\" font-size=\"13\" fill=\"#064e3b\" font-family=\"Inter,system-ui\">EventMedia</text>\n        <line x1=\"144\" y1=\"102\" x2=\"340\" y2=\"122\" stroke=\"#94a3b8\" marker-end=\"url(#arr_yz8kac)\"/><ellipse cx=\"470\" cy=\"174\" rx=\"130\" ry=\"20\" fill=\"#ecfdf5\" stroke=\"#047857\"/>\n        <text x=\"470\" y=\"179\" text-anchor=\"middle\" font-size=\"13\" fill=\"#064e3b\" font-family=\"Inter,system-ui\">User</text>\n        <line x1=\"144\" y1=\"102\" x2=\"340\" y2=\"174\" stroke=\"#94a3b8\" marker-end=\"url(#arr_yz8kac)\"/><ellipse cx=\"470\" cy=\"226\" rx=\"130\" ry=\"20\" fill=\"#ecfdf5\" stroke=\"#047857\"/>\n        <text x=\"470\" y=\"231\" text-anchor=\"middle\" font-size=\"13\" fill=\"#064e3b\" font-family=\"Inter,system-ui\">Cache Lock</text>\n        <line x1=\"144\" y1=\"102\" x2=\"340\" y2=\"226\" stroke=\"#94a3b8\" marker-end=\"url(#arr_yz8kac)\"/><ellipse cx=\"470\" cy=\"278\" rx=\"130\" ry=\"20\" fill=\"#ecfdf5\" stroke=\"#047857\"/>\n        <text x=\"470\" y=\"283\" text-anchor=\"middle\" font-size=\"13\" fill=\"#064e3b\" font-family=\"Inter,system-ui\">Job Batche</text>\n        <line x1=\"144\" y1=\"102\" x2=\"340\" y2=\"278\" stroke=\"#94a3b8\" marker-end=\"url(#arr_yz8kac)\"/><ellipse cx=\"470\" cy=\"330\" rx=\"130\" ry=\"20\" fill=\"#ecfdf5\" stroke=\"#047857\"/>\n        <text x=\"470\" y=\"335\" text-anchor=\"middle\" font-size=\"13\" fill=\"#064e3b\" font-family=\"Inter,system-ui\">Event Media</text>\n        <line x1=\"144\" y1=\"102\" x2=\"340\" y2=\"330\" stroke=\"#94a3b8\" marker-end=\"url(#arr_yz8kac)\"/></g>\n</svg>"
+        },
+        {
+          "id": "er-diagram",
+          "title": "ER Diagram",
+          "omitted": false,
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"840\" height=\"388\" viewBox=\"0 0 840 388\">\n  <defs>\n    <marker id=\"arr_ymu6i6\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\">\n      <path d=\"M0,0 L0,6 L7,3 z\" fill=\"#64748b\"/>\n    </marker>\n  </defs>\n  <rect width=\"100%\" height=\"100%\" fill=\"#f8fafc\"/>\n  <text x=\"20\" y=\"24\" font-size=\"12\" fill=\"#64748b\" font-family=\"Inter,system-ui\">Entity relationship</text>\n  <g font-family=\"Inter,system-ui\" fill=\"#0f172a\"><rect x=\"24\" y=\"56\" width=\"180\" height=\"134\" rx=\"10\" fill=\"#fff\" stroke=\"#cbd5e1\"/>\n        <rect x=\"24\" y=\"56\" width=\"180\" height=\"34\" rx=\"10\" fill=\"#0f766e\"/>\n        <rect x=\"24\" y=\"74\" width=\"180\" height=\"16\" fill=\"#0f766e\"/>\n        <text x=\"36\" y=\"78\" font-size=\"13\" fill=\"white\" font-family=\"Inter,system-ui\" font-weight=\"600\">users</text>\n        <text x=\"36\" y=\"114\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">name: string</text><text x=\"36\" y=\"134\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">email: string</text><text x=\"36\" y=\"154\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">email_verified_at: timestamp</text><text x=\"36\" y=\"174\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">password: string</text><rect x=\"228\" y=\"56\" width=\"180\" height=\"114\" rx=\"10\" fill=\"#fff\" stroke=\"#cbd5e1\"/>\n        <rect x=\"228\" y=\"56\" width=\"180\" height=\"34\" rx=\"10\" fill=\"#0f766e\"/>\n        <rect x=\"228\" y=\"74\" width=\"180\" height=\"16\" fill=\"#0f766e\"/>\n        <text x=\"240\" y=\"78\" font-size=\"13\" fill=\"white\" font-family=\"Inter,system-ui\" font-weight=\"600\">cache_locks</text>\n        <text x=\"240\" y=\"114\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">key: string</text><text x=\"240\" y=\"134\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">owner: string</text><text x=\"240\" y=\"154\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">expiration: integer</text><rect x=\"432\" y=\"56\" width=\"180\" height=\"174\" rx=\"10\" fill=\"#fff\" stroke=\"#cbd5e1\"/>\n        <rect x=\"432\" y=\"56\" width=\"180\" height=\"34\" rx=\"10\" fill=\"#0f766e\"/>\n        <rect x=\"432\" y=\"74\" width=\"180\" height=\"16\" fill=\"#0f766e\"/>\n        <text x=\"444\" y=\"78\" font-size=\"13\" fill=\"white\" font-family=\"Inter,system-ui\" font-weight=\"600\">job_batches</text>\n        <text x=\"444\" y=\"114\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">id: string</text><text x=\"444\" y=\"134\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">name: string</text><text x=\"444\" y=\"154\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">total_jobs: integer</text><text x=\"444\" y=\"174\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">pending_jobs: integer</text><text x=\"444\" y=\"194\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">failed_jobs: integer</text><text x=\"444\" y=\"214\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">failed_job_ids: longText</text><rect x=\"636\" y=\"56\" width=\"180\" height=\"134\" rx=\"10\" fill=\"#fff\" stroke=\"#cbd5e1\"/>\n        <rect x=\"636\" y=\"56\" width=\"180\" height=\"34\" rx=\"10\" fill=\"#0f766e\"/>\n        <rect x=\"636\" y=\"74\" width=\"180\" height=\"16\" fill=\"#0f766e\"/>\n        <text x=\"648\" y=\"78\" font-size=\"13\" fill=\"white\" font-family=\"Inter,system-ui\" font-weight=\"600\">events</text>\n        <text x=\"648\" y=\"114\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">title: string</text><text x=\"648\" y=\"134\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">slug: string</text><text x=\"648\" y=\"154\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">event_at: dateTime</text><text x=\"648\" y=\"174\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">status: enum</text><rect x=\"24\" y=\"254\" width=\"180\" height=\"94\" rx=\"10\" fill=\"#fff\" stroke=\"#cbd5e1\"/>\n        <rect x=\"24\" y=\"254\" width=\"180\" height=\"34\" rx=\"10\" fill=\"#0f766e\"/>\n        <rect x=\"24\" y=\"272\" width=\"180\" height=\"16\" fill=\"#0f766e\"/>\n        <text x=\"36\" y=\"276\" font-size=\"13\" fill=\"white\" font-family=\"Inter,system-ui\" font-weight=\"600\">event_media</text>\n        <text x=\"36\" y=\"312\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">event_id: foreignId</text><text x=\"36\" y=\"332\" font-size=\"12\" fill=\"#334155\" font-family=\"ui-monospace,monospace\">path: string</text></g>\n</svg>"
+        },
+        {
+          "id": "dfd-level-0",
+          "title": "DFD Level 0",
+          "omitted": false,
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"760\" height=\"320\" viewBox=\"0 0 760 320\">\n  <defs>\n    <marker id=\"arr_f9wt3i\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\">\n      <path d=\"M0,0 L0,6 L7,3 z\" fill=\"#64748b\"/>\n    </marker>\n  </defs>\n  <rect width=\"100%\" height=\"100%\" fill=\"#f8fafc\"/>\n  <text x=\"20\" y=\"24\" font-size=\"12\" fill=\"#64748b\" font-family=\"Inter,system-ui\">Context diagram</text>\n  <g font-family=\"Inter,system-ui\" fill=\"#0f172a\"><rect x=\"30\" y=\"120\" width=\"130\" height=\"50\" fill=\"#eef2ff\" stroke=\"#4338ca\"/>\n     <text x=\"95\" y=\"150\" text-anchor=\"middle\" font-size=\"13\">User</text>\n     <circle cx=\"380\" cy=\"145\" r=\"58\" fill=\"#ecfdf5\" stroke=\"#047857\"/>\n     <text x=\"380\" y=\"150\" text-anchor=\"middle\" font-size=\"13\">React Project</text>\n     <ellipse cx=\"640\" cy=\"145\" rx=\"80\" ry=\"36\" fill=\"#fff7ed\" stroke=\"#c2410c\"/>\n     <text x=\"640\" y=\"150\" text-anchor=\"middle\" font-size=\"13\">MySQL</text>\n     <rect x=\"30\" y=\"230\" width=\"130\" height=\"50\" fill=\"#eef2ff\" stroke=\"#4338ca\"/>\n     <text x=\"95\" y=\"260\" text-anchor=\"middle\" font-size=\"13\">Admin</text>\n     <line x1=\"160\" y1=\"145\" x2=\"322\" y2=\"145\" stroke=\"#64748b\" marker-end=\"url(#arr_f9wt3i)\"/>\n     <line x1=\"438\" y1=\"145\" x2=\"560\" y2=\"145\" stroke=\"#64748b\" marker-end=\"url(#arr_f9wt3i)\"/>\n     <line x1=\"160\" y1=\"245\" x2=\"340\" y2=\"185\" stroke=\"#64748b\" marker-end=\"url(#arr_f9wt3i)\"/></g>\n</svg>"
+        },
+        {
+          "id": "dfd-level-1",
+          "title": "DFD Level 1",
+          "omitted": false,
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"760\" height=\"300\" viewBox=\"0 0 760 300\">\n  <defs>\n    <marker id=\"arr_6jpja7\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\">\n      <path d=\"M0,0 L0,6 L7,3 z\" fill=\"#64748b\"/>\n    </marker>\n  </defs>\n  <rect width=\"100%\" height=\"100%\" fill=\"#f8fafc\"/>\n  <text x=\"20\" y=\"24\" font-size=\"12\" fill=\"#64748b\" font-family=\"Inter,system-ui\">Level 1 processes</text>\n  <g font-family=\"Inter,system-ui\" fill=\"#0f172a\"><circle cx=\"120\" cy=\"80\" r=\"42\" fill=\"#ecfdf5\" stroke=\"#047857\"/>\n      <text x=\"120\" y=\"84\" text-anchor=\"middle\" font-size=\"12\">1.0 Event</text><circle cx=\"360\" cy=\"80\" r=\"42\" fill=\"#ecfdf5\" stroke=\"#047857\"/>\n      <text x=\"360\" y=\"84\" text-anchor=\"middle\" font-size=\"12\">2.0 EventMedia</text><circle cx=\"600\" cy=\"80\" r=\"42\" fill=\"#ecfdf5\" stroke=\"#047857\"/>\n      <text x=\"600\" y=\"84\" text-anchor=\"middle\" font-size=\"12\">3.0 User</text><circle cx=\"360\" cy=\"220\" r=\"42\" fill=\"#ecfdf5\" stroke=\"#047857\"/>\n      <text x=\"360\" y=\"224\" text-anchor=\"middle\" font-size=\"12\">4.0 Cache Lock</text><circle cx=\"600\" cy=\"220\" r=\"42\" fill=\"#ecfdf5\" stroke=\"#047857\"/>\n      <text x=\"600\" y=\"224\" text-anchor=\"middle\" font-size=\"12\">5.0 Job Batche</text>\n     <line x1=\"162\" y1=\"80\" x2=\"318\" y2=\"80\" stroke=\"#64748b\" marker-end=\"url(#arr_6jpja7)\"/>\n     <line x1=\"402\" y1=\"80\" x2=\"558\" y2=\"80\" stroke=\"#64748b\" marker-end=\"url(#arr_6jpja7)\"/>\n     <line x1=\"360\" y1=\"122\" x2=\"360\" y2=\"178\" stroke=\"#64748b\" marker-end=\"url(#arr_6jpja7)\"/>\n     <line x1=\"600\" y1=\"122\" x2=\"600\" y2=\"178\" stroke=\"#64748b\" marker-end=\"url(#arr_6jpja7)\"/></g>\n</svg>"
+        },
+        {
+          "id": "architecture",
+          "title": "Architecture Diagram",
+          "omitted": false,
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"280\" viewBox=\"0 0 800 280\">\n  <defs>\n    <marker id=\"arr_dm0np8\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\">\n      <path d=\"M0,0 L0,6 L7,3 z\" fill=\"#64748b\"/>\n    </marker>\n  </defs>\n  <rect width=\"100%\" height=\"100%\" fill=\"#f8fafc\"/>\n  <text x=\"20\" y=\"24\" font-size=\"12\" fill=\"#64748b\" font-family=\"Inter,system-ui\">Architecture</text>\n  <g font-family=\"Inter,system-ui\" fill=\"#0f172a\"><rect x=\"40\" y=\"110\" width=\"150\" height=\"64\" rx=\"12\" fill=\"#eef2ff\" stroke=\"#4338ca\"/>\n      <text x=\"115\" y=\"148\" text-anchor=\"middle\" font-size=\"13\">Web client</text>\n      <line x1=\"190\" y1=\"142\" x2=\"230\" y2=\"142\" stroke=\"#64748b\" marker-end=\"url(#arr_dm0np8)\"/><rect x=\"230\" y=\"110\" width=\"150\" height=\"64\" rx=\"12\" fill=\"#ecfdf5\" stroke=\"#047857\"/>\n      <text x=\"305\" y=\"148\" text-anchor=\"middle\" font-size=\"13\">Laravel</text>\n      <line x1=\"380\" y1=\"142\" x2=\"420\" y2=\"142\" stroke=\"#64748b\" marker-end=\"url(#arr_dm0np8)\"/><rect x=\"420\" y=\"110\" width=\"150\" height=\"64\" rx=\"12\" fill=\"#fef3c7\" stroke=\"#b45309\"/>\n      <text x=\"495\" y=\"148\" text-anchor=\"middle\" font-size=\"13\">Routes / services</text>\n      <line x1=\"570\" y1=\"142\" x2=\"610\" y2=\"142\" stroke=\"#64748b\" marker-end=\"url(#arr_dm0np8)\"/><rect x=\"610\" y=\"110\" width=\"150\" height=\"64\" rx=\"12\" fill=\"#ffe4e6\" stroke=\"#be123c\"/>\n      <text x=\"685\" y=\"148\" text-anchor=\"middle\" font-size=\"13\">MySQL</text>\n      </g>\n</svg>"
+        },
+        {
+          "id": "sequence",
+          "title": "Sequence Diagram",
+          "omitted": false,
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"700\" height=\"280\" viewBox=\"0 0 700 280\">\n  <defs>\n    <marker id=\"arr_asqzuj\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\">\n      <path d=\"M0,0 L0,6 L7,3 z\" fill=\"#64748b\"/>\n    </marker>\n  </defs>\n  <rect width=\"100%\" height=\"100%\" fill=\"#f8fafc\"/>\n  <text x=\"20\" y=\"24\" font-size=\"12\" fill=\"#64748b\" font-family=\"Inter,system-ui\">Sequence</text>\n  <g font-family=\"Inter,system-ui\" fill=\"#0f172a\"><rect x=\"30\" y=\"40\" width=\"100\" height=\"32\" rx=\"6\" fill=\"#0f172a\"/>\n      <text x=\"80\" y=\"61\" text-anchor=\"middle\" font-size=\"12\" fill=\"white\">User</text>\n      <line x1=\"80\" y1=\"72\" x2=\"80\" y2=\"250\" stroke=\"#cbd5e1\" stroke-dasharray=\"4 4\"/><rect x=\"200\" y=\"40\" width=\"100\" height=\"32\" rx=\"6\" fill=\"#0f172a\"/>\n      <text x=\"250\" y=\"61\" text-anchor=\"middle\" font-size=\"12\" fill=\"white\">Interface</text>\n      <line x1=\"250\" y1=\"72\" x2=\"250\" y2=\"250\" stroke=\"#cbd5e1\" stroke-dasharray=\"4 4\"/><rect x=\"380\" y=\"40\" width=\"100\" height=\"32\" rx=\"6\" fill=\"#0f172a\"/>\n      <text x=\"430\" y=\"61\" text-anchor=\"middle\" font-size=\"12\" fill=\"white\">Application</text>\n      <line x1=\"430\" y1=\"72\" x2=\"430\" y2=\"250\" stroke=\"#cbd5e1\" stroke-dasharray=\"4 4\"/><rect x=\"560\" y=\"40\" width=\"100\" height=\"32\" rx=\"6\" fill=\"#0f172a\"/>\n      <text x=\"610\" y=\"61\" text-anchor=\"middle\" font-size=\"12\" fill=\"white\">Database</text>\n      <line x1=\"610\" y1=\"72\" x2=\"610\" y2=\"250\" stroke=\"#cbd5e1\" stroke-dasharray=\"4 4\"/><line x1=\"80\" y1=\"100\" x2=\"250\" y2=\"100\" stroke=\"#2563eb\" marker-end=\"url(#arr_asqzuj)\"/>\n        <text x=\"165\" y=\"94\" text-anchor=\"middle\" font-size=\"11\" fill=\"#1e3a8a\">Open GET /settings/profile</text><line x1=\"250\" y1=\"130\" x2=\"430\" y2=\"130\" stroke=\"#2563eb\" marker-end=\"url(#arr_asqzuj)\"/>\n        <text x=\"340\" y=\"124\" text-anchor=\"middle\" font-size=\"11\" fill=\"#1e3a8a\">Submit request</text><line x1=\"430\" y1=\"160\" x2=\"610\" y2=\"160\" stroke=\"#2563eb\" marker-end=\"url(#arr_asqzuj)\"/>\n        <text x=\"520\" y=\"154\" text-anchor=\"middle\" font-size=\"11\" fill=\"#1e3a8a\">Read / write</text><line x1=\"610\" y1=\"190\" x2=\"430\" y2=\"190\" stroke=\"#2563eb\" marker-end=\"url(#arr_asqzuj)\"/>\n        <text x=\"520\" y=\"184\" text-anchor=\"middle\" font-size=\"11\" fill=\"#1e3a8a\">Result</text><line x1=\"430\" y1=\"220\" x2=\"250\" y2=\"220\" stroke=\"#2563eb\" marker-end=\"url(#arr_asqzuj)\"/>\n        <text x=\"340\" y=\"214\" text-anchor=\"middle\" font-size=\"11\" fill=\"#1e3a8a\">Response</text></g>\n</svg>"
+        },
+        {
+          "id": "activity",
+          "title": "Activity Diagram",
+          "omitted": false,
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"740\" height=\"320\" viewBox=\"0 0 740 320\">\n  <defs>\n    <marker id=\"arr_d28vns\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\">\n      <path d=\"M0,0 L0,6 L7,3 z\" fill=\"#64748b\"/>\n    </marker>\n  </defs>\n  <rect width=\"100%\" height=\"100%\" fill=\"#f8fafc\"/>\n  <text x=\"20\" y=\"24\" font-size=\"12\" fill=\"#64748b\" font-family=\"Inter,system-ui\">Activity</text>\n  <g font-family=\"Inter,system-ui\" fill=\"#0f172a\"><rect x=\"300\" y=\"30\" width=\"140\" height=\"36\" rx=\"18\" fill=\"#0f766e\" stroke=\"#0f766e\"/>\n        <text x=\"370\" y=\"53\" text-anchor=\"middle\" font-size=\"13\" fill=\"white\">Start</text>\n        <line x1=\"370\" y1=\"66\" x2=\"370\" y2=\"96\" stroke=\"#64748b\" marker-end=\"url(#arr_d28vns)\"/><rect x=\"300\" y=\"96\" width=\"140\" height=\"36\" rx=\"8\" fill=\"#fff\" stroke=\"#0f766e\"/>\n        <text x=\"370\" y=\"119\" text-anchor=\"middle\" font-size=\"13\" fill=\"#134e4a\">Session</text>\n        <line x1=\"370\" y1=\"132\" x2=\"370\" y2=\"162\" stroke=\"#64748b\" marker-end=\"url(#arr_d28vns)\"/><rect x=\"300\" y=\"162\" width=\"140\" height=\"36\" rx=\"8\" fill=\"#fff\" stroke=\"#0f766e\"/>\n        <text x=\"370\" y=\"185\" text-anchor=\"middle\" font-size=\"13\" fill=\"#134e4a\">Event</text>\n        <line x1=\"370\" y1=\"198\" x2=\"370\" y2=\"228\" stroke=\"#64748b\" marker-end=\"url(#arr_d28vns)\"/><rect x=\"300\" y=\"228\" width=\"140\" height=\"36\" rx=\"18\" fill=\"#0f766e\" stroke=\"#0f766e\"/>\n        <text x=\"370\" y=\"251\" text-anchor=\"middle\" font-size=\"13\" fill=\"white\">Complete</text>\n        </g>\n</svg>"
+        },
+        {
+          "id": "deployment",
+          "title": "Deployment Diagram",
+          "omitted": false,
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"760\" height=\"240\" viewBox=\"0 0 760 240\">\n  <defs>\n    <marker id=\"arr_y6di1u\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\">\n      <path d=\"M0,0 L0,6 L7,3 z\" fill=\"#64748b\"/>\n    </marker>\n  </defs>\n  <rect width=\"100%\" height=\"100%\" fill=\"#f8fafc\"/>\n  <text x=\"20\" y=\"24\" font-size=\"12\" fill=\"#64748b\" font-family=\"Inter,system-ui\">Deployment</text>\n  <g font-family=\"Inter,system-ui\" fill=\"#0f172a\"><rect x=\"40\" y=\"90\" width=\"160\" height=\"60\" rx=\"10\" fill=\"#eef2ff\" stroke=\"#4338ca\"/><text x=\"120\" y=\"125\" text-anchor=\"middle\">Source / Dev</text>\n     <rect x=\"300\" y=\"90\" width=\"160\" height=\"60\" rx=\"10\" fill=\"#ecfdf5\" stroke=\"#047857\"/><text x=\"380\" y=\"125\" text-anchor=\"middle\">Application server</text>\n     <rect x=\"560\" y=\"50\" width=\"160\" height=\"50\" rx=\"10\" fill=\"#fff7ed\" stroke=\"#c2410c\"/><text x=\"640\" y=\"80\" text-anchor=\"middle\">Laravel</text>\n     <rect x=\"560\" y=\"130\" width=\"160\" height=\"50\" rx=\"10\" fill=\"#ffe4e6\" stroke=\"#be123c\"/><text x=\"640\" y=\"160\" text-anchor=\"middle\">MySQL</text>\n     <line x1=\"200\" y1=\"120\" x2=\"300\" y2=\"120\" stroke=\"#64748b\" marker-end=\"url(#arr_y6di1u)\"/>\n     <line x1=\"460\" y1=\"120\" x2=\"560\" y2=\"75\" stroke=\"#64748b\" marker-end=\"url(#arr_y6di1u)\"/>\n     <line x1=\"460\" y1=\"120\" x2=\"560\" y2=\"155\" stroke=\"#64748b\" marker-end=\"url(#arr_y6di1u)\"/></g>\n</svg>"
+        }
+      ],
+      "suggestions": [
+        "Add a README with install steps and the exact demo URL.",
+        "Remove live secrets from the zip before college submission.",
+        "Optional: add Docker only if you will actually run it in viva.",
+        "Keep this pack and the source zip together. Never demo features that are not in the repo."
+      ],
+      "files": [
+        {
+          "id": "report-html",
+          "label": "Project report (HTML)",
+          "path": "01-report/project-report.html",
+          "kind": "report",
+          "section": "report"
+        },
+        {
+          "id": "report-md",
+          "label": "Project report (Markdown)",
+          "path": "01-report/project-report.md",
+          "kind": "report",
+          "section": "report"
+        },
+        {
+          "id": "srs",
+          "label": "Software requirements",
+          "path": "02-srs/srs.md",
+          "kind": "doc",
+          "section": "srs"
+        },
+        {
+          "id": "viva",
+          "label": "Viva Q&A",
+          "path": "04-viva/viva-qa.md",
+          "kind": "doc",
+          "section": "viva"
+        },
+        {
+          "id": "demo",
+          "label": "Demo script",
+          "path": "05-demo/demo-script.md",
+          "kind": "doc",
+          "section": "demo"
+        },
+        {
+          "id": "ppt",
+          "label": "Presentation (HTML)",
+          "path": "06-presentation/presentation.html",
+          "kind": "slides",
+          "section": "slides"
+        },
+        {
+          "id": "ppt-md",
+          "label": "Presentation (Markdown)",
+          "path": "06-presentation/presentation.md",
+          "kind": "slides",
+          "section": "slides"
+        },
+        {
+          "id": "reflection",
+          "label": "Learning reflection",
+          "path": "07-reflection/learning-reflection.md",
+          "kind": "doc",
+          "section": "reflection"
+        },
+        {
+          "id": "suggestions",
+          "label": "Suggestions",
+          "path": "08-suggestions/suggestions.md",
+          "kind": "doc",
+          "section": "suggestions"
+        },
+        {
+          "id": "diagram-use-case",
+          "label": "Use Case Diagram (SVG)",
+          "path": "03-diagrams/use-case.svg",
+          "kind": "diagram",
+          "section": "diagrams"
+        },
+        {
+          "id": "diagram-er-diagram",
+          "label": "ER Diagram (SVG)",
+          "path": "03-diagrams/er-diagram.svg",
+          "kind": "diagram",
+          "section": "diagrams"
+        },
+        {
+          "id": "diagram-dfd-level-0",
+          "label": "DFD Level 0 (SVG)",
+          "path": "03-diagrams/dfd-level-0.svg",
+          "kind": "diagram",
+          "section": "diagrams"
+        },
+        {
+          "id": "diagram-dfd-level-1",
+          "label": "DFD Level 1 (SVG)",
+          "path": "03-diagrams/dfd-level-1.svg",
+          "kind": "diagram",
+          "section": "diagrams"
+        },
+        {
+          "id": "diagram-architecture",
+          "label": "Architecture Diagram (SVG)",
+          "path": "03-diagrams/architecture.svg",
+          "kind": "diagram",
+          "section": "diagrams"
+        },
+        {
+          "id": "diagram-sequence",
+          "label": "Sequence Diagram (SVG)",
+          "path": "03-diagrams/sequence.svg",
+          "kind": "diagram",
+          "section": "diagrams"
+        },
+        {
+          "id": "diagram-activity",
+          "label": "Activity Diagram (SVG)",
+          "path": "03-diagrams/activity.svg",
+          "kind": "diagram",
+          "section": "diagrams"
+        },
+        {
+          "id": "diagram-deployment",
+          "label": "Deployment Diagram (SVG)",
+          "path": "03-diagrams/deployment.svg",
+          "kind": "diagram",
+          "section": "diagrams"
+        }
+      ],
+      "progress": {
+        "step": "pack",
+        "percent": 100,
+        "label": "Pack ready"
+      }
+    },
+    "files": [
+      "01-report/project-report.html",
+      "01-report/project-report.md",
+      "02-srs/srs.md",
+      "04-viva/viva-qa.md",
+      "05-demo/demo-script.md",
+      "06-presentation/presentation.html",
+      "06-presentation/presentation.md",
+      "07-reflection/learning-reflection.md",
+      "08-suggestions/suggestions.md",
+      "03-diagrams/use-case.svg",
+      "03-diagrams/er-diagram.svg",
+      "03-diagrams/dfd-level-0.svg",
+      "03-diagrams/dfd-level-1.svg",
+      "03-diagrams/architecture.svg",
+      "03-diagrams/sequence.svg",
+      "03-diagrams/activity.svg",
+      "03-diagrams/deployment.svg"
+    ],
+    "packFiles": [
+      {
+        "id": "report-html",
+        "label": "Project report (HTML)",
+        "path": "01-report/project-report.html",
+        "kind": "report",
+        "section": "report"
+      },
+      {
+        "id": "report-md",
+        "label": "Project report (Markdown)",
+        "path": "01-report/project-report.md",
+        "kind": "report",
+        "section": "report"
+      },
+      {
+        "id": "srs",
+        "label": "Software requirements",
+        "path": "02-srs/srs.md",
+        "kind": "doc",
+        "section": "srs"
+      },
+      {
+        "id": "viva",
+        "label": "Viva Q&A",
+        "path": "04-viva/viva-qa.md",
+        "kind": "doc",
+        "section": "viva"
+      },
+      {
+        "id": "demo",
+        "label": "Demo script",
+        "path": "05-demo/demo-script.md",
+        "kind": "doc",
+        "section": "demo"
+      },
+      {
+        "id": "ppt",
+        "label": "Presentation (HTML)",
+        "path": "06-presentation/presentation.html",
+        "kind": "slides",
+        "section": "slides"
+      },
+      {
+        "id": "ppt-md",
+        "label": "Presentation (Markdown)",
+        "path": "06-presentation/presentation.md",
+        "kind": "slides",
+        "section": "slides"
+      },
+      {
+        "id": "reflection",
+        "label": "Learning reflection",
+        "path": "07-reflection/learning-reflection.md",
+        "kind": "doc",
+        "section": "reflection"
+      },
+      {
+        "id": "suggestions",
+        "label": "Suggestions",
+        "path": "08-suggestions/suggestions.md",
+        "kind": "doc",
+        "section": "suggestions"
+      },
+      {
+        "id": "diagram-use-case",
+        "label": "Use Case Diagram (SVG)",
+        "path": "03-diagrams/use-case.svg",
+        "kind": "diagram",
+        "section": "diagrams"
+      },
+      {
+        "id": "diagram-er-diagram",
+        "label": "ER Diagram (SVG)",
+        "path": "03-diagrams/er-diagram.svg",
+        "kind": "diagram",
+        "section": "diagrams"
+      },
+      {
+        "id": "diagram-dfd-level-0",
+        "label": "DFD Level 0 (SVG)",
+        "path": "03-diagrams/dfd-level-0.svg",
+        "kind": "diagram",
+        "section": "diagrams"
+      },
+      {
+        "id": "diagram-dfd-level-1",
+        "label": "DFD Level 1 (SVG)",
+        "path": "03-diagrams/dfd-level-1.svg",
+        "kind": "diagram",
+        "section": "diagrams"
+      },
+      {
+        "id": "diagram-architecture",
+        "label": "Architecture Diagram (SVG)",
+        "path": "03-diagrams/architecture.svg",
+        "kind": "diagram",
+        "section": "diagrams"
+      },
+      {
+        "id": "diagram-sequence",
+        "label": "Sequence Diagram (SVG)",
+        "path": "03-diagrams/sequence.svg",
+        "kind": "diagram",
+        "section": "diagrams"
+      },
+      {
+        "id": "diagram-activity",
+        "label": "Activity Diagram (SVG)",
+        "path": "03-diagrams/activity.svg",
+        "kind": "diagram",
+        "section": "diagrams"
+      },
+      {
+        "id": "diagram-deployment",
+        "label": "Deployment Diagram (SVG)",
+        "path": "03-diagrams/deployment.svg",
+        "kind": "diagram",
+        "section": "diagrams"
+      }
+    ],
+    "diagrams": [
+      "Use Case Diagram",
+      "ER Diagram",
+      "DFD Level 0",
+      "DFD Level 1",
+      "Architecture Diagram",
+      "Sequence Diagram",
+      "Activity Diagram",
+      "Deployment Diagram"
+    ]
   }
 }

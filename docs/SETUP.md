@@ -104,6 +104,8 @@ npm run dev
 - Keep `.env` local and do not commit secrets.
 - Do not include `node_modules` or generated uploads in source control.
 - Use real GitHub OAuth credentials for repository login flows.
+- Paste only public GitHub repository URLs such as `https://github.com/owner/repo`; branch and file URLs are rejected to keep scans grounded in the actual project root.
+- Generated packs include HTML, Markdown, DOCX, and PPTX exports alongside the source evidence bundle.
 
 ## 8. Troubleshooting
 

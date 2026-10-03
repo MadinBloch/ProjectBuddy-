@@ -3,7 +3,7 @@ import os from "os";
 import path from "path";
 import { fileURLToPath } from "url";
 import AdmZip from "adm-zip";
-import { scanProject, unzipTo } from "../src/scan.js";
+import { scanProject, unzipTo, normalizeGithubRepoUrl } from "../src/scan.js";
 import { generatePack } from "../src/generate.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -17,6 +17,20 @@ const answers = {
   guide: "Guide",
   year: "2026",
 };
+
+const normalizedRepo = normalizeGithubRepoUrl("https://github.com/org/project.git/");
+if (normalizedRepo !== "https://github.com/org/project") {
+  throw new Error(`GitHub repo normalization failed: ${normalizedRepo}`);
+}
+
+try {
+  normalizeGithubRepoUrl("https://github.com/org/project/tree/main");
+  throw new Error("Invalid GitHub repo URL should be rejected.");
+} catch (err) {
+  if (!/repository URL|branch|file path|valid GitHub/i.test(err.message || "")) {
+    throw err;
+  }
+}
 
 const cases = [
   { dir: "laravel-library", expectStack: "Laravel", expectTable: "books", forbid: ["JWT", "MongoDB", "Spring"] },
@@ -44,6 +58,11 @@ for (const c of cases) {
     github: "",
   });
   const report = result.preview.reportHtml + JSON.stringify(result.preview.slides) + JSON.stringify(result.preview.viva);
+  const expectedDocx = result.packFiles.some((f) => f.path === "01-report/project-report.docx");
+  const expectedPptx = result.packFiles.some((f) => f.path === "06-presentation/presentation.pptx");
+  if (!expectedDocx || !expectedPptx) {
+    throw new Error(`Missing export artifacts in pack for ${c.dir}: docx=${expectedDocx} pptx=${expectedPptx}`);
+  }
   const stackHit = (scan.stackLabel || "").includes(c.expectStack) || (scan.stack?.frameworks || []).includes(c.expectStack);
   const tableHit = !c.expectTable || (scan.tables || []).some((t) => t.name.includes(c.expectTable));
   const routeHit = !c.expectRoute || (scan.routes || []).some((r) => r.path.includes(c.expectRoute.replace(/^\//, "")) || r.path === c.expectRoute);
@@ -54,6 +73,19 @@ for (const c of cases) {
     `${ok ? "OK" : "FAIL"} ${c.dir} stack=${scan.stackLabel} tables=${(scan.tables || []).map((t) => t.name).join(",")} routes=${(scan.routes || []).map((r) => r.method + r.path).join(" ")} leaked=${leaked.join(",") || "none"}`
   );
 }
+
+const emptyRoot = path.join(os.tmpdir(), `pb-empty-${Date.now()}`);
+fs.mkdirSync(emptyRoot, { recursive: true });
+fs.writeFileSync(path.join(emptyRoot, "README.md"), "# Demo\nThis repo has no app code.\n");
+fs.writeFileSync(path.join(emptyRoot, "docker-compose.yml"), "services: {}\n");
+const emptyScan = scanProject(emptyRoot);
+if (emptyScan.ok) {
+  throw new Error("Empty project should be rejected.");
+}
+if (!/source code|software project|real app/i.test(emptyScan.reason || "")) {
+  throw new Error(`Expected a clear rejection reason, got: ${emptyScan.reason}`);
+}
+console.log(`Weak project rejection works: ${emptyScan.reason}`);
 
 const zipTestRoot = fs.mkdtempSync(path.join(os.tmpdir(), "pb-unzip-"));
 const zipPath = path.join(zipTestRoot, "repo.zip");

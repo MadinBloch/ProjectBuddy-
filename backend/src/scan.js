@@ -66,8 +66,42 @@ export function unzipTo(zipPath, dest) {
   return flattenRoot(dest);
 }
 
+export function normalizeGithubRepoUrl(raw) {
+  const value = String(raw || "").trim();
+  if (!value) {
+    throw new Error("Paste a public GitHub repository URL.");
+  }
+
+  try {
+    const u = new URL(value);
+    const host = u.hostname.toLowerCase().replace(/^www\./, "");
+    if (host !== "github.com") {
+      throw new Error("Enter a GitHub repository URL.");
+    }
+
+    const parts = u.pathname.split("/").filter(Boolean);
+    if (parts.length !== 2) {
+      throw new Error("Use a repository URL like https://github.com/owner/repo, not a branch or file path.");
+    }
+
+    const owner = parts[0];
+    const repo = parts[1].replace(/\.git$/, "");
+    if (!owner || !repo) {
+      throw new Error("Use a repository URL like https://github.com/owner/repo.");
+    }
+
+    return `https://github.com/${owner}/${repo}`;
+  } catch (error) {
+    if (error instanceof Error && error.message.startsWith("Use a repository URL") || error.message.startsWith("Enter a GitHub repository URL") || error.message.startsWith("Paste a public GitHub repository URL") || error.message.startsWith("Use a repository URL like")) {
+      throw error;
+    }
+    throw new Error("Enter a valid GitHub repository URL.");
+  }
+}
+
 export async function fetchGithubZip(url, destZip, token) {
-  const parsed = parseGithub(url);
+  const normalized = normalizeGithubRepoUrl(url);
+  const parsed = parseGithub(normalized);
   if (!parsed) throw new Error("Enter a GitHub repository URL.");
 
   if (token) {
@@ -84,6 +118,9 @@ export async function fetchGithubZip(url, destZip, token) {
       fs.writeFileSync(destZip, Buffer.from(await res.arrayBuffer()));
       return parsed;
     }
+    if (res.status === 404 || res.status === 451) {
+      throw new Error("This GitHub repository is private or unavailable. Use a public repository or upload a zip file.");
+    }
   }
 
   const branches = ["main", "master"];
@@ -93,7 +130,11 @@ export async function fetchGithubZip(url, destZip, token) {
     try {
       const res = await fetch(zipUrl, { redirect: "follow" });
       if (!res.ok) {
-        lastErr = new Error(`GitHub returned ${res.status}`);
+        if (res.status === 404 || res.status === 451) {
+          lastErr = new Error("This GitHub repository is private or unavailable. Use a public repository or upload a zip file.");
+        } else {
+          lastErr = new Error(`GitHub returned ${res.status}`);
+        }
         continue;
       }
       fs.writeFileSync(destZip, Buffer.from(await res.arrayBuffer()));
@@ -111,7 +152,10 @@ function parseGithub(url) {
     if (!u.hostname.includes("github.com")) return null;
     const parts = u.pathname.split("/").filter(Boolean);
     if (parts.length < 2) return null;
-    return { owner: parts[0], repo: parts[1].replace(/\.git$/, "") };
+    const owner = parts[0];
+    const repo = parts[1].replace(/\.git$/, "");
+    if (!owner || !repo) return null;
+    return { owner, repo };
   } catch {
     return null;
   }
@@ -146,7 +190,67 @@ export function collectProjectFiles(root) {
 export function scanProject(root) {
   const collected = collectProjectFiles(root);
   const intel = buildIntelligence(collected);
-  return toLegacyScan(intel);
+  const result = toLegacyScan(intel);
+
+  const sourceFiles = collected.files.filter((file) => {
+    const base = path.basename(file.rel);
+    const ext = path.extname(file.rel).toLowerCase();
+    return (
+      (CODE_EXT.has(ext) || EXTRA_NAMES.has(base)) &&
+      !["package-lock.json", "yarn.lock", "pnpm-lock.yaml", "README.md", "README", "LICENSE", "LICENSE.md", "CHANGELOG.md"].includes(base)
+    );
+  });
+
+  const validation = validateProjectEvidence({
+    fileCount: collected.files.length,
+    sourceFiles: sourceFiles.length,
+    frameworkCount: (result.stack?.frameworks || result.frameworks || []).length,
+    routeCount: (result.routes || []).length,
+    tableCount: (result.tables || []).length,
+    modelCount: (result.models || []).length,
+  });
+
+  if (!validation.ok) {
+    return {
+      ...result,
+      ok: false,
+      reason: validation.reason,
+      warnings: [...(result.warnings || []), validation.note],
+      fileCount: collected.files.length,
+      sourceFiles: sourceFiles.length,
+    };
+  }
+
+  return result;
+}
+
+function validateProjectEvidence({ fileCount, sourceFiles, frameworkCount, routeCount, tableCount, modelCount }) {
+  if (fileCount < 2) {
+    return {
+      ok: false,
+      reason: "This folder does not look like a software project. Add actual source files or a real repository, then try again.",
+      note: "ProjectBuddy only works on codebases with real application files.",
+    };
+  }
+
+  const meaningfulFiles = sourceFiles + routeCount + tableCount + modelCount;
+  if (meaningfulFiles === 0 && frameworkCount === 0) {
+    return {
+      ok: false,
+      reason: "This project does not contain enough source code to analyze. Upload a real app folder or a public GitHub repository.",
+      note: "The scan requires source files, routes, tables, or detected app structure.",
+    };
+  }
+
+  if (sourceFiles <= 1 && frameworkCount === 0 && routeCount === 0 && tableCount === 0 && modelCount === 0) {
+    return {
+      ok: false,
+      reason: "This repository looks too thin for ProjectBuddy. Add a real app, not just docs or configuration files.",
+      note: "A valid project needs some application code plus framework or route evidence.",
+    };
+  }
+
+  return { ok: true };
 }
 
 function walk(root, dir, out) {

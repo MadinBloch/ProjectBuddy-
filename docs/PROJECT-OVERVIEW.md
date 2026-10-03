@@ -52,7 +52,8 @@ The current version focuses on:
 - preview and download flow
 - authenticated user flow with GitHub login
 - authenticated GitHub repository selection from the signed-in account
-- SQLite user and project records, plus local JSON for generated pack artifacts
+- SQLite user and project records, with local JSON as the live project working store
+- project history persistence so signed-in users keep a real dashboard of recent scans and pack states
 
 The app now supports a real GitHub OAuth login flow and a repo picker that lists repositories from the signed-in account, with the rest of the project continuing to stay grounded in source evidence.
 

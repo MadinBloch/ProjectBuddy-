@@ -137,8 +137,9 @@ export default function App() {
           setBusy(false);
         }
         if (["rejected", "failed", "failed_generate"].includes(data.status)) {
-          setError(data.error || "Something went wrong.");
+          setError(data.error || "This project does not contain enough source code to generate a pack.");
           setBusy(false);
+          setStep("home");
         }
       } catch (e) {
         setError(e.message);
@@ -159,6 +160,38 @@ export default function App() {
     const initials = source.split(/[\s_-]+/).filter(Boolean).slice(0, 2).map((part) => part[0]?.toUpperCase() || "").join("");
     return initials || "U";
   }, [authUser]);
+
+  function normalizeGithubRepoInput(raw) {
+    const value = String(raw || "").trim();
+    if (!value) {
+      throw new Error("Paste a public GitHub repository URL.");
+    }
+
+    let url;
+    try {
+      url = new URL(value);
+    } catch {
+      throw new Error("Enter a valid GitHub repository URL, like https://github.com/owner/repo.");
+    }
+
+    const host = url.hostname.toLowerCase().replace(/^www\./, "");
+    if (host !== "github.com") {
+      throw new Error("Enter a GitHub repository URL.");
+    }
+
+    const parts = url.pathname.split("/").filter(Boolean);
+    if (parts.length !== 2) {
+      throw new Error("Use a repository root URL like https://github.com/owner/repo, not a branch or file path.");
+    }
+
+    const owner = parts[0];
+    const repo = parts[1].replace(/\.git$/, "");
+    if (!owner || !repo) {
+      throw new Error("Use a repository root URL like https://github.com/owner/repo.");
+    }
+
+    return `https://github.com/${owner}/${repo}`;
+  }
 
   async function startZip(file) {
     setError("");
@@ -188,14 +221,11 @@ export default function App() {
   async function startGithub(e) {
     e.preventDefault();
     setError("");
-    if (!github.trim()) {
-      setError("Paste a public GitHub URL, or upload a zip.");
-      return;
-    }
-    setBusy(true);
-    setStep("scan");
     try {
-      const data = await apiFetch("/api/projects", { method: "POST", json: { github } });
+      const repoUrl = normalizeGithubRepoInput(github);
+      setBusy(true);
+      setStep("scan");
+      const data = await apiFetch("/api/projects", { method: "POST", json: { github: repoUrl } });
       setProject(data);
     } catch (e) {
       setError(e.message);
@@ -212,7 +242,8 @@ export default function App() {
     setBusy(true);
     setStep("scan");
     try {
-      const data = await apiFetch("/api/projects", { method: "POST", json: { github: `https://github.com/${selectedRepo}` } });
+      const repoUrl = normalizeGithubRepoInput(`https://github.com/${selectedRepo}`);
+      const data = await apiFetch("/api/projects", { method: "POST", json: { github: repoUrl } });
       setProject(data);
     } catch (e) {
       setError(e.message);
@@ -590,6 +621,7 @@ export default function App() {
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                <button className="btn ghost" onClick={() => regenerate("all")} disabled={busy}>Regenerate pack</button>
                <button className="btn ghost" onClick={() => window.open(`/api/projects/${project.id}/file?path=${encodeURIComponent("01-report/project-report.html")}`, "_blank")} disabled={busy}>Print report (Save as PDF)</button>
+               <button className="btn ghost" onClick={() => downloadFile("01-report/project-report.docx")} disabled={busy}>Download DOCX</button>
                <button className="btn primary" onClick={downloadZip} disabled={busy}>Download all (zip)</button>
             </div>
           </div>
@@ -644,7 +676,10 @@ export default function App() {
                       </div>
                     </article>
                   ))}
-                  <p><button className="btn ghost" onClick={() => downloadFile("06-presentation.html")}>Download presentation HTML</button></p>
+                  <p style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                    <button className="btn ghost" onClick={() => downloadFile("06-presentation.html")}>Download presentation HTML</button>
+                    <button className="btn ghost" onClick={() => downloadFile("06-presentation/presentation.pptx")}>Download PPTX</button>
+                  </p>
                 </div>
               </div>
             )}
@@ -679,7 +714,7 @@ export default function App() {
                     <button className="btn ghost sm" onClick={() => downloadFile(f.path)}>Download</button>
                   </div>
                 ))}
-                <p className="muted">HTML report can be printed from the browser as PDF. The pack does not generate DOCX or PPTX yet.</p>
+                <p className="muted">HTML report can be printed from the browser as PDF. DOCX and PPTX exports are included in the pack and ready for download.</p>
                 <button className="btn primary" onClick={downloadZip}>Download all as zip</button>
               </div>
             )}
