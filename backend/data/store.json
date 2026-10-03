@@ -6611,5 +6611,586 @@
       "Activity Diagram",
       "Deployment Diagram"
     ]
+  },
+  "pb_muscekugdp0rmh": {
+    "id": "pb_muscekugdp0rmh",
+    "status": "scanned",
+    "github": "https://github.com/MadinBloch/Devlog",
+    "dir": "/data/projects/pb_muscekugdp0rmh",
+    "createdAt": "2026-10-03T12:02:48.715Z",
+    "updatedAt": "2026-10-03T12:02:50.929Z",
+    "scan": {
+      "ok": true,
+      "fileCount": 59,
+      "scannedFiles": 56,
+      "stack": {
+        "language": "TypeScript",
+        "frameworks": [
+          "React",
+          "React Native"
+        ],
+        "database": [
+          "SQLite"
+        ],
+        "tools": []
+      },
+      "languages": [
+        "TypeScript",
+        "JavaScript"
+      ],
+      "tables": [],
+      "models": [],
+      "routes": [],
+      "modules": [],
+      "actors": [
+        "User"
+      ],
+      "hasDocker": false,
+      "hasTests": false,
+      "hasReadme": true,
+      "topFiles": [
+        ".env.example",
+        "README.md",
+        "data/tasks.json",
+        "index.html",
+        "package-lock.json",
+        "package.json",
+        "postcss.config.js",
+        "src/App.tsx",
+        "src/api/github.ts",
+        "src/api/sheets.ts",
+        "src/components/CompleteModal.tsx",
+        "src/components/Header.tsx",
+        "src/components/Modal.tsx",
+        "src/components/NoteModal.tsx",
+        "src/components/Sidebar.tsx",
+        "src/components/TaskFilters.tsx",
+        "src/components/TaskModal.tsx",
+        "src/components/TaskRow.tsx",
+        "src/components/TimerBar.tsx",
+        "src/components/TimerModal.tsx",
+        "src/components/Toasts.tsx",
+        "src/components/ui/alert-dialog.tsx",
+        "src/components/ui/badge.tsx",
+        "src/components/ui/button.tsx",
+        "src/components/ui/card.tsx",
+        "src/components/ui/dialog.tsx",
+        "src/components/ui/dropdown-menu.tsx",
+        "src/components/ui/input.tsx",
+        "src/components/ui/separator.tsx",
+        "src/components/ui/textarea.tsx",
+        "src/components/ui/tooltip.tsx",
+        "src/context/AppContext.tsx",
+        "src/data/laravel-seed.json",
+        "src/data/seed.ts",
+        "src/hooks/useKeyboardShortcuts.ts",
+        "src/lib/utils.ts",
+        "src/main.tsx",
+        "src/styles/shadcn.css",
+        "src/styles-extra.css",
+        "src/styles.css"
+      ],
+      "intelligence": {
+        "ok": true,
+        "projectName": "Devlog React",
+        "detectedLanguages": [
+          "TypeScript",
+          "JavaScript"
+        ],
+        "frameworks": [
+          "React",
+          "React Native"
+        ],
+        "libraries": [],
+        "frontend": [
+          "React",
+          "React Native"
+        ],
+        "backend": [],
+        "databases": [
+          "SQLite"
+        ],
+        "databaseTables": [],
+        "databaseColumns": [],
+        "relationships": [],
+        "models": [],
+        "controllers": [],
+        "routes": [],
+        "apiEndpoints": [],
+        "authentication": {
+          "method": "Not detected in source",
+          "evidence": [],
+          "confidence": 0,
+          "loginRoute": null
+        },
+        "authorization": [],
+        "modules": [],
+        "features": [],
+        "pages": [],
+        "components": [
+          "src/components/CompleteModal.tsx",
+          "src/components/Header.tsx",
+          "src/components/Modal.tsx",
+          "src/components/NoteModal.tsx",
+          "src/components/Sidebar.tsx",
+          "src/components/TaskFilters.tsx",
+          "src/components/TaskModal.tsx",
+          "src/components/TaskRow.tsx",
+          "src/components/TimerBar.tsx",
+          "src/components/TimerModal.tsx",
+          "src/components/Toasts.tsx",
+          "src/components/ui/alert-dialog.tsx",
+          "src/components/ui/badge.tsx",
+          "src/components/ui/button.tsx",
+          "src/components/ui/card.tsx",
+          "src/components/ui/dialog.tsx",
+          "src/components/ui/dropdown-menu.tsx",
+          "src/components/ui/input.tsx",
+          "src/components/ui/separator.tsx",
+          "src/components/ui/textarea.tsx",
+          "src/components/ui/tooltip.tsx"
+        ],
+        "services": [],
+        "middleware": [],
+        "crud": {
+          "create": 0,
+          "read": 0,
+          "update": 0,
+          "destroy": 0,
+          "examples": {
+            "create": null,
+            "read": null,
+            "update": null,
+            "destroy": null
+          }
+        },
+        "environmentVariables": [
+          "VITE_GITHUB_OWNER",
+          "VITE_GITHUB_REPO",
+          "VITE_GITHUB_FILE_PATH"
+        ],
+        "secretsDetected": true,
+        "configuration": {
+          "hasEnvExample": true,
+          "envFile": ".env.example",
+          "docker": false
+        },
+        "fileStructure": {
+          "topLevel": [
+            ".env.example",
+            "README.md",
+            "data",
+            "index.html",
+            "package-lock.json",
+            "package.json",
+            "postcss.config.js",
+            "src",
+            "tailwind.config.js",
+            "tsconfig.json",
+            "vite.config.ts"
+          ],
+          "sample": [
+            ".env.example",
+            "README.md",
+            "data/tasks.json",
+            "index.html",
+            "package-lock.json",
+            "package.json",
+            "postcss.config.js",
+            "src/App.tsx",
+            "src/api/github.ts",
+            "src/api/sheets.ts",
+            "src/components/CompleteModal.tsx",
+            "src/components/Header.tsx",
+            "src/components/Modal.tsx",
+            "src/components/NoteModal.tsx",
+            "src/components/Sidebar.tsx",
+            "src/components/TaskFilters.tsx",
+            "src/components/TaskModal.tsx",
+            "src/components/TaskRow.tsx",
+            "src/components/TimerBar.tsx",
+            "src/components/TimerModal.tsx",
+            "src/components/Toasts.tsx",
+            "src/components/ui/alert-dialog.tsx",
+            "src/components/ui/badge.tsx",
+            "src/components/ui/button.tsx",
+            "src/components/ui/card.tsx",
+            "src/components/ui/dialog.tsx",
+            "src/components/ui/dropdown-menu.tsx",
+            "src/components/ui/input.tsx",
+            "src/components/ui/separator.tsx",
+            "src/components/ui/textarea.tsx",
+            "src/components/ui/tooltip.tsx",
+            "src/context/AppContext.tsx",
+            "src/data/laravel-seed.json",
+            "src/data/seed.ts",
+            "src/hooks/useKeyboardShortcuts.ts",
+            "src/lib/utils.ts",
+            "src/main.tsx",
+            "src/styles/shadcn.css",
+            "src/styles-extra.css",
+            "src/styles.css"
+          ]
+        },
+        "dependencies": [
+          "@radix-ui/react-alert-dialog",
+          "@radix-ui/react-dialog",
+          "@radix-ui/react-dropdown-menu",
+          "@radix-ui/react-separator",
+          "@radix-ui/react-slot",
+          "@radix-ui/react-tooltip",
+          "class-variance-authority",
+          "clsx",
+          "lucide-react",
+          "react",
+          "react-dom",
+          "tailwind-merge",
+          "@types/node",
+          "@vitejs/plugin-react",
+          "autoprefixer",
+          "postcss",
+          "tailwindcss",
+          "typescript",
+          "vite"
+        ],
+        "scripts": {
+          "dev": "vite",
+          "build": "vite build",
+          "preview": "vite preview"
+        },
+        "deploymentHints": [],
+        "tests": {
+          "hasTests": false,
+          "files": []
+        },
+        "documentation": {
+          "hasReadme": true,
+          "readmeFile": "README.md",
+          "readmeExcerpt": "# DevLog React — GitHub-backed Work OS Personal developer work-log (frontend-only). Matches the Laravel DevLog Work OS UI. - **Source of truth:** private GitHub file `data/tasks.json` - **Working copy:** `localStorage` (edits are local until Sync) - **↓ Fetch** — GitHub → localStorage (`git pull` style) - **↑ Sync** — localStorage → GitHub (`git push` style) - Auto-fetch after login / page load ##"
+        },
+        "screenshots": [],
+        "evidence": [
+          {
+            "fact": "projectName",
+            "value": "Devlog React",
+            "evidence": [
+              "package.json"
+            ],
+            "confidence": 0.8
+          },
+          {
+            "fact": "framework",
+            "value": "React",
+            "evidence": [
+              "package.json",
+              "src/App.tsx"
+            ],
+            "confidence": 0.95
+          },
+          {
+            "fact": "framework",
+            "value": "React Native",
+            "evidence": [
+              "package.json",
+              "README.md"
+            ],
+            "confidence": 0.95
+          },
+          {
+            "fact": "database",
+            "value": "SQLite",
+            "evidence": [],
+            "confidence": 0.86
+          }
+        ],
+        "warnings": [
+          "Sensitive configuration detected. Values are not stored."
+        ],
+        "confidence": 0.65,
+        "fileCount": 59,
+        "scannedFiles": 56,
+        "topFiles": [
+          ".env.example",
+          "README.md",
+          "data/tasks.json",
+          "index.html",
+          "package-lock.json",
+          "package.json",
+          "postcss.config.js",
+          "src/App.tsx",
+          "src/api/github.ts",
+          "src/api/sheets.ts",
+          "src/components/CompleteModal.tsx",
+          "src/components/Header.tsx",
+          "src/components/Modal.tsx",
+          "src/components/NoteModal.tsx",
+          "src/components/Sidebar.tsx",
+          "src/components/TaskFilters.tsx",
+          "src/components/TaskModal.tsx",
+          "src/components/TaskRow.tsx",
+          "src/components/TimerBar.tsx",
+          "src/components/TimerModal.tsx",
+          "src/components/Toasts.tsx",
+          "src/components/ui/alert-dialog.tsx",
+          "src/components/ui/badge.tsx",
+          "src/components/ui/button.tsx",
+          "src/components/ui/card.tsx",
+          "src/components/ui/dialog.tsx",
+          "src/components/ui/dropdown-menu.tsx",
+          "src/components/ui/input.tsx",
+          "src/components/ui/separator.tsx",
+          "src/components/ui/textarea.tsx",
+          "src/components/ui/tooltip.tsx",
+          "src/context/AppContext.tsx",
+          "src/data/laravel-seed.json",
+          "src/data/seed.ts",
+          "src/hooks/useKeyboardShortcuts.ts",
+          "src/lib/utils.ts",
+          "src/main.tsx",
+          "src/styles/shadcn.css",
+          "src/styles-extra.css",
+          "src/styles.css"
+        ],
+        "health": {
+          "technology": [
+            {
+              "ok": true,
+              "label": "React",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "React Native",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "SQLite",
+              "detail": "Detected in repository"
+            }
+          ],
+          "architecture": [
+            {
+              "ok": true,
+              "label": "Frontend",
+              "detail": "React, React Native"
+            },
+            {
+              "ok": false,
+              "label": "Backend",
+              "detail": "Not detected in source"
+            },
+            {
+              "ok": false,
+              "label": "Routes",
+              "detail": "Not detected in source"
+            },
+            {
+              "ok": false,
+              "label": "API routes",
+              "detail": "Not detected in source"
+            }
+          ],
+          "database": [
+            {
+              "ok": false,
+              "label": "Tables",
+              "detail": "Not detected in source"
+            },
+            {
+              "ok": false,
+              "label": "Relationships",
+              "detail": "Not detected in source"
+            }
+          ],
+          "documentation": [
+            {
+              "ok": true,
+              "label": "README",
+              "detail": "README.md"
+            }
+          ],
+          "testing": [
+            {
+              "ok": false,
+              "label": "Tests",
+              "detail": "No tests detected"
+            }
+          ],
+          "security": [
+            {
+              "ok": false,
+              "label": "Secrets",
+              "detail": "Sensitive configuration detected"
+            },
+            {
+              "ok": false,
+              "label": "Authentication",
+              "detail": "Not detected in source"
+            }
+          ]
+        },
+        "stackLabel": "React · React Native · SQLite",
+        "suggestedTitle": "Devlog React",
+        "suggestedProblem": "Manual or disconnected handling of records is replaced by this React · React Native · SQLite application, which stores data in SQLite.",
+        "suggestedFuture": "add automated tests; add a simple Docker setup for examiners; add authenticated access if required by the college; document limitations honestly for viva."
+      },
+      "health": {
+        "technology": [
+          {
+            "ok": true,
+            "label": "React",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "React Native",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "SQLite",
+            "detail": "Detected in repository"
+          }
+        ],
+        "architecture": [
+          {
+            "ok": true,
+            "label": "Frontend",
+            "detail": "React, React Native"
+          },
+          {
+            "ok": false,
+            "label": "Backend",
+            "detail": "Not detected in source"
+          },
+          {
+            "ok": false,
+            "label": "Routes",
+            "detail": "Not detected in source"
+          },
+          {
+            "ok": false,
+            "label": "API routes",
+            "detail": "Not detected in source"
+          }
+        ],
+        "database": [
+          {
+            "ok": false,
+            "label": "Tables",
+            "detail": "Not detected in source"
+          },
+          {
+            "ok": false,
+            "label": "Relationships",
+            "detail": "Not detected in source"
+          }
+        ],
+        "documentation": [
+          {
+            "ok": true,
+            "label": "README",
+            "detail": "README.md"
+          }
+        ],
+        "testing": [
+          {
+            "ok": false,
+            "label": "Tests",
+            "detail": "No tests detected"
+          }
+        ],
+        "security": [
+          {
+            "ok": false,
+            "label": "Secrets",
+            "detail": "Sensitive configuration detected"
+          },
+          {
+            "ok": false,
+            "label": "Authentication",
+            "detail": "Not detected in source"
+          }
+        ]
+      },
+      "stackLabel": "React · React Native · SQLite",
+      "suggestedTitle": "Devlog React",
+      "suggestedProblem": "Manual or disconnected handling of records is replaced by this React · React Native · SQLite application, which stores data in SQLite.",
+      "suggestedFuture": "add automated tests; add a simple Docker setup for examiners; add authenticated access if required by the college; document limitations honestly for viva.",
+      "warnings": [
+        "Sensitive configuration detected. Values are not stored."
+      ],
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "fact": "projectName",
+          "value": "Devlog React",
+          "evidence": [
+            "package.json"
+          ],
+          "confidence": 0.8
+        },
+        {
+          "fact": "framework",
+          "value": "React",
+          "evidence": [
+            "package.json",
+            "src/App.tsx"
+          ],
+          "confidence": 0.95
+        },
+        {
+          "fact": "framework",
+          "value": "React Native",
+          "evidence": [
+            "package.json",
+            "README.md"
+          ],
+          "confidence": 0.95
+        },
+        {
+          "fact": "database",
+          "value": "SQLite",
+          "evidence": [],
+          "confidence": 0.86
+        }
+      ],
+      "authentication": {
+        "method": "Not detected in source",
+        "evidence": [],
+        "confidence": 0,
+        "loginRoute": null
+      },
+      "authorization": [],
+      "features": [],
+      "pages": [],
+      "apiEndpoints": [],
+      "relationships": [],
+      "frontend": [
+        "React",
+        "React Native"
+      ],
+      "backend": [],
+      "tests": {
+        "hasTests": false,
+        "files": []
+      },
+      "documentation": {
+        "hasReadme": true,
+        "readmeFile": "README.md",
+        "readmeExcerpt": "# DevLog React — GitHub-backed Work OS Personal developer work-log (frontend-only). Matches the Laravel DevLog Work OS UI. - **Source of truth:** private GitHub file `data/tasks.json` - **Working copy:** `localStorage` (edits are local until Sync) - **↓ Fetch** — GitHub → localStorage (`git pull` style) - **↑ Sync** — localStorage → GitHub (`git push` style) - Auto-fetch after login / page load ##"
+      },
+      "configuration": {
+        "hasEnvExample": true,
+        "envFile": ".env.example",
+        "docker": false
+      },
+      "environmentVariables": [
+        "VITE_GITHUB_OWNER",
+        "VITE_GITHUB_REPO",
+        "VITE_GITHUB_FILE_PATH"
+      ]
+    }
   }
 }

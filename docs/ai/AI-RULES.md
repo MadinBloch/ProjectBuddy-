@@ -32,7 +32,7 @@ Keep the code organized into clear concerns:
 
 ## 6. Follow the approved product scope
 
-Stay aligned with the v1 design in `docs/superpowers/specs/2026-09-30-projectbuddy-design.md`.
+Stay aligned with the product design in `docs/superpowers/specs/2026-09-30-projectbuddy-design.md`.
 
 ## 7. Good AI output pattern
 

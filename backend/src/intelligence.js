@@ -30,6 +30,7 @@ export function buildIntelligence(scanInput) {
 
   const languages = detectLanguages(names);
   const { frameworks, libraries, frontend, backend, tools, usedDeps } = detectFrameworks({ names, texts, pkgFiles, composer, composerFile, reqFile, pomFile, gradleFile });
+  const normalizedFrameworks = normalizeFrameworkGroups({ frameworks, frontend, backend });
   const databases = detectDatabases({ texts, names, pkgFiles, composer, reqFile, envExample, prismaFile, usedDeps });
   const tables = detectTables(texts);
   const relationships = detectRelationships(tables, texts);
@@ -88,10 +89,10 @@ export function buildIntelligence(scanInput) {
     ok: true,
     projectName: projectName.value,
     detectedLanguages: languages,
-    frameworks: frameworks.map((f) => f.name),
+    frameworks: normalizedFrameworks.frameworks.map((f) => f.name),
     libraries: libraries.map((l) => l.name),
-    frontend: frontend.map((f) => f.name),
-    backend: backend.map((f) => f.name),
+    frontend: normalizedFrameworks.frontend.map((f) => f.name),
+    backend: normalizedFrameworks.backend.map((f) => f.name),
     databases: databases.map((d) => d.name),
     databaseTables: tables.map((t) => ({ name: t.name, columns: t.columns, evidence: t.evidence })),
     databaseColumns: tables.flatMap((t) => t.columns.map((c) => ({ table: t.name, ...c }))),
@@ -136,7 +137,12 @@ export function buildIntelligence(scanInput) {
   };
 
   intelligence.health = buildHealth(intelligence);
-  intelligence.stackLabel = unique([...intelligence.frontend, ...intelligence.backend, ...intelligence.frameworks, ...intelligence.databases]).join(" · ") || intelligence.detectedLanguages.join(" · ") || "Unknown";
+  intelligence.stackLabel = unique([
+    ...intelligence.frontend,
+    ...intelligence.backend,
+    ...intelligence.frameworks.filter((f) => !intelligence.frontend.includes(f) && !intelligence.backend.includes(f)),
+    ...intelligence.databases,
+  ]).join(" · ") || intelligence.detectedLanguages.join(" · ") || "Unknown";
   intelligence.suggestedTitle = intelligence.projectName;
   intelligence.suggestedProblem = suggestProblem(intelligence);
   intelligence.suggestedFuture = suggestFuture(intelligence);
@@ -177,13 +183,34 @@ function detectFrameworks({ names, texts, pkgFiles, composer, composerFile, reqF
     const deps = { ...(p.json?.dependencies || {}), ...(p.json?.devDependencies || {}) };
     usedDeps.push(...Object.keys(deps).slice(0, 40));
     const loc = posix(p.rel);
-    if (deps.react || deps["react-dom"]) add(frameworks, "React", [loc, texts.find((t) => /\.(jsx|tsx)$/.test(t.rel))?.rel].filter(Boolean), 0.95, frontend);
-    if (deps["react-native"] || deps.expo || /react-native/i.test(blob) || /expo/i.test(blob)) {
+    const hasReactNativeSignals = deps["react-native"] || deps.expo || /react-native/i.test(blob) || /expo/i.test(blob);
+    const hasWebReactSignals = deps.react || deps["react-dom"];
+    const hasNextSignals = !!deps.next;
+    const hasFastifySignals = !!deps.fastify || !!deps["@fastify/swagger"] || /\bfastify\b/i.test(blob) || /require\(["']fastify["']\)|from[\s]+["']fastify["']/.test(blob);
+    const hasNestSignals = !!deps["@nestjs/core"] || !!deps.nestjs || /@nestjs\/core|\bnestjs\b/i.test(blob) || /NestFactory|@Controller|@Get\(/.test(blob);
+    const hasKoaSignals = !!deps.koa || /\bkoa\b/i.test(blob) || /require\(["']koa["']\)|from[\s]+["']koa["']/.test(blob);
+    const hasHapiSignals = !!deps["@hapi/hapi"] || !!deps.hapi || /@hapi\/hapi|\bhapi\b/i.test(blob);
+
+    if (hasReactNativeSignals) {
       add(frameworks, "React Native", [loc, texts.find((t) => /react-native|expo/i.test(t.content))?.rel].filter(Boolean), 0.95, frontend);
+    } else if (hasWebReactSignals && !hasNextSignals) {
+      add(frameworks, "React", [loc, texts.find((t) => /\.(jsx|tsx)$/.test(t.rel))?.rel].filter(Boolean), 0.95, frontend);
     }
-    if (deps.next) add(frameworks, "Next.js", [loc], 0.95, frontend);
+    if (hasNextSignals) add(frameworks, "Next.js", [loc], 0.95, frontend);
     if (deps.vue) add(frameworks, "Vue", [loc], 0.95, frontend);
     if (deps["@angular/core"]) add(frameworks, "Angular", [loc], 0.95, frontend);
+    if (hasFastifySignals) {
+      add(frameworks, "Fastify", [loc, texts.find((t) => /fastify\b|require\(["']fastify["']\)|from\s+["']fastify["']/.test(t.content))?.rel].filter(Boolean), 0.94, backend);
+    }
+    if (hasNestSignals) {
+      add(frameworks, "NestJS", [loc, texts.find((t) => /@nestjs\/core|NestFactory|@Controller|@Get\(/.test(t.content))?.rel].filter(Boolean), 0.94, backend);
+    }
+    if (hasKoaSignals) {
+      add(frameworks, "Koa", [loc, texts.find((t) => /\bkoa\b|require\(["']koa["']\)|from\s+["']koa["']/.test(t.content))?.rel].filter(Boolean), 0.9, backend);
+    }
+    if (hasHapiSignals) {
+      add(frameworks, "Hapi", [loc, texts.find((t) => /@hapi\/hapi|\bhapi\b/.test(t.content))?.rel].filter(Boolean), 0.9, backend);
+    }
     if (deps.express && (blob.includes("express()") || blob.includes("from \"express\"") || blob.includes("require(\"express\")") || blob.includes("require('express')"))) {
       add(frameworks, "Express", [loc, texts.find((t) => /express\(/.test(t.content))?.rel].filter(Boolean), 0.93, backend);
     } else if (deps.express) {
@@ -232,6 +259,34 @@ function detectFrameworks({ names, texts, pkgFiles, composer, composerFile, reqF
   if (!frameworks.length && names.some((n) => n.endsWith(".php"))) add(frameworks, "PHP", [names.find((n) => n.endsWith(".php"))], 0.6, backend);
 
   return { frameworks, libraries, frontend, backend, tools, usedDeps: unique(usedDeps).slice(0, 60) };
+}
+
+function normalizeFrameworkGroups({ frameworks, frontend, backend }) {
+  const front = unique(frontend.map((f) => f.name));
+  const back = unique(backend.map((f) => f.name));
+  const genericReact = /^React$/i;
+  const isReactNative = (name) => /React Native/i.test(name);
+  const isNext = (name) => /Next\.js|Next/i.test(name);
+
+  const filteredFront = front.filter((name) => {
+    if (front.some(isReactNative) && genericReact.test(name)) return false;
+    if (front.some(isNext) && genericReact.test(name)) return false;
+    return true;
+  });
+
+  const filteredFrameworks = unique(
+    frameworks.map((f) => f.name).filter((name) => {
+      if (filteredFront.some(isReactNative) && genericReact.test(name)) return false;
+      if (filteredFront.some(isNext) && genericReact.test(name)) return false;
+      return true;
+    })
+  );
+
+  return {
+    frontend: unique(filteredFront.map((name) => ({ name }))).slice(0, 20),
+    backend: unique(back.map((name) => ({ name }))).slice(0, 20),
+    frameworks: unique(filteredFrameworks.map((name) => ({ name }))).slice(0, 20),
+  };
 }
 
 function detectDatabases({ texts, names, pkgFiles, composer, reqFile, envExample, prismaFile, usedDeps }) {

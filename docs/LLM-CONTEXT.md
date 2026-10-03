@@ -27,7 +27,7 @@ Generate documentation and deliverables grounded in the source code of the uploa
 ## Current stack
 
 - Frontend: Vite + React
-- Backend: Node.js + Express
+- Backend: Node.js + Express, with evidence-first detection for server frameworks such as Fastify, NestJS, Koa, and Hapi when the repo clearly contains them
 - Data layer: SQLite (Prisma) for users and project records; local JSON for generated pack artifacts
 - Auth: GitHub OAuth with session-backed user records
 - Repo listing: authenticated GitHub repo picker from the signed-in account using the `repo` OAuth scope
@@ -37,6 +37,7 @@ Generate documentation and deliverables grounded in the source code of the uploa
 - Runtime model: local service and generated project artifacts
 - Local env handling: backend loads `.env` at startup via `dotenv`
 - Optional AI: environment-based LLM integration if keys are supplied
+- Detection rule: stack detection is strict and evidence-based; it prefers the most specific framework supported by source files and suppresses generic labels when stronger evidence is present
 
 ## Important architecture notes
 

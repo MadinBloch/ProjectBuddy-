@@ -1,4 +1,4 @@
-# ProjectBuddy v1 Design
+# ProjectBuddy Design
 
 Date: 2026-09-30
 Status: approved for implementation
@@ -15,7 +15,7 @@ Primary input: project zip
 Secondary input: public GitHub URL
 Download flow: generate evidence-based project pack and allow direct download after the repository is scanned and the pack is ready.
 
-## v1 user flow
+## User flow
 
 1. Landing — upload a ZIP or paste a public GitHub URL; optionally sign in with GitHub for repo selection.
 2. Scan — detect stack, tables, routes, modules. Stop if the project has almost no code.
@@ -41,7 +41,7 @@ Diagrams are produced only from detected tables, models, and routes. Missing fac
 
 Laravel is the long-term fit for the founder, but this workspace has Node and no PHP/MySQL/Redis.
 
-v1 implementation:
+Implementation:
 
 - Frontend: Vite + React
 - Backend: Node.js Express
@@ -49,8 +49,8 @@ v1 implementation:
 - Jobs: in-process async (same machine)
 - Optional AI: USER_LLM_API_KEY + USER_LLM_BASE_URL (never platform keys)
 - Fallback: deterministic generator grounded in the scan
-- No payment or unlock wall is included in v1; downloads are available after a valid project pack is generated
+- Downloads are available after a valid project pack is generated
 
-## Non-goals for v1
+## Non-goals
 
 Private GitHub OAuth, college template upload, Hindi copy, monthly plans, writing the student's application code.

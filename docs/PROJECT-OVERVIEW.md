@@ -41,9 +41,9 @@ The product is meant to turn a project zip or public GitHub URL into submission 
 - keep answer quality useful for college submission
 - keep processing transparent and explainable
 
-## Current v1 focus
+## Current focus
 
-The current version focuses on:
+The project currently focuses on:
 
 - upload or GitHub input
 - repository scan
@@ -56,6 +56,10 @@ The current version focuses on:
 - project history persistence so signed-in users keep a real dashboard of recent scans and pack states
 
 The app now supports a real GitHub OAuth login flow and a repo picker that lists repositories from the signed-in account, with the rest of the project continuing to stay grounded in source evidence.
+
+## Evidence-first detection policy
+
+The project uses repository evidence to decide the stack instead of guessing. This means it prefers the strongest verified framework while suppressing generic labels when a more specific framework is clearly present, such as React Native over React, or Fastify/NestJS/Express when those libraries are actually used in source files or package configuration.
 
 ## UX and landing page polish
 

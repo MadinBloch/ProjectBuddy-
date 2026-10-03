@@ -46,9 +46,9 @@ Colleges ask for a bound report, ER / use-case / DFD diagrams, a PPT, and viva a
 
 ---
 
-## Tech stack (v1)
+## Tech stack
 
-This workspace has Node, not PHP/MySQL/Redis, so v1 is:
+This workspace has Node, not PHP/MySQL/Redis, so the active stack is:
 
 - Frontend: Vite + React (`frontend/`, port 5173)
 - Backend: Node.js Express (`backend/`, port 3001)
@@ -112,7 +112,7 @@ Zip the project folder before upload. Do not include `node_modules` or `vendor`.
 
 - `PROJECTBUDDY.md` — this file
 - `AI-CONTEXT.md` — handoff file for another AI (what each file is, rules, recent changes)
-- `docs/superpowers/specs/2026-09-30-projectbuddy-design.md` — v1 design spec
+- `docs/superpowers/specs/2026-09-30-projectbuddy-design.md` — product design spec
 
 ### Backend
 
@@ -150,7 +150,7 @@ Zip the project folder before upload. Do not include `node_modules` or `vendor`.
 
 ---
 
-## v1 does not include
+## Product does not include
 
 Private GitHub OAuth, college template upload, Hindi copy, monthly plans, live Razorpay, writing the student's application code, or a guarantee of “no plagiarism.”
 

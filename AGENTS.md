@@ -7,7 +7,7 @@ This repository is for a real student project-generation product. Keep the imple
 1. Always work from the actual repository state.
 2. Do not invent routes, tables, modules, frameworks, auth flows, or business logic that are not clearly supported by the code or the product specification.
 3. If evidence is missing, say so explicitly and keep the output honest.
-4. Keep the product aligned with the approved v1 scope in `docs/superpowers/specs/2026-09-30-projectbuddy-design.md`.
+4. Keep the product aligned with the approved product scope in `docs/superpowers/specs/2026-09-30-projectbuddy-design.md`.
 5. Do not add fake login, fake payments, or fake social proof.
 
 ## Documentation rule
@@ -41,7 +41,7 @@ Use `docs/` as the canonical place for product and implementation context:
 
 This project is not a fake SaaS landing page or a mock login product.
 
-The real v1 direction is:
+The real product direction is:
 - project upload or GitHub input
 - repository scan and evidence extraction
 - generated report and pack

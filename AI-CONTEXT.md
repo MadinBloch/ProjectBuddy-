@@ -140,7 +140,7 @@ Runtime data (generated, gitignored):
 | `AI-CONTEXT.md` | This handoff file for another AI |
 | `PROJECTBUDDY.md` | Product overview, API, flow, pack contents |
 | `README.md` | Short setup |
-| `docs/superpowers/specs/2026-09-30-projectbuddy-design.md` | Original v1 design spec |
+| `docs/superpowers/specs/2026-09-30-projectbuddy-design.md` | Product design spec |
 
 ### Frontend (`frontend/`)
 
@@ -231,7 +231,7 @@ than a template. Backend generation pipeline was not touched.
 - `backend/src/index.js` + `frontend/vite.config.js` — API port is now `API_PORT` (default 3001);
   the frontend binds `PORT` (default 5173) so the two-process preview is deterministic
 - `start.sh` — POSIX `sh`, idempotent installs, fixed `API_PORT=3001` / `PORT=5173`
-- Removed the non-functional `Login` button (v1 has no auth; no fake UI)
+- Removed the non-functional `Login` button (the app keeps auth honest and does not add fake UI)
 
 ### Landing sections now present
 
@@ -246,7 +246,7 @@ zip/GitHub generation flow.
 
 ---
 
-## What v1 does not include
+## What the product does not include
 
 Private GitHub OAuth, college template upload, Hindi copy, monthly plans, live Razorpay/UPI charge, writing the user's application code, guaranteed “no plagiarism.”
 

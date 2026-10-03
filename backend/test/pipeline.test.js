@@ -114,7 +114,30 @@ const mobileFrameworks = mobileScan.stack?.frameworks || mobileScan.intelligence
 if (!mobileFrameworks.some((f) => /React Native|Android/i.test(f))) {
   throw new Error(`Expected React Native or Android detection, got ${JSON.stringify(mobileFrameworks)}`);
 }
-console.log(`Mobile detection OK frameworks=${mobileFrameworks.join(",")}`);
+const mobileStackLabel = mobileScan.stackLabel || "";
+if (!/React Native/i.test(mobileStackLabel)) {
+  throw new Error(`Expected React Native in stack label, got: ${mobileStackLabel}`);
+}
+if (/(?:^|[^A-Za-z])React(?!\s+Native)\b/i.test(mobileStackLabel)) {
+  throw new Error(`Generic React should not appear alongside React Native in stack label: ${mobileStackLabel}`);
+}
+console.log(`Mobile detection OK frameworks=${mobileFrameworks.join(",")} stackLabel=${mobileStackLabel}`);
+
+const fastifyRoot = path.join(os.tmpdir(), `pb-fastify-${Date.now()}`);
+fs.mkdirSync(fastifyRoot, { recursive: true });
+fs.writeFileSync(path.join(fastifyRoot, "package.json"), JSON.stringify({
+  name: "fastify-service",
+  dependencies: { fastify: "^5.0.0", "@fastify/swagger": "^9.0.0" },
+  scripts: { start: "node app.js" }
+}, null, 2));
+fs.writeFileSync(path.join(fastifyRoot, "app.js"), "const fastify = require('fastify')();\nfastify.get('/health', async () => ({ ok: true }));\nfastify.listen({ port: 3000 });\n");
+const fastifyScan = scanProject(fastifyRoot);
+if (!fastifyScan.ok) throw new Error(`Fastify scan unexpectedly failed: ${fastifyScan.reason}`);
+const fastifyFrameworks = fastifyScan.stack?.frameworks || fastifyScan.intelligence?.frameworks || [];
+if (!fastifyFrameworks.some((f) => /Fastify/i.test(f))) {
+  throw new Error(`Expected Fastify detection, got ${JSON.stringify(fastifyFrameworks)}`);
+}
+console.log(`Fastify detection OK frameworks=${fastifyFrameworks.join(",")}`);
 
 console.log(reports.join("\n"));
 if (failed) {
