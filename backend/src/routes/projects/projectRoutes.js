@@ -238,6 +238,7 @@ export function registerProjectRoutes(app, deps) {
     const aliases = {
       "01-project-report.html": "01-report/project-report.html",
       "01-project-report.docx": "01-report/project-report.docx",
+      "01-project-report.pdf": "01-report/project-report.pdf",
       "06-presentation.html": "06-presentation/presentation.html",
       "06-presentation.pptx": "06-presentation/presentation.pptx",
     };
@@ -260,6 +261,7 @@ export function registerProjectRoutes(app, deps) {
       ".mmd": "text/plain",
       ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       ".pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      ".pdf": "application/pdf",
     };
     res.setHeader("Content-Type", types[ext] || "application/octet-stream");
     fs.createReadStream(abs).pipe(res);

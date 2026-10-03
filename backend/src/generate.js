@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType } from "docx";
 import pptxgen from "pptxgenjs";
+import PDFDocument from "pdfkit";
 import { buildDiagrams } from "./diagrams.js";
 import { buildContext, buildContent } from "./content.js";
 import { understandProject } from "./ai.js";
@@ -52,8 +53,10 @@ export async function generatePack({ projectDir, answers, scan, github, onProgre
   const demoHtml = mdToHtml("Demo script", content.demo, ctx);
   const reflectionHtml = mdToHtml("Reflection", content.reflection, ctx);
   const reportDocxPath = path.join(packDir, "01-report/project-report.docx");
+  const reportPdfPath = path.join(packDir, "01-report/project-report.pdf");
   const presentationPptxPath = path.join(packDir, "06-presentation/presentation.pptx");
   await writeReportDocx(reportDocxPath, ctx.title || "Project Report", content.reportMd, ctx);
+  await writeReportPdf(reportPdfPath, ctx.title || "Project Report", content.reportMd, ctx);
   await writePresentationPptx(presentationPptxPath, content.slides, ctx);
 
   progress(onProgress, "pack", 92);
@@ -72,12 +75,14 @@ export async function generatePack({ projectDir, answers, scan, github, onProgre
   });
 
   fs.copyFileSync(reportDocxPath, path.join(packDir, "01-project-report.docx"));
+  fs.copyFileSync(reportPdfPath, path.join(packDir, "01-project-report.pdf"));
   fs.copyFileSync(presentationPptxPath, path.join(packDir, "06-presentation.pptx"));
 
   const files = [
     { id: "report-html", label: "Project report (HTML)", path: "01-report/project-report.html", kind: "report", section: "report" },
     { id: "report-md", label: "Project report (Markdown)", path: "01-report/project-report.md", kind: "report", section: "report" },
     { id: "report-docx", label: "Project report (DOCX)", path: "01-report/project-report.docx", kind: "report", section: "report" },
+    { id: "report-pdf", label: "Project report (PDF)", path: "01-report/project-report.pdf", kind: "report", section: "report" },
     { id: "srs", label: "Software requirements", path: "02-srs/srs.md", kind: "doc", section: "srs" },
     { id: "viva", label: "Viva Q&A", path: "04-viva/viva-qa.md", kind: "doc", section: "viva" },
     { id: "demo", label: "Demo script", path: "05-demo/demo-script.md", kind: "doc", section: "demo" },
@@ -178,6 +183,109 @@ async function writeReportDocx(docPath, title, md, ctx) {
   fs.mkdirSync(path.dirname(docPath), { recursive: true });
   const buffer = await Packer.toBuffer(doc);
   fs.writeFileSync(docPath, buffer);
+}
+
+async function writeReportPdf(pdfPath, title, md, ctx) {
+  fs.mkdirSync(path.dirname(pdfPath), { recursive: true });
+  const doc = new PDFDocument({
+    size: "A4",
+    margin: 56,
+    info: {
+      Title: title,
+      Author: "ProjectBuddy",
+      Subject: `Project report for ${ctx.college || "college"}`,
+      Creator: "ProjectBuddy",
+    },
+  });
+  const stream = fs.createWriteStream(pdfPath);
+  doc.pipe(stream);
+
+  doc.font("Times-Bold").fontSize(22).text(title, { align: "center" });
+  doc.moveDown(0.3);
+  doc
+    .font("Helvetica-Bold")
+    .fontSize(10.5)
+    .text(`${ctx.student || "Student"} · ${ctx.course || "Course"} · ${ctx.college || "College"}`, { align: "center" });
+  doc.moveDown(1.2);
+
+  pdfBlocksFromMarkdown(doc, md);
+
+  doc.moveDown(1.5);
+  doc
+    .font("Helvetica")
+    .fontSize(9)
+    .fillColor("#444444")
+    .text(`Prepared with ProjectBuddy for ${ctx.student || "the student"} — grounded in submitted source`, { align: "center" });
+
+  doc.end();
+  await new Promise((resolve, reject) => {
+    stream.on("finish", resolve);
+    stream.on("error", reject);
+    doc.on("error", reject);
+  });
+}
+
+function pdfBlocksFromMarkdown(doc, md) {
+  const lines = String(md || "").split(/\r?\n/);
+  let paragraph = [];
+
+  const flushParagraph = () => {
+    if (!paragraph.length) return;
+    const text = paragraph.join(" ").trim();
+    paragraph = [];
+    if (!text) return;
+    doc.font("Helvetica").fontSize(10.5).fillColor("#111111");
+    pdfInlineRuns(doc, text);
+    doc.moveDown(0.5);
+  };
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (!line) {
+      flushParagraph();
+      continue;
+    }
+    const headingMatch = line.match(/^(#{1,3})\s+(.*)$/);
+    if (headingMatch) {
+      flushParagraph();
+      const level = headingMatch[1].length;
+      doc.moveDown(level === 1 ? 1 : 0.7);
+      doc
+        .font("Times-Bold")
+        .fontSize(level === 1 ? 18 : level === 2 ? 14 : 12)
+        .fillColor("#111111")
+        .text(headingMatch[2]);
+      doc.moveDown(0.4);
+      continue;
+    }
+    if (/^[-*]\s+/.test(line)) {
+      flushParagraph();
+      doc.font("Helvetica").fontSize(10.5).fillColor("#111111").text("•  ", { continued: true, indent: 10 });
+      pdfInlineRuns(doc, line.replace(/^[-*]\s+/, ""));
+      doc.moveDown(0.2);
+      continue;
+    }
+    paragraph.push(line);
+  }
+  flushParagraph();
+}
+
+function pdfInlineRuns(doc, text) {
+  const parts = String(text).split(/(\*\*[^*]+\*\*|`[^`]+`)/g).filter(Boolean);
+  if (!parts.length) {
+    doc.text("", {});
+    return;
+  }
+  parts.forEach((part, i) => {
+    const last = i === parts.length - 1;
+    if (/^\*\*.+\*\*$/.test(part)) {
+      doc.font("Helvetica-Bold").text(part.slice(2, -2), { continued: !last });
+    } else if (/^`.+`$/.test(part)) {
+      doc.font("Courier").text(part.slice(1, -1), { continued: !last });
+    } else {
+      doc.font("Helvetica").text(part, { continued: !last });
+    }
+  });
 }
 
 async function writePresentationPptx(docPath, slides, ctx) {

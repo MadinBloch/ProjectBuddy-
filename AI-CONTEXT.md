@@ -210,6 +210,17 @@ Theme toggle (light/dark) is in the navbar and persisted as `localStorage.pb-the
 
 ---
 
+## What changed (2026-10-03, report export formats)
+
+- `backend/src/generate.js` now also renders the report to **PDF** (`pdfkit`, pure JS — no browser/system PDF tool) alongside the existing DOCX (`docx`) and PPTX (`pptxgenjs`).
+- Pack gains `01-report/project-report.pdf` (+ legacy copy `01-project-report.pdf`), listed in `packFiles` and downloadable via `/api/projects/:id/file` (alias + `application/pdf` MIME added in `projectRoutes.js`).
+- UI: "Download PDF" button in the studio head; Files-tab copy updated.
+- Pack `README.txt` no longer tells students to export HTML to PDF by hand.
+- Tests assert PDF (`%PDF-`) and DOCX (`PK`) headers for every fixture.
+- Docs updated: `docs/LLM-CONTEXT.md`, `docs/SETUP.md`, `docs/ai/LLM-HANDOFF.md`, `PROJECTBUDDY.md`.
+
+---
+
 ## What changed in this UI pass (2026-10-02, design system rewrite)
 
 This commit is a **visual + copy rewrite of the frontend** to look like a designed product rather
@@ -259,7 +270,6 @@ Preview unlock currently allows download without a live payment.
 Good follow-ups:
 
 - Live Razorpay / UPI at ₹249
-- PDF/DOCX export
 - Login that actually authenticates
 - Stronger diagram rendering when evidence exists
 - Keep marketing examples generic

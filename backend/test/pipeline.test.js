@@ -59,9 +59,18 @@ for (const c of cases) {
   });
   const report = result.preview.reportHtml + JSON.stringify(result.preview.slides) + JSON.stringify(result.preview.viva);
   const expectedDocx = result.packFiles.some((f) => f.path === "01-report/project-report.docx");
+  const expectedPdf = result.packFiles.some((f) => f.path === "01-report/project-report.pdf");
   const expectedPptx = result.packFiles.some((f) => f.path === "06-presentation/presentation.pptx");
-  if (!expectedDocx || !expectedPptx) {
-    throw new Error(`Missing export artifacts in pack for ${c.dir}: docx=${expectedDocx} pptx=${expectedPptx}`);
+  if (!expectedDocx || !expectedPdf || !expectedPptx) {
+    throw new Error(`Missing export artifacts in pack for ${c.dir}: docx=${expectedDocx} pdf=${expectedPdf} pptx=${expectedPptx}`);
+  }
+  const pdfHead = fs.readFileSync(path.join(tmp, "pack", "01-report/project-report.pdf")).subarray(0, 5).toString();
+  if (pdfHead !== "%PDF-") {
+    throw new Error(`Report PDF is not a valid PDF for ${c.dir}: header=${pdfHead}`);
+  }
+  const docxHead = fs.readFileSync(path.join(tmp, "pack", "01-report/project-report.docx")).subarray(0, 2).toString();
+  if (docxHead !== "PK") {
+    throw new Error(`Report DOCX is not a valid zip for ${c.dir}: header=${docxHead}`);
   }
   const stackHit = (scan.stackLabel || "").includes(c.expectStack) || (scan.stack?.frameworks || []).includes(c.expectStack);
   const tableHit = !c.expectTable || (scan.tables || []).some((t) => t.name.includes(c.expectTable));

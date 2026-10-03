@@ -32,7 +32,7 @@ Generate documentation and deliverables grounded in the source code of the uploa
 - Auth: GitHub OAuth with session-backed user records
 - Repo listing: authenticated GitHub repo picker from the signed-in account using the `repo` OAuth scope
 - Dashboard metrics: scan counts and recent history are filtered to the signed-in GitHub user
-- Pack export: HTML, Markdown, SVG, and a ZIP. PDF is print-from-HTML in the browser. DOCX/PPTX are not generated yet.
+- Pack export: HTML, Markdown, SVG, DOCX, PDF, and PPTX inside a ZIP. The report is rendered to DOCX (`docx`) and PDF (`pdfkit`) and the slides to PPTX (`pptxgenjs`) during pack generation; the browser print-from-HTML path still works as a fallback.
 - Mobile support: React Native, Flutter, and Android app scans are recognized when evidence is present in the repo
 - Runtime model: local service and generated project artifacts
 - Local env handling: backend loads `.env` at startup via `dotenv`
