@@ -622,6 +622,7 @@ export default function App() {
                <button className="btn ghost" onClick={() => regenerate("all")} disabled={busy}>Regenerate pack</button>
                <button className="btn ghost" onClick={() => window.open(`/api/projects/${project.id}/file?path=${encodeURIComponent("01-report/project-report.html")}`, "_blank")} disabled={busy}>Print report (Save as PDF)</button>
                <button className="btn ghost" onClick={() => downloadFile("01-report/project-report.docx")} disabled={busy}>Download DOCX</button>
+               <button className="btn ghost" onClick={() => downloadFile("01-report/project-report.pdf")} disabled={busy}>Download PDF</button>
                <button className="btn primary" onClick={downloadZip} disabled={busy}>Download all (zip)</button>
             </div>
           </div>
@@ -714,7 +715,7 @@ export default function App() {
                     <button className="btn ghost sm" onClick={() => downloadFile(f.path)}>Download</button>
                   </div>
                 ))}
-                <p className="muted">HTML report can be printed from the browser as PDF. DOCX and PPTX exports are included in the pack and ready for download.</p>
+                <p className="muted">DOCX, PDF, and PPTX exports are generated with the pack and ready for download. The HTML report can also be printed from the browser.</p>
                 <button className="btn primary" onClick={downloadZip}>Download all as zip</button>
               </div>
             )}

@@ -340,9 +340,9 @@ function buildReadme(ctx) {
   return `ProjectBuddy pack for ${ctx.title}
 
 How to submit
-1. Export 01-project-report.html to PDF if your college wants PDF.
+1. Submit 01-project-report.pdf (or .docx) as prepared; both are generated from your source evidence.
 2. Include only diagrams in 03-diagrams that match your code.
-3. Use 06-presentation.html for internal/external presentation.
+3. Use 06-presentation.pptx (or .html) for internal/external presentation.
 4. Practice 04-viva-qa.md. Code-tagged answers can be checked against files.
 5. Follow 05-demo-script.md. Do not demo missing features.
 

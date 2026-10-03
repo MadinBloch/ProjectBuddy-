@@ -33,12 +33,12 @@ Colleges ask for a bound report, ER / use-case / DFD diagrams, a PPT, and viva a
 
 | File | What it is |
 |---|---|
-| `01-project-report.html` / `.md` | Project report |
+| `01-project-report.html` / `.md` / `.docx` / `.pdf` | Project report |
 | `02-srs.md` | Software requirements |
 | `03-diagrams/*.svg` | Use case, ER, DFD 0, DFD 1, architecture, sequence, activity, deployment |
 | `04-viva-qa.md` | Viva questions from detected tables and routes |
 | `05-demo-script.md` | 3-minute demo script |
-| `06-presentation.html` / `.md` | 12 slides |
+| `06-presentation.html` / `.md` / `.pptx` | 12 slides |
 | `07-learning-reflection.md` | Learning reflection |
 | `08-suggestions.md` | Gaps (tests, README, secrets) |
 | `README.txt` | How to submit |
@@ -160,4 +160,4 @@ Private GitHub OAuth, college template upload, Hindi copy, monthly plans, live R
 
 Students already pay for reports. The product is cheap (Rs 249), tied to a real repo, and matches YouTube / LinkedIn teaching (Laravel, Docker, student workshops). Grow by posting “zip in, pack out” demos, then charge.
 
-Next product steps if you continue: live Razorpay, PDF/DOCX export, college template upload, and a Laravel API if you want to own the backend in PHP.
+Next product steps if you continue: live Razorpay, college template upload, and a Laravel API if you want to own the backend in PHP.
