@@ -1,1 +1,3612 @@
-{}
+{
+  "pb_musaclka47mryg": {
+    "id": "pb_musaclka47mryg",
+    "status": "rejected",
+    "github": "https://github.com/MadinBloch/MyFirstRepo",
+    "dir": "/data/projects/pb_musaclka47mryg",
+    "createdAt": "2026-10-03T11:05:17.098Z",
+    "updatedAt": "2026-10-03T11:05:21.555Z",
+    "error": "This folder does not look like a software project. Add source code, then try again.",
+    "scan": {
+      "ok": false,
+      "reason": "This folder does not look like a software project. Add source code, then try again.",
+      "fileCount": 1
+    }
+  },
+  "pb_musad2lfbotbjy": {
+    "id": "pb_musad2lfbotbjy",
+    "status": "scanned",
+    "github": "https://github.com/MadinBloch/ProjectBuddy-",
+    "dir": "/data/projects/pb_musad2lfbotbjy",
+    "createdAt": "2026-10-03T11:05:39.171Z",
+    "updatedAt": "2026-10-03T11:05:41.608Z",
+    "scan": {
+      "ok": true,
+      "fileCount": 84,
+      "scannedFiles": 81,
+      "stack": {
+        "language": "JavaScript",
+        "frameworks": [
+          "React Native",
+          "Express",
+          "Flutter",
+          "React",
+          "Laravel",
+          "Django",
+          "Spring Boot"
+        ],
+        "database": [
+          "MySQL",
+          "PostgreSQL",
+          "MongoDB",
+          "SQLite"
+        ],
+        "tools": [
+          "Docker"
+        ]
+      },
+      "languages": [
+        "JavaScript",
+        "Python",
+        "PHP",
+        "Java"
+      ],
+      "tables": [
+        {
+          "name": "user",
+          "columns": [
+            {
+              "name": "id",
+              "type": "String"
+            },
+            {
+              "name": "email",
+              "type": "String"
+            },
+            {
+              "name": "provider",
+              "type": "String"
+            },
+            {
+              "name": "providerUserId",
+              "type": "String"
+            },
+            {
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "name": "avatarUrl",
+              "type": "String"
+            },
+            {
+              "name": "projects",
+              "type": "Project"
+            },
+            {
+              "name": "createdAt",
+              "type": "DateTime"
+            },
+            {
+              "name": "updatedAt",
+              "type": "DateTime"
+            },
+            {
+              "name": "userId",
+              "type": "String"
+            },
+            {
+              "name": "user",
+              "type": "User"
+            },
+            {
+              "name": "title",
+              "type": "String"
+            },
+            {
+              "name": "githubUrl",
+              "type": "String"
+            },
+            {
+              "name": "status",
+              "type": "String"
+            },
+            {
+              "name": "sourceType",
+              "type": "String"
+            },
+            {
+              "name": "projectDir",
+              "type": "String"
+            },
+            {
+              "name": "metadata",
+              "type": "String"
+            }
+          ],
+          "evidence": [
+            "backend/prisma/schema.prisma"
+          ]
+        },
+        {
+          "name": "project",
+          "columns": [
+            {
+              "name": "id",
+              "type": "String"
+            },
+            {
+              "name": "userId",
+              "type": "String"
+            },
+            {
+              "name": "user",
+              "type": "User"
+            },
+            {
+              "name": "title",
+              "type": "String"
+            },
+            {
+              "name": "githubUrl",
+              "type": "String"
+            },
+            {
+              "name": "status",
+              "type": "String"
+            },
+            {
+              "name": "sourceType",
+              "type": "String"
+            },
+            {
+              "name": "projectDir",
+              "type": "String"
+            },
+            {
+              "name": "metadata",
+              "type": "String"
+            },
+            {
+              "name": "createdAt",
+              "type": "DateTime"
+            },
+            {
+              "name": "updatedAt",
+              "type": "DateTime"
+            }
+          ],
+          "evidence": [
+            "backend/prisma/schema.prisma"
+          ]
+        },
+        {
+          "name": "student",
+          "columns": [
+            {
+              "name": "name",
+              "type": "CharField"
+            },
+            {
+              "name": "roll",
+              "type": "CharField"
+            },
+            {
+              "name": "title",
+              "type": "CharField"
+            },
+            {
+              "name": "marks",
+              "type": "IntegerField"
+            },
+            {
+              "name": "student",
+              "type": "ForeignKey"
+            },
+            {
+              "name": "paper",
+              "type": "ForeignKey"
+            },
+            {
+              "name": "score",
+              "type": "IntegerField"
+            }
+          ],
+          "evidence": [
+            "backend/test/fixtures/django-exam/exam/models.py"
+          ]
+        },
+        {
+          "name": "exam_paper",
+          "columns": [
+            {
+              "name": "title",
+              "type": "CharField"
+            },
+            {
+              "name": "marks",
+              "type": "IntegerField"
+            },
+            {
+              "name": "student",
+              "type": "ForeignKey"
+            },
+            {
+              "name": "paper",
+              "type": "ForeignKey"
+            },
+            {
+              "name": "score",
+              "type": "IntegerField"
+            }
+          ],
+          "evidence": [
+            "backend/test/fixtures/django-exam/exam/models.py"
+          ]
+        },
+        {
+          "name": "attempt",
+          "columns": [
+            {
+              "name": "student",
+              "type": "ForeignKey"
+            },
+            {
+              "name": "paper",
+              "type": "ForeignKey"
+            },
+            {
+              "name": "score",
+              "type": "IntegerField"
+            }
+          ],
+          "evidence": [
+            "backend/test/fixtures/django-exam/exam/models.py"
+          ]
+        },
+        {
+          "name": "product",
+          "columns": [],
+          "evidence": [
+            "backend/test/fixtures/express-shop/server.js"
+          ]
+        },
+        {
+          "name": "order",
+          "columns": [],
+          "evidence": [
+            "backend/test/fixtures/express-shop/server.js"
+          ]
+        },
+        {
+          "name": "books",
+          "columns": [
+            {
+              "name": "title",
+              "type": "string"
+            },
+            {
+              "name": "isbn",
+              "type": "string"
+            },
+            {
+              "name": "author_id",
+              "type": "foreignId"
+            }
+          ],
+          "evidence": [
+            "backend/test/fixtures/laravel-library/database/migrations/2024_01_01_create_books_table.php"
+          ]
+        },
+        {
+          "name": "members",
+          "columns": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "email",
+              "type": "string"
+            }
+          ],
+          "evidence": [
+            "backend/test/fixtures/laravel-library/database/migrations/2024_01_01_create_books_table.php"
+          ]
+        },
+        {
+          "name": "issues",
+          "columns": [
+            {
+              "name": "book_id",
+              "type": "foreignId"
+            },
+            {
+              "name": "member_id",
+              "type": "foreignId"
+            },
+            {
+              "name": "issued_on",
+              "type": "date"
+            }
+          ],
+          "evidence": [
+            "backend/test/fixtures/laravel-library/database/migrations/2024_01_01_create_books_table.php"
+          ]
+        },
+        {
+          "name": "appointments",
+          "columns": [],
+          "evidence": [
+            "backend/test/fixtures/spring-clinic/src/main/java/edu/campus/clinic/Appointment.java"
+          ]
+        },
+        {
+          "name": "patients",
+          "columns": [],
+          "evidence": [
+            "backend/test/fixtures/spring-clinic/src/main/java/edu/campus/clinic/Patient.java"
+          ]
+        }
+      ],
+      "models": [
+        {
+          "name": "Book",
+          "file": "backend/test/fixtures/laravel-library/app/Models/Book.php"
+        }
+      ],
+      "routes": [
+        {
+          "method": "GET",
+          "path": "*",
+          "file": "AI-CONTEXT.md"
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "file": "backend/src/index.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/db-status",
+          "file": "backend/src/index.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/auth/github",
+          "file": "backend/src/routes/auth/authRoutes.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/auth/github/callback",
+          "file": "backend/src/routes/auth/authRoutes.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/auth/session",
+          "file": "backend/src/routes/auth/authRoutes.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/auth/user/repos",
+          "file": "backend/src/routes/auth/authRoutes.js"
+        },
+        {
+          "method": "POST",
+          "path": "/api/auth/logout",
+          "file": "backend/src/routes/auth/authRoutes.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/projects",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "POST",
+          "path": "/api/projects",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "POST",
+          "path": "/api/projects/upload",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/projects/:id",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "POST",
+          "path": "/api/projects/:id/generate",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "POST",
+          "path": "/api/projects/:id/section",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "POST",
+          "path": "/api/projects/:id/regenerate",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/projects/:id/download",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/projects/:id/file",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "GET",
+          "path": "/login/",
+          "file": "backend/test/fixtures/django-exam/exam/urls.py"
+        },
+        {
+          "method": "GET",
+          "path": "/students/",
+          "file": "backend/test/fixtures/django-exam/exam/urls.py"
+        },
+        {
+          "method": "GET",
+          "path": "/papers/",
+          "file": "backend/test/fixtures/django-exam/exam/urls.py"
+        },
+        {
+          "method": "GET",
+          "path": "/attempts/",
+          "file": "backend/test/fixtures/django-exam/exam/urls.py"
+        },
+        {
+          "method": "POST",
+          "path": "/api/login",
+          "file": "backend/test/fixtures/express-shop/server.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/products",
+          "file": "backend/test/fixtures/express-shop/server.js"
+        },
+        {
+          "method": "POST",
+          "path": "/api/products",
+          "file": "backend/test/fixtures/express-shop/server.js"
+        },
+        {
+          "method": "POST",
+          "path": "/api/orders",
+          "file": "backend/test/fixtures/express-shop/server.js"
+        },
+        {
+          "method": "GET",
+          "path": "/",
+          "file": "backend/test/fixtures/flask-blog/app.py"
+        },
+        {
+          "method": "GET",
+          "path": "/posts",
+          "file": "backend/test/fixtures/flask-blog/app.py"
+        },
+        {
+          "method": "POST",
+          "path": "/posts",
+          "file": "backend/test/fixtures/flask-blog/app.py"
+        },
+        {
+          "method": "DELETE",
+          "path": "/posts/<pid>",
+          "file": "backend/test/fixtures/flask-blog/app.py"
+        },
+        {
+          "method": "GET",
+          "path": "/login",
+          "file": "backend/test/fixtures/laravel-library/routes/web.php"
+        },
+        {
+          "method": "POST",
+          "path": "/login",
+          "file": "backend/test/fixtures/laravel-library/routes/web.php"
+        },
+        {
+          "method": "GET",
+          "path": "/books",
+          "file": "backend/test/fixtures/laravel-library/routes/web.php"
+        },
+        {
+          "method": "POST",
+          "path": "/books",
+          "file": "backend/test/fixtures/laravel-library/routes/web.php"
+        },
+        {
+          "method": "GET",
+          "path": "/members",
+          "file": "backend/test/fixtures/laravel-library/routes/web.php"
+        },
+        {
+          "method": "POST",
+          "path": "/issues",
+          "file": "backend/test/fixtures/laravel-library/routes/web.php"
+        },
+        {
+          "method": "GET",
+          "path": "/patients",
+          "file": "backend/test/fixtures/spring-clinic/src/main/java/edu/campus/clinic/ClinicController.java"
+        },
+        {
+          "method": "POST",
+          "path": "/appointments",
+          "file": "backend/test/fixtures/spring-clinic/src/main/java/edu/campus/clinic/ClinicController.java"
+        },
+        {
+          "method": "GET",
+          "path": "/doctors",
+          "file": "backend/test/fixtures/spring-clinic/src/main/java/edu/campus/clinic/ClinicController.java"
+        }
+      ],
+      "modules": [
+        "Book module",
+        "User module",
+        "Project module",
+        "Student module",
+        "Exam Paper module",
+        "Attempt module",
+        "Product module",
+        "Order module",
+        "Member module",
+        "Issue module"
+      ],
+      "actors": [
+        "User",
+        "Admin",
+        "Teacher",
+        "Student",
+        "Staff",
+        "Doctor",
+        "Patient",
+        "Authenticated user"
+      ],
+      "hasDocker": true,
+      "hasTests": true,
+      "hasReadme": true,
+      "topFiles": [
+        ".env.example",
+        "AGENTS.md",
+        "AI-CONTEXT.md",
+        "PROJECTBUDDY.md",
+        "README.md",
+        "backend/.env.example",
+        "backend/Dockerfile",
+        "backend/data/store.json",
+        "backend/package-lock.json",
+        "backend/package.json",
+        "backend/prisma/data/projectbuddy.db",
+        "backend/prisma/schema.prisma",
+        "backend/src/ai.js",
+        "backend/src/config.js",
+        "backend/src/content.js",
+        "backend/src/db/prisma.js",
+        "backend/src/diagrams.js",
+        "backend/src/generate.js",
+        "backend/src/index.js",
+        "backend/src/intelligence.js",
+        "backend/src/modules/content/index.js",
+        "backend/src/modules/diagrams/index.js",
+        "backend/src/modules/generation/index.js",
+        "backend/src/modules/intelligence/index.js",
+        "backend/src/modules/scan/index.js",
+        "backend/src/modules/validation/index.js",
+        "backend/src/routes/auth/authRoutes.js",
+        "backend/src/routes/health.js",
+        "backend/src/routes/projects/projectRoutes.js",
+        "backend/src/scan.js",
+        "backend/src/services/authService.js",
+        "backend/src/services/projectStore.js",
+        "backend/src/util.js",
+        "backend/src/validator.js",
+        "backend/test/auth.test.js",
+        "backend/test/fixtures/django-exam/exam/models.py",
+        "backend/test/fixtures/django-exam/exam/urls.py",
+        "backend/test/fixtures/django-exam/exam/views.py",
+        "backend/test/fixtures/django-exam/manage.py",
+        "backend/test/fixtures/django-exam/requirements.txt"
+      ],
+      "intelligence": {
+        "ok": true,
+        "projectName": "Projectbuddy Api",
+        "detectedLanguages": [
+          "JavaScript",
+          "Python",
+          "PHP",
+          "Java"
+        ],
+        "frameworks": [
+          "React Native",
+          "Express",
+          "Flutter",
+          "React",
+          "Laravel",
+          "Django",
+          "Spring Boot"
+        ],
+        "libraries": [
+          "Prisma",
+          "jsonwebtoken",
+          "mongoose"
+        ],
+        "frontend": [
+          "React Native",
+          "Flutter",
+          "React"
+        ],
+        "backend": [
+          "Express",
+          "Laravel",
+          "Django",
+          "Spring Boot"
+        ],
+        "databases": [
+          "MySQL",
+          "PostgreSQL",
+          "MongoDB",
+          "SQLite"
+        ],
+        "databaseTables": [
+          {
+            "name": "user",
+            "columns": [
+              {
+                "name": "id",
+                "type": "String"
+              },
+              {
+                "name": "email",
+                "type": "String"
+              },
+              {
+                "name": "provider",
+                "type": "String"
+              },
+              {
+                "name": "providerUserId",
+                "type": "String"
+              },
+              {
+                "name": "name",
+                "type": "String"
+              },
+              {
+                "name": "avatarUrl",
+                "type": "String"
+              },
+              {
+                "name": "projects",
+                "type": "Project"
+              },
+              {
+                "name": "createdAt",
+                "type": "DateTime"
+              },
+              {
+                "name": "updatedAt",
+                "type": "DateTime"
+              },
+              {
+                "name": "userId",
+                "type": "String"
+              },
+              {
+                "name": "user",
+                "type": "User"
+              },
+              {
+                "name": "title",
+                "type": "String"
+              },
+              {
+                "name": "githubUrl",
+                "type": "String"
+              },
+              {
+                "name": "status",
+                "type": "String"
+              },
+              {
+                "name": "sourceType",
+                "type": "String"
+              },
+              {
+                "name": "projectDir",
+                "type": "String"
+              },
+              {
+                "name": "metadata",
+                "type": "String"
+              }
+            ],
+            "evidence": [
+              "backend/prisma/schema.prisma"
+            ]
+          },
+          {
+            "name": "project",
+            "columns": [
+              {
+                "name": "id",
+                "type": "String"
+              },
+              {
+                "name": "userId",
+                "type": "String"
+              },
+              {
+                "name": "user",
+                "type": "User"
+              },
+              {
+                "name": "title",
+                "type": "String"
+              },
+              {
+                "name": "githubUrl",
+                "type": "String"
+              },
+              {
+                "name": "status",
+                "type": "String"
+              },
+              {
+                "name": "sourceType",
+                "type": "String"
+              },
+              {
+                "name": "projectDir",
+                "type": "String"
+              },
+              {
+                "name": "metadata",
+                "type": "String"
+              },
+              {
+                "name": "createdAt",
+                "type": "DateTime"
+              },
+              {
+                "name": "updatedAt",
+                "type": "DateTime"
+              }
+            ],
+            "evidence": [
+              "backend/prisma/schema.prisma"
+            ]
+          },
+          {
+            "name": "student",
+            "columns": [
+              {
+                "name": "name",
+                "type": "CharField"
+              },
+              {
+                "name": "roll",
+                "type": "CharField"
+              },
+              {
+                "name": "title",
+                "type": "CharField"
+              },
+              {
+                "name": "marks",
+                "type": "IntegerField"
+              },
+              {
+                "name": "student",
+                "type": "ForeignKey"
+              },
+              {
+                "name": "paper",
+                "type": "ForeignKey"
+              },
+              {
+                "name": "score",
+                "type": "IntegerField"
+              }
+            ],
+            "evidence": [
+              "backend/test/fixtures/django-exam/exam/models.py"
+            ]
+          },
+          {
+            "name": "exam_paper",
+            "columns": [
+              {
+                "name": "title",
+                "type": "CharField"
+              },
+              {
+                "name": "marks",
+                "type": "IntegerField"
+              },
+              {
+                "name": "student",
+                "type": "ForeignKey"
+              },
+              {
+                "name": "paper",
+                "type": "ForeignKey"
+              },
+              {
+                "name": "score",
+                "type": "IntegerField"
+              }
+            ],
+            "evidence": [
+              "backend/test/fixtures/django-exam/exam/models.py"
+            ]
+          },
+          {
+            "name": "attempt",
+            "columns": [
+              {
+                "name": "student",
+                "type": "ForeignKey"
+              },
+              {
+                "name": "paper",
+                "type": "ForeignKey"
+              },
+              {
+                "name": "score",
+                "type": "IntegerField"
+              }
+            ],
+            "evidence": [
+              "backend/test/fixtures/django-exam/exam/models.py"
+            ]
+          },
+          {
+            "name": "product",
+            "columns": [],
+            "evidence": [
+              "backend/test/fixtures/express-shop/server.js"
+            ]
+          },
+          {
+            "name": "order",
+            "columns": [],
+            "evidence": [
+              "backend/test/fixtures/express-shop/server.js"
+            ]
+          },
+          {
+            "name": "books",
+            "columns": [
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "name": "isbn",
+                "type": "string"
+              },
+              {
+                "name": "author_id",
+                "type": "foreignId"
+              }
+            ],
+            "evidence": [
+              "backend/test/fixtures/laravel-library/database/migrations/2024_01_01_create_books_table.php"
+            ]
+          },
+          {
+            "name": "members",
+            "columns": [
+              {
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "name": "email",
+                "type": "string"
+              }
+            ],
+            "evidence": [
+              "backend/test/fixtures/laravel-library/database/migrations/2024_01_01_create_books_table.php"
+            ]
+          },
+          {
+            "name": "issues",
+            "columns": [
+              {
+                "name": "book_id",
+                "type": "foreignId"
+              },
+              {
+                "name": "member_id",
+                "type": "foreignId"
+              },
+              {
+                "name": "issued_on",
+                "type": "date"
+              }
+            ],
+            "evidence": [
+              "backend/test/fixtures/laravel-library/database/migrations/2024_01_01_create_books_table.php"
+            ]
+          },
+          {
+            "name": "appointments",
+            "columns": [],
+            "evidence": [
+              "backend/test/fixtures/spring-clinic/src/main/java/edu/campus/clinic/Appointment.java"
+            ]
+          },
+          {
+            "name": "patients",
+            "columns": [],
+            "evidence": [
+              "backend/test/fixtures/spring-clinic/src/main/java/edu/campus/clinic/Patient.java"
+            ]
+          }
+        ],
+        "databaseColumns": [
+          {
+            "table": "user",
+            "name": "id",
+            "type": "String"
+          },
+          {
+            "table": "user",
+            "name": "email",
+            "type": "String"
+          },
+          {
+            "table": "user",
+            "name": "provider",
+            "type": "String"
+          },
+          {
+            "table": "user",
+            "name": "providerUserId",
+            "type": "String"
+          },
+          {
+            "table": "user",
+            "name": "name",
+            "type": "String"
+          },
+          {
+            "table": "user",
+            "name": "avatarUrl",
+            "type": "String"
+          },
+          {
+            "table": "user",
+            "name": "projects",
+            "type": "Project"
+          },
+          {
+            "table": "user",
+            "name": "createdAt",
+            "type": "DateTime"
+          },
+          {
+            "table": "user",
+            "name": "updatedAt",
+            "type": "DateTime"
+          },
+          {
+            "table": "user",
+            "name": "userId",
+            "type": "String"
+          },
+          {
+            "table": "user",
+            "name": "user",
+            "type": "User"
+          },
+          {
+            "table": "user",
+            "name": "title",
+            "type": "String"
+          },
+          {
+            "table": "user",
+            "name": "githubUrl",
+            "type": "String"
+          },
+          {
+            "table": "user",
+            "name": "status",
+            "type": "String"
+          },
+          {
+            "table": "user",
+            "name": "sourceType",
+            "type": "String"
+          },
+          {
+            "table": "user",
+            "name": "projectDir",
+            "type": "String"
+          },
+          {
+            "table": "user",
+            "name": "metadata",
+            "type": "String"
+          },
+          {
+            "table": "project",
+            "name": "id",
+            "type": "String"
+          },
+          {
+            "table": "project",
+            "name": "userId",
+            "type": "String"
+          },
+          {
+            "table": "project",
+            "name": "user",
+            "type": "User"
+          },
+          {
+            "table": "project",
+            "name": "title",
+            "type": "String"
+          },
+          {
+            "table": "project",
+            "name": "githubUrl",
+            "type": "String"
+          },
+          {
+            "table": "project",
+            "name": "status",
+            "type": "String"
+          },
+          {
+            "table": "project",
+            "name": "sourceType",
+            "type": "String"
+          },
+          {
+            "table": "project",
+            "name": "projectDir",
+            "type": "String"
+          },
+          {
+            "table": "project",
+            "name": "metadata",
+            "type": "String"
+          },
+          {
+            "table": "project",
+            "name": "createdAt",
+            "type": "DateTime"
+          },
+          {
+            "table": "project",
+            "name": "updatedAt",
+            "type": "DateTime"
+          },
+          {
+            "table": "student",
+            "name": "name",
+            "type": "CharField"
+          },
+          {
+            "table": "student",
+            "name": "roll",
+            "type": "CharField"
+          },
+          {
+            "table": "student",
+            "name": "title",
+            "type": "CharField"
+          },
+          {
+            "table": "student",
+            "name": "marks",
+            "type": "IntegerField"
+          },
+          {
+            "table": "student",
+            "name": "student",
+            "type": "ForeignKey"
+          },
+          {
+            "table": "student",
+            "name": "paper",
+            "type": "ForeignKey"
+          },
+          {
+            "table": "student",
+            "name": "score",
+            "type": "IntegerField"
+          },
+          {
+            "table": "exam_paper",
+            "name": "title",
+            "type": "CharField"
+          },
+          {
+            "table": "exam_paper",
+            "name": "marks",
+            "type": "IntegerField"
+          },
+          {
+            "table": "exam_paper",
+            "name": "student",
+            "type": "ForeignKey"
+          },
+          {
+            "table": "exam_paper",
+            "name": "paper",
+            "type": "ForeignKey"
+          },
+          {
+            "table": "exam_paper",
+            "name": "score",
+            "type": "IntegerField"
+          },
+          {
+            "table": "attempt",
+            "name": "student",
+            "type": "ForeignKey"
+          },
+          {
+            "table": "attempt",
+            "name": "paper",
+            "type": "ForeignKey"
+          },
+          {
+            "table": "attempt",
+            "name": "score",
+            "type": "IntegerField"
+          },
+          {
+            "table": "books",
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "table": "books",
+            "name": "isbn",
+            "type": "string"
+          },
+          {
+            "table": "books",
+            "name": "author_id",
+            "type": "foreignId"
+          },
+          {
+            "table": "members",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "table": "members",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "table": "issues",
+            "name": "book_id",
+            "type": "foreignId"
+          },
+          {
+            "table": "issues",
+            "name": "member_id",
+            "type": "foreignId"
+          },
+          {
+            "table": "issues",
+            "name": "issued_on",
+            "type": "date"
+          }
+        ],
+        "relationships": [
+          {
+            "from": "issues",
+            "to": "books",
+            "type": "belongsTo",
+            "via": "book_id"
+          },
+          {
+            "from": "issues",
+            "to": "members",
+            "type": "belongsTo",
+            "via": "member_id"
+          }
+        ],
+        "models": [
+          {
+            "name": "Book",
+            "file": "backend/test/fixtures/laravel-library/app/Models/Book.php"
+          }
+        ],
+        "controllers": [
+          {
+            "name": "ClinicController",
+            "file": "backend/test/fixtures/spring-clinic/src/main/java/edu/campus/clinic/ClinicController.java"
+          }
+        ],
+        "routes": [
+          {
+            "method": "GET",
+            "path": "*",
+            "file": "AI-CONTEXT.md"
+          },
+          {
+            "method": "GET",
+            "path": "/api/health",
+            "file": "backend/src/index.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/db-status",
+            "file": "backend/src/index.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/auth/github",
+            "file": "backend/src/routes/auth/authRoutes.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/auth/github/callback",
+            "file": "backend/src/routes/auth/authRoutes.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/auth/session",
+            "file": "backend/src/routes/auth/authRoutes.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/auth/user/repos",
+            "file": "backend/src/routes/auth/authRoutes.js"
+          },
+          {
+            "method": "POST",
+            "path": "/api/auth/logout",
+            "file": "backend/src/routes/auth/authRoutes.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/projects",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "POST",
+            "path": "/api/projects",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "POST",
+            "path": "/api/projects/upload",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/projects/:id",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "POST",
+            "path": "/api/projects/:id/generate",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "POST",
+            "path": "/api/projects/:id/section",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "POST",
+            "path": "/api/projects/:id/regenerate",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/projects/:id/download",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/projects/:id/file",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "GET",
+            "path": "/login/",
+            "file": "backend/test/fixtures/django-exam/exam/urls.py"
+          },
+          {
+            "method": "GET",
+            "path": "/students/",
+            "file": "backend/test/fixtures/django-exam/exam/urls.py"
+          },
+          {
+            "method": "GET",
+            "path": "/papers/",
+            "file": "backend/test/fixtures/django-exam/exam/urls.py"
+          },
+          {
+            "method": "GET",
+            "path": "/attempts/",
+            "file": "backend/test/fixtures/django-exam/exam/urls.py"
+          },
+          {
+            "method": "POST",
+            "path": "/api/login",
+            "file": "backend/test/fixtures/express-shop/server.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/products",
+            "file": "backend/test/fixtures/express-shop/server.js"
+          },
+          {
+            "method": "POST",
+            "path": "/api/products",
+            "file": "backend/test/fixtures/express-shop/server.js"
+          },
+          {
+            "method": "POST",
+            "path": "/api/orders",
+            "file": "backend/test/fixtures/express-shop/server.js"
+          },
+          {
+            "method": "GET",
+            "path": "/",
+            "file": "backend/test/fixtures/flask-blog/app.py"
+          },
+          {
+            "method": "GET",
+            "path": "/posts",
+            "file": "backend/test/fixtures/flask-blog/app.py"
+          },
+          {
+            "method": "POST",
+            "path": "/posts",
+            "file": "backend/test/fixtures/flask-blog/app.py"
+          },
+          {
+            "method": "DELETE",
+            "path": "/posts/<pid>",
+            "file": "backend/test/fixtures/flask-blog/app.py"
+          },
+          {
+            "method": "GET",
+            "path": "/login",
+            "file": "backend/test/fixtures/laravel-library/routes/web.php"
+          },
+          {
+            "method": "POST",
+            "path": "/login",
+            "file": "backend/test/fixtures/laravel-library/routes/web.php"
+          },
+          {
+            "method": "GET",
+            "path": "/books",
+            "file": "backend/test/fixtures/laravel-library/routes/web.php"
+          },
+          {
+            "method": "POST",
+            "path": "/books",
+            "file": "backend/test/fixtures/laravel-library/routes/web.php"
+          },
+          {
+            "method": "GET",
+            "path": "/members",
+            "file": "backend/test/fixtures/laravel-library/routes/web.php"
+          },
+          {
+            "method": "POST",
+            "path": "/issues",
+            "file": "backend/test/fixtures/laravel-library/routes/web.php"
+          },
+          {
+            "method": "GET",
+            "path": "/patients",
+            "file": "backend/test/fixtures/spring-clinic/src/main/java/edu/campus/clinic/ClinicController.java"
+          },
+          {
+            "method": "POST",
+            "path": "/appointments",
+            "file": "backend/test/fixtures/spring-clinic/src/main/java/edu/campus/clinic/ClinicController.java"
+          },
+          {
+            "method": "GET",
+            "path": "/doctors",
+            "file": "backend/test/fixtures/spring-clinic/src/main/java/edu/campus/clinic/ClinicController.java"
+          }
+        ],
+        "apiEndpoints": [
+          {
+            "method": "GET",
+            "path": "/api/health",
+            "file": "backend/src/index.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/db-status",
+            "file": "backend/src/index.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/auth/github",
+            "file": "backend/src/routes/auth/authRoutes.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/auth/github/callback",
+            "file": "backend/src/routes/auth/authRoutes.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/auth/session",
+            "file": "backend/src/routes/auth/authRoutes.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/auth/user/repos",
+            "file": "backend/src/routes/auth/authRoutes.js"
+          },
+          {
+            "method": "POST",
+            "path": "/api/auth/logout",
+            "file": "backend/src/routes/auth/authRoutes.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/projects",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "POST",
+            "path": "/api/projects",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "POST",
+            "path": "/api/projects/upload",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/projects/:id",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "POST",
+            "path": "/api/projects/:id/generate",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "POST",
+            "path": "/api/projects/:id/section",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "POST",
+            "path": "/api/projects/:id/regenerate",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/projects/:id/download",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/projects/:id/file",
+            "file": "backend/src/routes/projects/projectRoutes.js"
+          },
+          {
+            "method": "POST",
+            "path": "/api/login",
+            "file": "backend/test/fixtures/express-shop/server.js"
+          },
+          {
+            "method": "GET",
+            "path": "/api/products",
+            "file": "backend/test/fixtures/express-shop/server.js"
+          },
+          {
+            "method": "POST",
+            "path": "/api/products",
+            "file": "backend/test/fixtures/express-shop/server.js"
+          },
+          {
+            "method": "POST",
+            "path": "/api/orders",
+            "file": "backend/test/fixtures/express-shop/server.js"
+          }
+        ],
+        "authentication": {
+          "method": "JWT",
+          "evidence": [
+            "backend/src/intelligence.js",
+            "package.json -> jsonwebtoken",
+            "backend/src/routes/auth/authRoutes.js (GET /api/auth/github)"
+          ],
+          "confidence": 0.9,
+          "loginRoute": {
+            "method": "GET",
+            "path": "/api/auth/github",
+            "file": "backend/src/routes/auth/authRoutes.js"
+          }
+        },
+        "authorization": [
+          "admin",
+          "teacher",
+          "student",
+          "user",
+          "staff",
+          "doctor",
+          "patient"
+        ],
+        "modules": [
+          {
+            "name": "Book module",
+            "evidence": [
+              "backend/test/fixtures/laravel-library/app/Models/Book.php"
+            ]
+          },
+          {
+            "name": "User module",
+            "evidence": [
+              "backend/prisma/schema.prisma"
+            ]
+          },
+          {
+            "name": "Project module",
+            "evidence": [
+              "backend/prisma/schema.prisma"
+            ]
+          },
+          {
+            "name": "Student module",
+            "evidence": [
+              "backend/test/fixtures/django-exam/exam/models.py"
+            ]
+          },
+          {
+            "name": "Exam Paper module",
+            "evidence": [
+              "backend/test/fixtures/django-exam/exam/models.py"
+            ]
+          },
+          {
+            "name": "Attempt module",
+            "evidence": [
+              "backend/test/fixtures/django-exam/exam/models.py"
+            ]
+          },
+          {
+            "name": "Product module",
+            "evidence": [
+              "backend/test/fixtures/express-shop/server.js"
+            ]
+          },
+          {
+            "name": "Order module",
+            "evidence": [
+              "backend/test/fixtures/express-shop/server.js"
+            ]
+          },
+          {
+            "name": "Member module",
+            "evidence": [
+              "backend/test/fixtures/laravel-library/database/migrations/2024_01_01_create_books_table.php"
+            ]
+          },
+          {
+            "name": "Issue module",
+            "evidence": [
+              "backend/test/fixtures/laravel-library/database/migrations/2024_01_01_create_books_table.php"
+            ]
+          }
+        ],
+        "features": [
+          {
+            "name": "Authentication (JWT)",
+            "evidence": [
+              "backend/src/intelligence.js",
+              "package.json -> jsonwebtoken",
+              "backend/src/routes/auth/authRoutes.js (GET /api/auth/github)"
+            ]
+          },
+          {
+            "name": "Create records",
+            "evidence": [
+              "backend/src/routes/auth/authRoutes.js"
+            ]
+          },
+          {
+            "name": "Delete records",
+            "evidence": [
+              "backend/test/fixtures/flask-blog/app.py"
+            ]
+          },
+          {
+            "name": "User interface screens",
+            "evidence": [
+              "/"
+            ]
+          },
+          {
+            "name": "Persistent data storage",
+            "evidence": [
+              "backend/prisma/schema.prisma"
+            ]
+          },
+          {
+            "name": "Book module",
+            "evidence": [
+              "backend/test/fixtures/laravel-library/app/Models/Book.php"
+            ]
+          },
+          {
+            "name": "User module",
+            "evidence": [
+              "backend/prisma/schema.prisma"
+            ]
+          },
+          {
+            "name": "Project module",
+            "evidence": [
+              "backend/prisma/schema.prisma"
+            ]
+          },
+          {
+            "name": "Student module",
+            "evidence": [
+              "backend/test/fixtures/django-exam/exam/models.py"
+            ]
+          },
+          {
+            "name": "Exam Paper module",
+            "evidence": [
+              "backend/test/fixtures/django-exam/exam/models.py"
+            ]
+          },
+          {
+            "name": "Attempt module",
+            "evidence": [
+              "backend/test/fixtures/django-exam/exam/models.py"
+            ]
+          }
+        ],
+        "pages": [
+          "/"
+        ],
+        "components": [
+          "frontend/src/components/DashboardSidebar.jsx",
+          "frontend/src/components/ProfileSection.jsx",
+          "frontend/src/components/ProjectSummaryCards.jsx",
+          "frontend/src/components/RecentScansList.jsx",
+          "frontend/src/components/RepoSelectorPanel.jsx",
+          "frontend/src/components/landing/LandingTemplate.jsx"
+        ],
+        "services": [
+          "backend/src/services/authService.js",
+          "backend/src/services/projectStore.js"
+        ],
+        "middleware": [],
+        "crud": {
+          "create": 14,
+          "read": 23,
+          "update": 0,
+          "destroy": 1,
+          "examples": {
+            "create": {
+              "method": "POST",
+              "path": "/api/auth/logout",
+              "file": "backend/src/routes/auth/authRoutes.js"
+            },
+            "read": {
+              "method": "GET",
+              "path": "*",
+              "file": "AI-CONTEXT.md"
+            },
+            "update": null,
+            "destroy": {
+              "method": "DELETE",
+              "path": "/posts/<pid>",
+              "file": "backend/test/fixtures/flask-blog/app.py"
+            }
+          }
+        },
+        "environmentVariables": [
+          "SESSION_SECRET",
+          "FRONTEND_URL",
+          "GITHUB_CLIENT_ID",
+          "GITHUB_CLIENT_SECRET",
+          "GITHUB_CALLBACK_URL",
+          "API_PORT",
+          "DATABASE_URL"
+        ],
+        "secretsDetected": true,
+        "configuration": {
+          "hasEnvExample": true,
+          "envFile": ".env.example",
+          "docker": true
+        },
+        "fileStructure": {
+          "topLevel": [
+            ".env.example",
+            "AGENTS.md",
+            "AI-CONTEXT.md",
+            "PROJECTBUDDY.md",
+            "README.md",
+            "backend",
+            "docker-compose.yml",
+            "docs",
+            "frontend",
+            "start.sh"
+          ],
+          "sample": [
+            ".env.example",
+            "AGENTS.md",
+            "AI-CONTEXT.md",
+            "PROJECTBUDDY.md",
+            "README.md",
+            "backend/.env.example",
+            "backend/Dockerfile",
+            "backend/data/store.json",
+            "backend/package-lock.json",
+            "backend/package.json",
+            "backend/prisma/data/projectbuddy.db",
+            "backend/prisma/schema.prisma",
+            "backend/src/ai.js",
+            "backend/src/config.js",
+            "backend/src/content.js",
+            "backend/src/db/prisma.js",
+            "backend/src/diagrams.js",
+            "backend/src/generate.js",
+            "backend/src/index.js",
+            "backend/src/intelligence.js",
+            "backend/src/modules/content/index.js",
+            "backend/src/modules/diagrams/index.js",
+            "backend/src/modules/generation/index.js",
+            "backend/src/modules/intelligence/index.js",
+            "backend/src/modules/scan/index.js",
+            "backend/src/modules/validation/index.js",
+            "backend/src/routes/auth/authRoutes.js",
+            "backend/src/routes/health.js",
+            "backend/src/routes/projects/projectRoutes.js",
+            "backend/src/scan.js",
+            "backend/src/services/authService.js",
+            "backend/src/services/projectStore.js",
+            "backend/src/util.js",
+            "backend/src/validator.js",
+            "backend/test/auth.test.js",
+            "backend/test/fixtures/django-exam/exam/models.py",
+            "backend/test/fixtures/django-exam/exam/urls.py",
+            "backend/test/fixtures/django-exam/exam/views.py",
+            "backend/test/fixtures/django-exam/manage.py",
+            "backend/test/fixtures/django-exam/requirements.txt"
+          ]
+        },
+        "dependencies": [
+          "@prisma/client",
+          "adm-zip",
+          "dotenv",
+          "express",
+          "express-session",
+          "prisma",
+          "jsonwebtoken",
+          "mongoose",
+          "react",
+          "react-dom",
+          "@vitejs/plugin-react",
+          "vite",
+          "php",
+          "laravel/framework"
+        ],
+        "scripts": {
+          "start": "node src/index.js",
+          "dev": "vite --host 0.0.0.0 --port 5173",
+          "test": "node test/pipeline.test.js",
+          "db:generate": "prisma generate",
+          "db:push": "prisma db push",
+          "db:studio": "prisma studio",
+          "build": "vite build",
+          "preview": "vite preview --host 0.0.0.0 --port 5173"
+        },
+        "deploymentHints": [
+          "Docker"
+        ],
+        "tests": {
+          "hasTests": true,
+          "files": [
+            "backend/test/auth.test.js",
+            "backend/test/fixtures/django-exam/exam/models.py",
+            "backend/test/fixtures/django-exam/exam/urls.py",
+            "backend/test/fixtures/django-exam/exam/views.py",
+            "backend/test/fixtures/django-exam/manage.py",
+            "backend/test/fixtures/django-exam/requirements.txt",
+            "backend/test/fixtures/express-shop/package.json",
+            "backend/test/fixtures/express-shop/server.js",
+            "backend/test/fixtures/flask-blog/app.py",
+            "backend/test/fixtures/flask-blog/requirements.txt",
+            "backend/test/fixtures/laravel-library/README.md",
+            "backend/test/fixtures/laravel-library/app/Models/Book.php",
+            "backend/test/fixtures/laravel-library/composer.json",
+            "backend/test/fixtures/laravel-library/database/migrations/2024_01_01_create_books_table.php",
+            "backend/test/fixtures/laravel-library/routes/web.php"
+          ]
+        },
+        "documentation": {
+          "hasReadme": true,
+          "readmeFile": "README.md",
+          "readmeExcerpt": "# ProjectBuddy Turn a project zip (or public GitHub URL) into submission material: report, diagrams, slides, viva Q&A, and demo script. English only. Grounded in the uploaded source. Missing tables, APIs, or modules are omitted, not invented. Price in the product: Rs 249 per project. ## Documentation The project documentation is centralized in [docs/README.md](docs/README.md). ## Local setup Needs"
+        },
+        "screenshots": [],
+        "evidence": [
+          {
+            "fact": "projectName",
+            "value": "Projectbuddy Api",
+            "evidence": [
+              "backend/package.json"
+            ],
+            "confidence": 0.8
+          },
+          {
+            "fact": "framework",
+            "value": "React Native",
+            "evidence": [
+              "backend/package.json",
+              "AI-CONTEXT.md"
+            ],
+            "confidence": 0.95
+          },
+          {
+            "fact": "framework",
+            "value": "Express",
+            "evidence": [
+              "backend/package.json",
+              "backend/src/index.js"
+            ],
+            "confidence": 0.93
+          },
+          {
+            "fact": "framework",
+            "value": "Flutter",
+            "evidence": [
+              "backend/package.json"
+            ],
+            "confidence": 0.95
+          },
+          {
+            "fact": "framework",
+            "value": "React",
+            "evidence": [
+              "frontend/package.json",
+              "frontend/src/App.jsx"
+            ],
+            "confidence": 0.95
+          },
+          {
+            "fact": "framework",
+            "value": "Laravel",
+            "evidence": [
+              "backend/test/fixtures/laravel-library/composer.json"
+            ],
+            "confidence": 0.96
+          },
+          {
+            "fact": "framework",
+            "value": "Django",
+            "evidence": [
+              "backend/test/fixtures/django-exam/requirements.txt"
+            ],
+            "confidence": 0.93
+          },
+          {
+            "fact": "framework",
+            "value": "Spring Boot",
+            "evidence": [
+              "backend/test/fixtures/spring-clinic/pom.xml"
+            ],
+            "confidence": 0.92
+          },
+          {
+            "fact": "database",
+            "value": "MySQL",
+            "evidence": [
+              "PROJECTBUDDY.md"
+            ],
+            "confidence": 0.88
+          },
+          {
+            "fact": "database",
+            "value": "PostgreSQL",
+            "evidence": [
+              ".env.example"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "database",
+            "value": "MongoDB",
+            "evidence": [
+              "backend/src/intelligence.js"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "database",
+            "value": "SQLite",
+            "evidence": [
+              "backend/prisma/data/projectbuddy.db"
+            ],
+            "confidence": 0.86
+          },
+          {
+            "fact": "table",
+            "value": "user",
+            "evidence": [
+              "backend/prisma/schema.prisma"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "table",
+            "value": "project",
+            "evidence": [
+              "backend/prisma/schema.prisma"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "table",
+            "value": "student",
+            "evidence": [
+              "backend/test/fixtures/django-exam/exam/models.py"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "table",
+            "value": "exam_paper",
+            "evidence": [
+              "backend/test/fixtures/django-exam/exam/models.py"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "table",
+            "value": "attempt",
+            "evidence": [
+              "backend/test/fixtures/django-exam/exam/models.py"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "table",
+            "value": "product",
+            "evidence": [
+              "backend/test/fixtures/express-shop/server.js"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "table",
+            "value": "order",
+            "evidence": [
+              "backend/test/fixtures/express-shop/server.js"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "table",
+            "value": "books",
+            "evidence": [
+              "backend/test/fixtures/laravel-library/database/migrations/2024_01_01_create_books_table.php"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "table",
+            "value": "members",
+            "evidence": [
+              "backend/test/fixtures/laravel-library/database/migrations/2024_01_01_create_books_table.php"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "table",
+            "value": "issues",
+            "evidence": [
+              "backend/test/fixtures/laravel-library/database/migrations/2024_01_01_create_books_table.php"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "table",
+            "value": "appointments",
+            "evidence": [
+              "backend/test/fixtures/spring-clinic/src/main/java/edu/campus/clinic/Appointment.java"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "table",
+            "value": "patients",
+            "evidence": [
+              "backend/test/fixtures/spring-clinic/src/main/java/edu/campus/clinic/Patient.java"
+            ],
+            "confidence": 0.85
+          },
+          {
+            "fact": "route",
+            "value": "GET *",
+            "evidence": [
+              "AI-CONTEXT.md"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /api/health",
+            "evidence": [
+              "backend/src/index.js"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /api/db-status",
+            "evidence": [
+              "backend/src/index.js"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /api/auth/github",
+            "evidence": [
+              "backend/src/routes/auth/authRoutes.js"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /api/auth/github/callback",
+            "evidence": [
+              "backend/src/routes/auth/authRoutes.js"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /api/auth/session",
+            "evidence": [
+              "backend/src/routes/auth/authRoutes.js"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /api/auth/user/repos",
+            "evidence": [
+              "backend/src/routes/auth/authRoutes.js"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "POST /api/auth/logout",
+            "evidence": [
+              "backend/src/routes/auth/authRoutes.js"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /api/projects",
+            "evidence": [
+              "backend/src/routes/projects/projectRoutes.js"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "POST /api/projects",
+            "evidence": [
+              "backend/src/routes/projects/projectRoutes.js"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "POST /api/projects/upload",
+            "evidence": [
+              "backend/src/routes/projects/projectRoutes.js"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /api/projects/:id",
+            "evidence": [
+              "backend/src/routes/projects/projectRoutes.js"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "POST /api/projects/:id/generate",
+            "evidence": [
+              "backend/src/routes/projects/projectRoutes.js"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "POST /api/projects/:id/section",
+            "evidence": [
+              "backend/src/routes/projects/projectRoutes.js"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "POST /api/projects/:id/regenerate",
+            "evidence": [
+              "backend/src/routes/projects/projectRoutes.js"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /api/projects/:id/download",
+            "evidence": [
+              "backend/src/routes/projects/projectRoutes.js"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /api/projects/:id/file",
+            "evidence": [
+              "backend/src/routes/projects/projectRoutes.js"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /login/",
+            "evidence": [
+              "backend/test/fixtures/django-exam/exam/urls.py"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /students/",
+            "evidence": [
+              "backend/test/fixtures/django-exam/exam/urls.py"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "route",
+            "value": "GET /papers/",
+            "evidence": [
+              "backend/test/fixtures/django-exam/exam/urls.py"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "fact": "authentication",
+            "value": "JWT",
+            "evidence": [
+              "backend/src/intelligence.js",
+              "package.json -> jsonwebtoken",
+              "backend/src/routes/auth/authRoutes.js (GET /api/auth/github)"
+            ],
+            "confidence": 0.9
+          }
+        ],
+        "warnings": [
+          "Sensitive configuration detected. Values are not stored."
+        ],
+        "confidence": 0.98,
+        "fileCount": 84,
+        "scannedFiles": 81,
+        "topFiles": [
+          ".env.example",
+          "AGENTS.md",
+          "AI-CONTEXT.md",
+          "PROJECTBUDDY.md",
+          "README.md",
+          "backend/.env.example",
+          "backend/Dockerfile",
+          "backend/data/store.json",
+          "backend/package-lock.json",
+          "backend/package.json",
+          "backend/prisma/data/projectbuddy.db",
+          "backend/prisma/schema.prisma",
+          "backend/src/ai.js",
+          "backend/src/config.js",
+          "backend/src/content.js",
+          "backend/src/db/prisma.js",
+          "backend/src/diagrams.js",
+          "backend/src/generate.js",
+          "backend/src/index.js",
+          "backend/src/intelligence.js",
+          "backend/src/modules/content/index.js",
+          "backend/src/modules/diagrams/index.js",
+          "backend/src/modules/generation/index.js",
+          "backend/src/modules/intelligence/index.js",
+          "backend/src/modules/scan/index.js",
+          "backend/src/modules/validation/index.js",
+          "backend/src/routes/auth/authRoutes.js",
+          "backend/src/routes/health.js",
+          "backend/src/routes/projects/projectRoutes.js",
+          "backend/src/scan.js",
+          "backend/src/services/authService.js",
+          "backend/src/services/projectStore.js",
+          "backend/src/util.js",
+          "backend/src/validator.js",
+          "backend/test/auth.test.js",
+          "backend/test/fixtures/django-exam/exam/models.py",
+          "backend/test/fixtures/django-exam/exam/urls.py",
+          "backend/test/fixtures/django-exam/exam/views.py",
+          "backend/test/fixtures/django-exam/manage.py",
+          "backend/test/fixtures/django-exam/requirements.txt"
+        ],
+        "health": {
+          "technology": [
+            {
+              "ok": true,
+              "label": "React Native",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "Express",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "Flutter",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "React",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "Laravel",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "Django",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "Spring Boot",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "MySQL",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "PostgreSQL",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "MongoDB",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "SQLite",
+              "detail": "Detected in repository"
+            }
+          ],
+          "architecture": [
+            {
+              "ok": true,
+              "label": "Frontend",
+              "detail": "React Native, Flutter, React"
+            },
+            {
+              "ok": true,
+              "label": "Backend",
+              "detail": "Express, Laravel, Django, Spring Boot"
+            },
+            {
+              "ok": true,
+              "label": "Routes",
+              "detail": "38 routes"
+            },
+            {
+              "ok": true,
+              "label": "API routes",
+              "detail": "20 API routes"
+            }
+          ],
+          "database": [
+            {
+              "ok": true,
+              "label": "Tables",
+              "detail": "12 tables"
+            },
+            {
+              "ok": true,
+              "label": "Relationships",
+              "detail": "2 relationships"
+            }
+          ],
+          "documentation": [
+            {
+              "ok": true,
+              "label": "README",
+              "detail": "README.md"
+            }
+          ],
+          "testing": [
+            {
+              "ok": true,
+              "label": "Tests",
+              "detail": "15 test files"
+            }
+          ],
+          "security": [
+            {
+              "ok": false,
+              "label": "Secrets",
+              "detail": "Sensitive configuration detected"
+            },
+            {
+              "ok": true,
+              "label": "Authentication",
+              "detail": "JWT"
+            }
+          ]
+        },
+        "stackLabel": "React Native · Flutter · React · Express · Laravel · Django · Spring Boot · MySQL · PostgreSQL · MongoDB · SQLite",
+        "suggestedTitle": "Projectbuddy Api",
+        "suggestedProblem": "Manual or disconnected handling of book, user, project is replaced by this React Native · Flutter · React · Express · Laravel · Django · Spring Boot · MySQL · PostgreSQL · MongoDB · SQLite application, which stores data in MySQL.",
+        "suggestedFuture": "document limitations honestly for viva."
+      },
+      "health": {
+        "technology": [
+          {
+            "ok": true,
+            "label": "React Native",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "Express",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "Flutter",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "React",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "Laravel",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "Django",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "Spring Boot",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "MySQL",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "PostgreSQL",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "MongoDB",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "SQLite",
+            "detail": "Detected in repository"
+          }
+        ],
+        "architecture": [
+          {
+            "ok": true,
+            "label": "Frontend",
+            "detail": "React Native, Flutter, React"
+          },
+          {
+            "ok": true,
+            "label": "Backend",
+            "detail": "Express, Laravel, Django, Spring Boot"
+          },
+          {
+            "ok": true,
+            "label": "Routes",
+            "detail": "38 routes"
+          },
+          {
+            "ok": true,
+            "label": "API routes",
+            "detail": "20 API routes"
+          }
+        ],
+        "database": [
+          {
+            "ok": true,
+            "label": "Tables",
+            "detail": "12 tables"
+          },
+          {
+            "ok": true,
+            "label": "Relationships",
+            "detail": "2 relationships"
+          }
+        ],
+        "documentation": [
+          {
+            "ok": true,
+            "label": "README",
+            "detail": "README.md"
+          }
+        ],
+        "testing": [
+          {
+            "ok": true,
+            "label": "Tests",
+            "detail": "15 test files"
+          }
+        ],
+        "security": [
+          {
+            "ok": false,
+            "label": "Secrets",
+            "detail": "Sensitive configuration detected"
+          },
+          {
+            "ok": true,
+            "label": "Authentication",
+            "detail": "JWT"
+          }
+        ]
+      },
+      "stackLabel": "React Native · Flutter · React · Express · Laravel · Django · Spring Boot · MySQL · PostgreSQL · MongoDB · SQLite",
+      "suggestedTitle": "Projectbuddy Api",
+      "suggestedProblem": "Manual or disconnected handling of book, user, project is replaced by this React Native · Flutter · React · Express · Laravel · Django · Spring Boot · MySQL · PostgreSQL · MongoDB · SQLite application, which stores data in MySQL.",
+      "suggestedFuture": "document limitations honestly for viva.",
+      "warnings": [
+        "Sensitive configuration detected. Values are not stored."
+      ],
+      "confidence": 0.98,
+      "evidence": [
+        {
+          "fact": "projectName",
+          "value": "Projectbuddy Api",
+          "evidence": [
+            "backend/package.json"
+          ],
+          "confidence": 0.8
+        },
+        {
+          "fact": "framework",
+          "value": "React Native",
+          "evidence": [
+            "backend/package.json",
+            "AI-CONTEXT.md"
+          ],
+          "confidence": 0.95
+        },
+        {
+          "fact": "framework",
+          "value": "Express",
+          "evidence": [
+            "backend/package.json",
+            "backend/src/index.js"
+          ],
+          "confidence": 0.93
+        },
+        {
+          "fact": "framework",
+          "value": "Flutter",
+          "evidence": [
+            "backend/package.json"
+          ],
+          "confidence": 0.95
+        },
+        {
+          "fact": "framework",
+          "value": "React",
+          "evidence": [
+            "frontend/package.json",
+            "frontend/src/App.jsx"
+          ],
+          "confidence": 0.95
+        },
+        {
+          "fact": "framework",
+          "value": "Laravel",
+          "evidence": [
+            "backend/test/fixtures/laravel-library/composer.json"
+          ],
+          "confidence": 0.96
+        },
+        {
+          "fact": "framework",
+          "value": "Django",
+          "evidence": [
+            "backend/test/fixtures/django-exam/requirements.txt"
+          ],
+          "confidence": 0.93
+        },
+        {
+          "fact": "framework",
+          "value": "Spring Boot",
+          "evidence": [
+            "backend/test/fixtures/spring-clinic/pom.xml"
+          ],
+          "confidence": 0.92
+        },
+        {
+          "fact": "database",
+          "value": "MySQL",
+          "evidence": [
+            "PROJECTBUDDY.md"
+          ],
+          "confidence": 0.88
+        },
+        {
+          "fact": "database",
+          "value": "PostgreSQL",
+          "evidence": [
+            ".env.example"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "database",
+          "value": "MongoDB",
+          "evidence": [
+            "backend/src/intelligence.js"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "database",
+          "value": "SQLite",
+          "evidence": [
+            "backend/prisma/data/projectbuddy.db"
+          ],
+          "confidence": 0.86
+        },
+        {
+          "fact": "table",
+          "value": "user",
+          "evidence": [
+            "backend/prisma/schema.prisma"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "project",
+          "evidence": [
+            "backend/prisma/schema.prisma"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "student",
+          "evidence": [
+            "backend/test/fixtures/django-exam/exam/models.py"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "exam_paper",
+          "evidence": [
+            "backend/test/fixtures/django-exam/exam/models.py"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "attempt",
+          "evidence": [
+            "backend/test/fixtures/django-exam/exam/models.py"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "product",
+          "evidence": [
+            "backend/test/fixtures/express-shop/server.js"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "order",
+          "evidence": [
+            "backend/test/fixtures/express-shop/server.js"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "books",
+          "evidence": [
+            "backend/test/fixtures/laravel-library/database/migrations/2024_01_01_create_books_table.php"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "members",
+          "evidence": [
+            "backend/test/fixtures/laravel-library/database/migrations/2024_01_01_create_books_table.php"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "issues",
+          "evidence": [
+            "backend/test/fixtures/laravel-library/database/migrations/2024_01_01_create_books_table.php"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "appointments",
+          "evidence": [
+            "backend/test/fixtures/spring-clinic/src/main/java/edu/campus/clinic/Appointment.java"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "table",
+          "value": "patients",
+          "evidence": [
+            "backend/test/fixtures/spring-clinic/src/main/java/edu/campus/clinic/Patient.java"
+          ],
+          "confidence": 0.85
+        },
+        {
+          "fact": "route",
+          "value": "GET *",
+          "evidence": [
+            "AI-CONTEXT.md"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /api/health",
+          "evidence": [
+            "backend/src/index.js"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /api/db-status",
+          "evidence": [
+            "backend/src/index.js"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /api/auth/github",
+          "evidence": [
+            "backend/src/routes/auth/authRoutes.js"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /api/auth/github/callback",
+          "evidence": [
+            "backend/src/routes/auth/authRoutes.js"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /api/auth/session",
+          "evidence": [
+            "backend/src/routes/auth/authRoutes.js"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /api/auth/user/repos",
+          "evidence": [
+            "backend/src/routes/auth/authRoutes.js"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "POST /api/auth/logout",
+          "evidence": [
+            "backend/src/routes/auth/authRoutes.js"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /api/projects",
+          "evidence": [
+            "backend/src/routes/projects/projectRoutes.js"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "POST /api/projects",
+          "evidence": [
+            "backend/src/routes/projects/projectRoutes.js"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "POST /api/projects/upload",
+          "evidence": [
+            "backend/src/routes/projects/projectRoutes.js"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /api/projects/:id",
+          "evidence": [
+            "backend/src/routes/projects/projectRoutes.js"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "POST /api/projects/:id/generate",
+          "evidence": [
+            "backend/src/routes/projects/projectRoutes.js"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "POST /api/projects/:id/section",
+          "evidence": [
+            "backend/src/routes/projects/projectRoutes.js"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "POST /api/projects/:id/regenerate",
+          "evidence": [
+            "backend/src/routes/projects/projectRoutes.js"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "fact": "route",
+          "value": "GET /api/projects/:id/download",
+          "evidence": [
+            "backend/src/routes/projects/projectRoutes.js"
+          ],
+          "confidence": 0.9
+        }
+      ],
+      "authentication": {
+        "method": "JWT",
+        "evidence": [
+          "backend/src/intelligence.js",
+          "package.json -> jsonwebtoken",
+          "backend/src/routes/auth/authRoutes.js (GET /api/auth/github)"
+        ],
+        "confidence": 0.9,
+        "loginRoute": {
+          "method": "GET",
+          "path": "/api/auth/github",
+          "file": "backend/src/routes/auth/authRoutes.js"
+        }
+      },
+      "authorization": [
+        "admin",
+        "teacher",
+        "student",
+        "user",
+        "staff",
+        "doctor",
+        "patient"
+      ],
+      "features": [
+        {
+          "name": "Authentication (JWT)",
+          "evidence": [
+            "backend/src/intelligence.js",
+            "package.json -> jsonwebtoken",
+            "backend/src/routes/auth/authRoutes.js (GET /api/auth/github)"
+          ]
+        },
+        {
+          "name": "Create records",
+          "evidence": [
+            "backend/src/routes/auth/authRoutes.js"
+          ]
+        },
+        {
+          "name": "Delete records",
+          "evidence": [
+            "backend/test/fixtures/flask-blog/app.py"
+          ]
+        },
+        {
+          "name": "User interface screens",
+          "evidence": [
+            "/"
+          ]
+        },
+        {
+          "name": "Persistent data storage",
+          "evidence": [
+            "backend/prisma/schema.prisma"
+          ]
+        },
+        {
+          "name": "Book module",
+          "evidence": [
+            "backend/test/fixtures/laravel-library/app/Models/Book.php"
+          ]
+        },
+        {
+          "name": "User module",
+          "evidence": [
+            "backend/prisma/schema.prisma"
+          ]
+        },
+        {
+          "name": "Project module",
+          "evidence": [
+            "backend/prisma/schema.prisma"
+          ]
+        },
+        {
+          "name": "Student module",
+          "evidence": [
+            "backend/test/fixtures/django-exam/exam/models.py"
+          ]
+        },
+        {
+          "name": "Exam Paper module",
+          "evidence": [
+            "backend/test/fixtures/django-exam/exam/models.py"
+          ]
+        },
+        {
+          "name": "Attempt module",
+          "evidence": [
+            "backend/test/fixtures/django-exam/exam/models.py"
+          ]
+        }
+      ],
+      "pages": [
+        "/"
+      ],
+      "apiEndpoints": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "file": "backend/src/index.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/db-status",
+          "file": "backend/src/index.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/auth/github",
+          "file": "backend/src/routes/auth/authRoutes.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/auth/github/callback",
+          "file": "backend/src/routes/auth/authRoutes.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/auth/session",
+          "file": "backend/src/routes/auth/authRoutes.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/auth/user/repos",
+          "file": "backend/src/routes/auth/authRoutes.js"
+        },
+        {
+          "method": "POST",
+          "path": "/api/auth/logout",
+          "file": "backend/src/routes/auth/authRoutes.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/projects",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "POST",
+          "path": "/api/projects",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "POST",
+          "path": "/api/projects/upload",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/projects/:id",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "POST",
+          "path": "/api/projects/:id/generate",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "POST",
+          "path": "/api/projects/:id/section",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "POST",
+          "path": "/api/projects/:id/regenerate",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/projects/:id/download",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/projects/:id/file",
+          "file": "backend/src/routes/projects/projectRoutes.js"
+        },
+        {
+          "method": "POST",
+          "path": "/api/login",
+          "file": "backend/test/fixtures/express-shop/server.js"
+        },
+        {
+          "method": "GET",
+          "path": "/api/products",
+          "file": "backend/test/fixtures/express-shop/server.js"
+        },
+        {
+          "method": "POST",
+          "path": "/api/products",
+          "file": "backend/test/fixtures/express-shop/server.js"
+        },
+        {
+          "method": "POST",
+          "path": "/api/orders",
+          "file": "backend/test/fixtures/express-shop/server.js"
+        }
+      ],
+      "relationships": [
+        {
+          "from": "issues",
+          "to": "books",
+          "type": "belongsTo",
+          "via": "book_id"
+        },
+        {
+          "from": "issues",
+          "to": "members",
+          "type": "belongsTo",
+          "via": "member_id"
+        }
+      ],
+      "frontend": [
+        "React Native",
+        "Flutter",
+        "React"
+      ],
+      "backend": [
+        "Express",
+        "Laravel",
+        "Django",
+        "Spring Boot"
+      ],
+      "tests": {
+        "hasTests": true,
+        "files": [
+          "backend/test/auth.test.js",
+          "backend/test/fixtures/django-exam/exam/models.py",
+          "backend/test/fixtures/django-exam/exam/urls.py",
+          "backend/test/fixtures/django-exam/exam/views.py",
+          "backend/test/fixtures/django-exam/manage.py",
+          "backend/test/fixtures/django-exam/requirements.txt",
+          "backend/test/fixtures/express-shop/package.json",
+          "backend/test/fixtures/express-shop/server.js",
+          "backend/test/fixtures/flask-blog/app.py",
+          "backend/test/fixtures/flask-blog/requirements.txt",
+          "backend/test/fixtures/laravel-library/README.md",
+          "backend/test/fixtures/laravel-library/app/Models/Book.php",
+          "backend/test/fixtures/laravel-library/composer.json",
+          "backend/test/fixtures/laravel-library/database/migrations/2024_01_01_create_books_table.php",
+          "backend/test/fixtures/laravel-library/routes/web.php"
+        ]
+      },
+      "documentation": {
+        "hasReadme": true,
+        "readmeFile": "README.md",
+        "readmeExcerpt": "# ProjectBuddy Turn a project zip (or public GitHub URL) into submission material: report, diagrams, slides, viva Q&A, and demo script. English only. Grounded in the uploaded source. Missing tables, APIs, or modules are omitted, not invented. Price in the product: Rs 249 per project. ## Documentation The project documentation is centralized in [docs/README.md](docs/README.md). ## Local setup Needs"
+      },
+      "configuration": {
+        "hasEnvExample": true,
+        "envFile": ".env.example",
+        "docker": true
+      },
+      "environmentVariables": [
+        "SESSION_SECRET",
+        "FRONTEND_URL",
+        "GITHUB_CLIENT_ID",
+        "GITHUB_CLIENT_SECRET",
+        "GITHUB_CALLBACK_URL",
+        "API_PORT",
+        "DATABASE_URL"
+      ]
+    }
+  },
+  "pb_musadzp23khga0": {
+    "id": "pb_musadzp23khga0",
+    "status": "failed",
+    "github": "https://github.com/MadinBloch/Farmly-Backend",
+    "dir": "/data/projects/pb_musadzp23khga0",
+    "createdAt": "2026-10-03T11:06:22.071Z",
+    "updatedAt": "2026-10-03T11:06:26.216Z",
+    "error": "GitHub returned 404"
+  },
+  "pb_musaeetx9l0g4i": {
+    "id": "pb_musaeetx9l0g4i",
+    "status": "failed",
+    "github": "https://github.com/AshishTukadiya007/Horizon",
+    "dir": "/data/projects/pb_musaeetx9l0g4i",
+    "createdAt": "2026-10-03T11:06:41.686Z",
+    "updatedAt": "2026-10-03T11:06:42.874Z",
+    "error": "GitHub returned 404"
+  },
+  "pb_musaepfu8if9du": {
+    "id": "pb_musaepfu8if9du",
+    "status": "scanned",
+    "github": "https://github.com/MadinBloch/React-Project-Appwrite",
+    "dir": "/data/projects/pb_musaepfu8if9du",
+    "createdAt": "2026-10-03T11:06:55.435Z",
+    "updatedAt": "2026-10-03T11:06:57.107Z",
+    "scan": {
+      "ok": true,
+      "fileCount": 18,
+      "scannedFiles": 16,
+      "stack": {
+        "language": "JavaScript",
+        "frameworks": [
+          "React",
+          "React Native"
+        ],
+        "database": [],
+        "tools": []
+      },
+      "languages": [
+        "JavaScript"
+      ],
+      "tables": [],
+      "models": [],
+      "routes": [],
+      "modules": [],
+      "actors": [
+        "User"
+      ],
+      "hasDocker": false,
+      "hasTests": false,
+      "hasReadme": true,
+      "topFiles": [
+        "README.md",
+        "eslint.config.js",
+        "index.html",
+        "package-lock.json",
+        "package.json",
+        "src/App.css",
+        "src/App.jsx",
+        "src/appwrite/auth.js",
+        "src/appwrite/databaseconfig.js",
+        "src/components/Footer/Footer.jsx",
+        "src/components/Header/Header.jsx",
+        "src/components/index.js",
+        "src/config/config.js",
+        "src/index.css",
+        "src/main.jsx",
+        "src/store/authSlice.js",
+        "src/store/store.js",
+        "vite.config.js"
+      ],
+      "intelligence": {
+        "ok": true,
+        "projectName": "React Project",
+        "detectedLanguages": [
+          "JavaScript"
+        ],
+        "frameworks": [
+          "React",
+          "React Native"
+        ],
+        "libraries": [],
+        "frontend": [
+          "React",
+          "React Native"
+        ],
+        "backend": [],
+        "databases": [],
+        "databaseTables": [],
+        "databaseColumns": [],
+        "relationships": [],
+        "models": [],
+        "controllers": [],
+        "routes": [],
+        "apiEndpoints": [],
+        "authentication": {
+          "method": "Session",
+          "evidence": [
+            "src/appwrite/auth.js"
+          ],
+          "confidence": 0.85,
+          "loginRoute": null
+        },
+        "authorization": [],
+        "modules": [],
+        "features": [
+          {
+            "name": "Authentication (Session)",
+            "evidence": [
+              "src/appwrite/auth.js"
+            ]
+          }
+        ],
+        "pages": [],
+        "components": [
+          "src/components/Footer/Footer.jsx",
+          "src/components/Header/Header.jsx",
+          "src/components/index.js"
+        ],
+        "services": [],
+        "middleware": [],
+        "crud": {
+          "create": 0,
+          "read": 0,
+          "update": 0,
+          "destroy": 0,
+          "examples": {
+            "create": null,
+            "read": null,
+            "update": null,
+            "destroy": null
+          }
+        },
+        "environmentVariables": [],
+        "secretsDetected": false,
+        "configuration": {
+          "hasEnvExample": false,
+          "envFile": null,
+          "docker": false
+        },
+        "fileStructure": {
+          "topLevel": [
+            "README.md",
+            "eslint.config.js",
+            "index.html",
+            "package-lock.json",
+            "package.json",
+            "src",
+            "vite.config.js"
+          ],
+          "sample": [
+            "README.md",
+            "eslint.config.js",
+            "index.html",
+            "package-lock.json",
+            "package.json",
+            "src/App.css",
+            "src/App.jsx",
+            "src/appwrite/auth.js",
+            "src/appwrite/databaseconfig.js",
+            "src/components/Footer/Footer.jsx",
+            "src/components/Header/Header.jsx",
+            "src/components/index.js",
+            "src/config/config.js",
+            "src/index.css",
+            "src/main.jsx",
+            "src/store/authSlice.js",
+            "src/store/store.js",
+            "vite.config.js"
+          ]
+        },
+        "dependencies": [
+          "@reduxjs/toolkit",
+          "appwrite",
+          "html-react-parser",
+          "react",
+          "react-dom",
+          "react-hook-form",
+          "react-redux",
+          "react-router-dom",
+          "@eslint/js",
+          "@types/react",
+          "@types/react-dom",
+          "@vitejs/plugin-react",
+          "eslint",
+          "eslint-plugin-react-hooks",
+          "eslint-plugin-react-refresh",
+          "globals",
+          "vite"
+        ],
+        "scripts": {
+          "dev": "vite",
+          "build": "vite build",
+          "lint": "eslint .",
+          "preview": "vite preview"
+        },
+        "deploymentHints": [],
+        "tests": {
+          "hasTests": false,
+          "files": []
+        },
+        "documentation": {
+          "hasReadme": true,
+          "readmeFile": "README.md",
+          "readmeExcerpt": "# React + Vite # Day 1 Add the Project of React and Config it # Day 2 Add Appwrite Database config and Query FileUpload Method in databseconfig CRUD of Posts and Listing of Post # Day 3 Add New Store and authSlice for Global State Management and Fix the Database Issue"
+        },
+        "screenshots": [],
+        "evidence": [
+          {
+            "fact": "projectName",
+            "value": "React Project",
+            "evidence": [
+              "package.json"
+            ],
+            "confidence": 0.8
+          },
+          {
+            "fact": "framework",
+            "value": "React",
+            "evidence": [
+              "package.json",
+              "src/App.jsx"
+            ],
+            "confidence": 0.95
+          },
+          {
+            "fact": "framework",
+            "value": "React Native",
+            "evidence": [
+              "package.json",
+              "eslint.config.js"
+            ],
+            "confidence": 0.95
+          },
+          {
+            "fact": "authentication",
+            "value": "Session",
+            "evidence": [
+              "src/appwrite/auth.js"
+            ],
+            "confidence": 0.85
+          }
+        ],
+        "warnings": [],
+        "confidence": 0.5,
+        "fileCount": 18,
+        "scannedFiles": 16,
+        "topFiles": [
+          "README.md",
+          "eslint.config.js",
+          "index.html",
+          "package-lock.json",
+          "package.json",
+          "src/App.css",
+          "src/App.jsx",
+          "src/appwrite/auth.js",
+          "src/appwrite/databaseconfig.js",
+          "src/components/Footer/Footer.jsx",
+          "src/components/Header/Header.jsx",
+          "src/components/index.js",
+          "src/config/config.js",
+          "src/index.css",
+          "src/main.jsx",
+          "src/store/authSlice.js",
+          "src/store/store.js",
+          "vite.config.js"
+        ],
+        "health": {
+          "technology": [
+            {
+              "ok": true,
+              "label": "React",
+              "detail": "Detected in repository"
+            },
+            {
+              "ok": true,
+              "label": "React Native",
+              "detail": "Detected in repository"
+            }
+          ],
+          "architecture": [
+            {
+              "ok": true,
+              "label": "Frontend",
+              "detail": "React, React Native"
+            },
+            {
+              "ok": false,
+              "label": "Backend",
+              "detail": "Not detected in source"
+            },
+            {
+              "ok": false,
+              "label": "Routes",
+              "detail": "Not detected in source"
+            },
+            {
+              "ok": false,
+              "label": "API routes",
+              "detail": "Not detected in source"
+            }
+          ],
+          "database": [
+            {
+              "ok": false,
+              "label": "Tables",
+              "detail": "Not detected in source"
+            },
+            {
+              "ok": false,
+              "label": "Relationships",
+              "detail": "Not detected in source"
+            }
+          ],
+          "documentation": [
+            {
+              "ok": true,
+              "label": "README",
+              "detail": "README.md"
+            }
+          ],
+          "testing": [
+            {
+              "ok": false,
+              "label": "Tests",
+              "detail": "No tests detected"
+            }
+          ],
+          "security": [
+            {
+              "ok": true,
+              "label": "Secrets",
+              "detail": "No env file detected"
+            },
+            {
+              "ok": true,
+              "label": "Authentication",
+              "detail": "Session"
+            }
+          ]
+        },
+        "stackLabel": "React · React Native",
+        "suggestedTitle": "React Project",
+        "suggestedProblem": "This repository implements a React · React Native project. The exact business problem is not fully described in source; confirm with the student.",
+        "suggestedFuture": "add automated tests; add a simple Docker setup for examiners; document limitations honestly for viva."
+      },
+      "health": {
+        "technology": [
+          {
+            "ok": true,
+            "label": "React",
+            "detail": "Detected in repository"
+          },
+          {
+            "ok": true,
+            "label": "React Native",
+            "detail": "Detected in repository"
+          }
+        ],
+        "architecture": [
+          {
+            "ok": true,
+            "label": "Frontend",
+            "detail": "React, React Native"
+          },
+          {
+            "ok": false,
+            "label": "Backend",
+            "detail": "Not detected in source"
+          },
+          {
+            "ok": false,
+            "label": "Routes",
+            "detail": "Not detected in source"
+          },
+          {
+            "ok": false,
+            "label": "API routes",
+            "detail": "Not detected in source"
+          }
+        ],
+        "database": [
+          {
+            "ok": false,
+            "label": "Tables",
+            "detail": "Not detected in source"
+          },
+          {
+            "ok": false,
+            "label": "Relationships",
+            "detail": "Not detected in source"
+          }
+        ],
+        "documentation": [
+          {
+            "ok": true,
+            "label": "README",
+            "detail": "README.md"
+          }
+        ],
+        "testing": [
+          {
+            "ok": false,
+            "label": "Tests",
+            "detail": "No tests detected"
+          }
+        ],
+        "security": [
+          {
+            "ok": true,
+            "label": "Secrets",
+            "detail": "No env file detected"
+          },
+          {
+            "ok": true,
+            "label": "Authentication",
+            "detail": "Session"
+          }
+        ]
+      },
+      "stackLabel": "React · React Native",
+      "suggestedTitle": "React Project",
+      "suggestedProblem": "This repository implements a React · React Native project. The exact business problem is not fully described in source; confirm with the student.",
+      "suggestedFuture": "add automated tests; add a simple Docker setup for examiners; document limitations honestly for viva.",
+      "warnings": [],
+      "confidence": 0.5,
+      "evidence": [
+        {
+          "fact": "projectName",
+          "value": "React Project",
+          "evidence": [
+            "package.json"
+          ],
+          "confidence": 0.8
+        },
+        {
+          "fact": "framework",
+          "value": "React",
+          "evidence": [
+            "package.json",
+            "src/App.jsx"
+          ],
+          "confidence": 0.95
+        },
+        {
+          "fact": "framework",
+          "value": "React Native",
+          "evidence": [
+            "package.json",
+            "eslint.config.js"
+          ],
+          "confidence": 0.95
+        },
+        {
+          "fact": "authentication",
+          "value": "Session",
+          "evidence": [
+            "src/appwrite/auth.js"
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "authentication": {
+        "method": "Session",
+        "evidence": [
+          "src/appwrite/auth.js"
+        ],
+        "confidence": 0.85,
+        "loginRoute": null
+      },
+      "authorization": [],
+      "features": [
+        {
+          "name": "Authentication (Session)",
+          "evidence": [
+            "src/appwrite/auth.js"
+          ]
+        }
+      ],
+      "pages": [],
+      "apiEndpoints": [],
+      "relationships": [],
+      "frontend": [
+        "React",
+        "React Native"
+      ],
+      "backend": [],
+      "tests": {
+        "hasTests": false,
+        "files": []
+      },
+      "documentation": {
+        "hasReadme": true,
+        "readmeFile": "README.md",
+        "readmeExcerpt": "# React + Vite # Day 1 Add the Project of React and Config it # Day 2 Add Appwrite Database config and Query FileUpload Method in databseconfig CRUD of Posts and Listing of Post # Day 3 Add New Store and authSlice for Global State Management and Fix the Database Issue"
+      },
+      "configuration": {
+        "hasEnvExample": false,
+        "envFile": null,
+        "docker": false
+      },
+      "environmentVariables": []
+    }
+  }
+}

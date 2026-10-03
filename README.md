@@ -22,7 +22,7 @@ docker compose up --build
 
 This starts PostgreSQL, the backend, and the frontend together.
 
-- Frontend: http://localhost:5173
+- Frontend: http://localhost:4173
 - API: http://localhost:3001
 - PostgreSQL: http://localhost:5432
 
@@ -40,8 +40,10 @@ node src/index.js
 # Frontend (another terminal)
 cd frontend
 npm install
-npm run dev
+PORT=4173 npm run dev
 ```
+
+If port 4173 is already occupied by another local app, Vite will automatically move to the next free port. In that case, update `FRONTEND_URL` in `backend/.env` to match the port Vite reports.
 
 ### Environment file
 
@@ -49,7 +51,7 @@ See [.env.example](.env.example) for the project environment template.
 
 ```env
 SESSION_SECRET=projectbuddy-dev-secret
-FRONTEND_URL=http://localhost:5173
+FRONTEND_URL=http://localhost:4173
 GITHUB_CLIENT_ID=
 GITHUB_CLIENT_SECRET=
 GITHUB_CALLBACK_URL=http://localhost:3001/api/auth/github/callback

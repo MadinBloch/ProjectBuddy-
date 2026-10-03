@@ -1,11 +1,13 @@
 #!/bin/sh
-# Install (if needed) and run both processes: API on 3001, Vite dev on 5173.
+# Install (if needed) and run both processes. If 4173 is already taken,
+# Vite will automatically fall back to the next free port and the backend
+# will follow the same FRONTEND_URL value.
 set -e
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 
-# Deterministic ports so the preview proxy always matches (5173 is declared).
-export API_PORT=3001
-export PORT=5173
+export API_PORT="${API_PORT:-3001}"
+export PORT="${PORT:-4173}"
+export FRONTEND_URL="${FRONTEND_URL:-http://localhost:${PORT}}"
 
 if [ ! -d "$ROOT/frontend/node_modules" ]; then
   npm install --prefix "$ROOT/frontend" --no-audit --no-fund
